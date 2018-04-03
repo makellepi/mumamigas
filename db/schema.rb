@@ -10,10 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402153703) do
+ActiveRecord::Schema.define(version: 20180403133201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "description"
+    t.date "date"
+    t.time "time"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_activities_on_location_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "interests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_interests_on_user_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_locations_on_user_id"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.boolean "status"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_matches_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "user_id"
+    t.bigint "match_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["match_id"], name: "index_messages_on_match_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,8 +73,24 @@ ActiveRecord::Schema.define(version: 20180402153703) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "language"
+    t.string "first_name"
+    t.string "second_name"
+    t.string "home_location"
+    t.integer "children"
+    t.integer "children_age"
+    t.integer "age"
+    t.boolean "work_status"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "activities", "locations"
+  add_foreign_key "activities", "users"
+  add_foreign_key "interests", "users"
+  add_foreign_key "locations", "users"
+  add_foreign_key "matches", "users"
+  add_foreign_key "messages", "matches"
+  add_foreign_key "messages", "users"
 end
