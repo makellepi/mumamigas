@@ -1,2 +1,23 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% gradient_str = "-webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%)"  %>
+
+<div class="banner" style="background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%), url(<%= image_path("banner.jpg")%>);">
+  <div class="banner-content">
+    <h1>Mumamigas</h1>
+    <p>Find other mums nearby</p>
+    <a class="btn btn-primary btn-lg">Start now</a>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="welcome-content">
+    <div class="big-logo-wrapper">
+      <div class="big-logo blurrer">
+      </div>
+    </div>
+    <br>
+    <div class="blurrer">
+    </div>
+  </div>
+</div>
+
