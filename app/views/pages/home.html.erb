@@ -1,23 +1,53 @@
 
-<div class="banner">
-  <div class="banner-content">
-    <h1>Mumamigas</h1>
-    <%=image_tag("background.jpg", style: "width: 250vh;
-      height:150vh;") %>
-    <p>Find other mums nearby</p>
-    <a class="btn btn-primary btn-lg">Start now</a>
-  </div>
-</div>
+<% gradient_str = "-webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%)"  %>
+
+<%= render 'layouts/banner', banner_type: 'banner', img_url: image_tag("background.jpg", style: "width: 100%;
+      height:100%;"), gradient: gradient_str %>
 
 <div class="container">
-  <div class="welcome-content">
-    <div class="big-logo-wrapper">
-      <div class="big-logo blurrer">
-      </div>
-    </div>
-    <br>
-    <div class="blurrer">
+<div class="banner">
+  <div class="banner-content">
+    <%=image_tag("background.jpg", style: "width: 100%;
+      height:100%; opacity: 0.6") %>
+    <div class="centered">
+    <h1>Mumamigas</h1>
+    <p>Meet other mums!</p>
+    <a class="btn btn-primary btn-lg">Start now</a>
     </div>
   </div>
+
+<div class="bottom">
+<div class="cards-container">
+    <div class="row">
+        <div class="col-xs-6 col-sm-4">
+            <div class="home-card">
+             <h4>Connect with other mums</h4>
+              <div class="cardhome-grow">
+               <p>You can chat with mums all over the world, or just in your neighbourhood, you choose.
+               </p>
+              </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <div class="home-card">
+             <h4>Find good deals</h4>
+              <div class="cardhome-grow">
+              <p>Find good deals on opportunities for second hand products for your new baby.</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <div class="home-card">
+             <h4>Join activities</h4>
+              <div class="cardhome-grow">
+              <p>Attend or organize local meetups with other mums. Discover mums-kids friendly places around you.</p>
+              </div>
+            </div>
+        </div>
+    </div>
+ </div>
+</div>
+</div>
+
 </div>
 
