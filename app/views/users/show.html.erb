@@ -11,10 +11,18 @@
 
 
 </div>
-
     <div class="btn-group" role="group">
+
+    <% if @user == current_user %>
+        <%= link_to "Edit profile", edit_user_path, class: "btn-sm-default" %>
+      <% end %>
+    </div>
+
+
+
+</div>
+ <div class="btn-group" role="group">
     <%= link_to "Back", :back, class: "btn-back" %>
 
     </div>
-</div>
 
