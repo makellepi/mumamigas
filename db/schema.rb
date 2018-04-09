@@ -73,15 +73,6 @@ ActiveRecord::Schema.define(version: 20180406160330) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "language"
-    t.string "first_name"
-    t.string "second_name"
-    t.string "home_location"
-    t.integer "children"
-    t.integer "children_age"
-    t.integer "age"
-    t.boolean "work_status"
-    t.text "bio"
     t.string "photo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
