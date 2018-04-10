@@ -1,25 +1,20 @@
 
 <% gradient_str = "-webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 1) 100%)"  %>
 
-<%= render 'layouts/banner', banner_type: 'banner', img_url: image_tag("background.jpg", style: "width: 100%;
-      height:100%;"), gradient: gradient_str %>
 
 <div class="container">
 <div class="banner">
   <div class="banner-content">
-    <%=image_tag("background.jpg", style: "width: 100%;
-      height:100%; opacity: 0.6") %>
+    <%=image_tag("background.jpg", style: "opacity: 0.6") %>
     <div class="centered">
     <h1>Mumamigas</h1>
     <p>Meet other mums!</p>
-    <a class="btn btn-primary btn-lg">Start now</a>
+    <a class="btn btn-danger btn-lg">Start now</a>
     </div>
   </div>
-
-<div class="bottom">
 <div class="cards-container">
     <div class="row">
-        <div class="col-xs-6 col-sm-4">
+        <div class="col-xs-12 col-sm-4">
             <div class="home-card">
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
               <br>
@@ -30,7 +25,7 @@
               </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4">
+        <div class="col-xs-12 col-sm-4">
             <div class="home-card">
               <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
               <br>
@@ -40,7 +35,7 @@
               </div>
             </div>
         </div>
-        <div class="col-xs-6 col-sm-4">
+        <div class="col-xs-12 col-sm-4">
             <div class="home-card">
               <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
               <br>
@@ -52,7 +47,6 @@
         </div>
     </div>
  </div>
-</div>
 </div>
 
 </div>
