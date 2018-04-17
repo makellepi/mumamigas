@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :users
 
   root to: 'pages#home'
-  #get '/billboard', to: 'pages#billboard', as: 'billboard'
+  get '/search', to: 'pages#search', as: 'search'
 
   resources :users
   resources :matches, only: [:destroy, :create] do
