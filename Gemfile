@@ -9,6 +9,8 @@ gem 'pg_search'
 gem 'puma'
 gem 'rails', '5.1.5'
 gem 'redis'
+gem 'faker'
+gem 'ui_faces'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'

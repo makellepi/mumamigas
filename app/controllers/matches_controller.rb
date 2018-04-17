@@ -1,8 +1,18 @@
 class MatchesController < ApplicationController
+before_action :user
+before_action :set_match, only: [:new, :show, :decline, :accept, :edit, :create]
+
   def new
+    @match = Match.new
   end
 
   def create
+     @match = Match.new(user: @user)
+    if @match.save
+      redirect_to friends_path(@match)
+    else
+      redirect_to search_path(@match)
+    end
   end
 
   def update
@@ -11,13 +21,26 @@ class MatchesController < ApplicationController
   def edit
   end
 
-  def destroy
-  end
-
-  def index
-  end
 
   def show
+  end
+
+  def accept
+    @match.status = 'accepted'
+    if @match.save
+      redirect_to friends_path
+    else
+      redirect_to friends_path, alert: "The appointment could not be accepted"
+    end
+  end
+
+  def decline
+    @match.status ='declined'
+    if @match.save
+      redirect_to friends_path
+    else
+      redirect_to friends_path, alert: "The appointment could not be declined"
+    end
   end
 
   private
@@ -37,4 +60,4 @@ class MatchesController < ApplicationController
   def match_params
     params.require(:match).permit(:status, :location_id, :user_id)
   end
-end
+
