@@ -25,23 +25,6 @@ before_action :set_match, only: [:new, :show, :decline, :accept, :edit, :create]
   def show
   end
 
-  def accept
-    @match.status = 'accepted'
-    if @match.save
-      redirect_to friends_path
-    else
-      redirect_to friends_path, alert: "The appointment could not be accepted"
-    end
-  end
-
-  def decline
-    @match.status ='declined'
-    if @match.save
-      redirect_to friends_path
-    else
-      redirect_to friends_path, alert: "The appointment could not be declined"
-    end
-  end
 
   private
 
