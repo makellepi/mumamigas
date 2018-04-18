@@ -16,30 +16,20 @@ end
 
 10.times do
 
-remote_photo_url = UiFaces.woman
-status = %w(full-time part-time leave).sample
 languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
 user = User.create(
     first_name: Faker::Name.first_name,
     second_name: Faker::Name.last_name,
-    email: "#{first_name}@#{Faker::Internet.domain_name}",
+    email: Faker::Internet.email,
     password: "xxxxxx",
-    city: "Lisbon",
-    photo: remote_photo_url,
+    photo: UiFaces.faces,
     language: languages,
     children: Faker::Number.between(1, 3),
     children_age: Faker::Number.between(0, 5),
     age: Faker::Number.between(25, 40),
-    working_status: status,
+    work_status: true,
     )
 user.save
-end
-
-
-categories = ["Reading", "Shopping", "Food", "Movies", "Tech"]
-
-(0...5).each do |i|
-  Interest.create(category: categories[i])
 end
 
 
@@ -47,16 +37,14 @@ end
 p "Almost there"
 
 
+
+
 10.times do
-  status = %w(pending accepted declined).sample
-  Match.create(user: User.all.sample,location: Location.all.sample, status: status)
-end
 
-countries = ["Spain", "France", "England", "Ireland", "Portugal", "Germany", "Italy", "Switzerland", "Denmark", "Greece" ]
-cities =["Madrid","Lisbon", "Porto", "Barcelona", "Berlin", "Dublin", "Rome", "Zurich", "Copenhagen", "Athens"]
-
-(0...10).each do |i|
-  Location.create(country: countries[i], city: cities[i])
+countries = ["Spain", "France", "England", "Ireland", "Portugal", "Germany", "Italy", "Switzerland", "Denmark", "Greece"].sample
+cities =["Madrid","Lisbon", "Porto", "Barcelona", "Berlin", "Dublin", "Rome", "Zurich", "Copenhagen", "Athens"].sample
+location = Location.create(country: countries, city: cities)
+location.save
 end
 
 

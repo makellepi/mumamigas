@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417105753) do
+ActiveRecord::Schema.define(version: 20180418104748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20180417105753) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city"
+    t.string "country"
     t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
@@ -84,7 +86,9 @@ ActiveRecord::Schema.define(version: 20180417105753) do
     t.integer "age"
     t.text "bio"
     t.boolean "work_status"
+    t.bigint "location_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -96,4 +100,5 @@ ActiveRecord::Schema.define(version: 20180417105753) do
   add_foreign_key "matches", "users"
   add_foreign_key "messages", "matches"
   add_foreign_key "messages", "users"
+  add_foreign_key "users", "locations"
 end
