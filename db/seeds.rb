@@ -14,6 +14,7 @@ def round_to_5_minutes(t)
 end
 
 
+
 10.times do
 
 languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
@@ -36,16 +37,18 @@ end
 
 p "Almost there"
 
-
-
-
 10.times do
 
 countries = ["Spain", "France", "England", "Ireland", "Portugal", "Germany", "Italy", "Switzerland", "Denmark", "Greece"].sample
 cities =["Madrid","Lisbon", "Porto", "Barcelona", "Berlin", "Dublin", "Rome", "Zurich", "Copenhagen", "Athens"].sample
 location = Location.create(country: countries, city: cities)
 location.save
+
 end
+
+
+
+
 
 
 p "Seeded"
