@@ -2,6 +2,16 @@ class LocationsController < ApplicationController
    before_action :set_location
    before_action :set_user
 
+  def index
+    if params[:query].present?
+      @locations = Location.where(city: params[:query])
+    else
+      @locations = Location.all
+    end
+  end
+
+  end
+
 
 private
 
