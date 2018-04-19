@@ -37,10 +37,12 @@ end
 
 
 10.times do
-
 countries = ["Spain", "France", "England", "Ireland", "Portugal", "Germany", "Italy", "Switzerland", "Denmark", "Greece"].sample
 cities =["Madrid","Lisbon", "Porto", "Barcelona", "Berlin", "Dublin", "Rome", "Zurich", "Copenhagen", "Athens"].sample
-location = Location.create(country: countries, city: cities,)
+location = Location.create(
+  country: countries,
+  city: cities,
+  )
 location.save!
 
 end
