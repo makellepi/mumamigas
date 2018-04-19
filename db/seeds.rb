@@ -1,9 +1,8 @@
 require 'faker'
 
 User.destroy_all
-Interest.destroy_all
 Location.destroy_all
-Match.destroy_all
+
 
 
 p "Clean DB"
@@ -37,8 +36,8 @@ end
 
 
 10.times do
-countries = ["Spain", "Portugal", "Spain", "", "Portugal", "Germany", "Italy", "Switzerland", "Denmark", "Greece"].sample
-cities =["Lisbon", "Porto", "Barcelona", "Berlin", "Dublin", "Rome", "Zurich", "Copenhagen", "Athens"].sample
+countries = ["Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal"].sample
+cities =["Lisbon", "Porto", "Faro", "Aveiro", "Lisbon", "Porto", "Faro", "Aveiro", "Lisbon", "Porto"].sample
 location = Location.create(
   country: countries,
   city: cities,
