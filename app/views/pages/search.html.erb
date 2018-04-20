@@ -18,6 +18,16 @@
         </div>
         <% end %>
       </div>
+      <div class="row">
+      <div class="col-sm-8 col-sm-offset-2">
+        <div id="locations">
+        <% @locations.each do |location| %>
+          <h4><%= location.country %></h4>
+          <p><%= location.city %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 </div>
