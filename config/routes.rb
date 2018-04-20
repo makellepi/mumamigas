@@ -28,5 +28,9 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  resources :locations, only: [:index, :new, :show, :create] do
+    resources :activities, only: [:create, :destroy]
+  end
+
 
 end
