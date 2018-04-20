@@ -7,12 +7,16 @@ before_action :set_match, only: [:new, :show, :decline, :accept, :edit, :create]
   end
 
   def create
-     @match = Match.new(user: @user)
-    if @match.save
-      redirect_to friends_path(@match)
-    else
-      redirect_to search_path(@match)
-    end
+    @match = Match.new(user: @user)
+    @messages = @match.messages
+    @sent_messages = @match.messages.where(user: current_user)
+    @received_messages = @match.messages.where.not(user: current_user)
+    @location = @match.location
+  end
+
+  def show
+    @message = Message.new
+
   end
 
   def update
@@ -34,10 +38,9 @@ before_action :set_match, only: [:new, :show, :decline, :accept, :edit, :create]
 
   def set_match
     @match = Match.find(params[:id])
-    unless @matches.user == current_user
-      redirect_to home_path, alert: "You cannot alter this appointment."
+    unless @match.user == current_user
+      redirect_to search_path, alert: "Search for another friend"
     end
-  end
   end
 
   def match_params

@@ -1,9 +1,8 @@
 require 'faker'
 
 User.destroy_all
-Interest.destroy_all
 Location.destroy_all
-Match.destroy_all
+
 
 
 p "Clean DB"
@@ -14,9 +13,11 @@ def round_to_5_minutes(t)
 end
 
 
+
 10.times do
 
 languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
+
 user = User.create(
     first_name: Faker::Name.first_name,
     second_name: Faker::Name.last_name,
@@ -34,18 +35,20 @@ end
 
 
 
-p "Almost there"
-
-
-
-
 10.times do
+countries = ["Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal", "Portugal"].sample
+cities =["Lisbon", "Porto", "Faro", "Aveiro", "Lisbon", "Porto", "Faro", "Aveiro", "Lisbon", "Porto"].sample
+location = Location.create(
+  country: countries,
+  city: cities,
+  )
+location.save!
 
-countries = ["Spain", "France", "England", "Ireland", "Portugal", "Germany", "Italy", "Switzerland", "Denmark", "Greece"].sample
-cities =["Madrid","Lisbon", "Porto", "Barcelona", "Berlin", "Dublin", "Rome", "Zurich", "Copenhagen", "Athens"].sample
-location = Location.create(country: countries, city: cities)
-location.save
 end
+
+
+
+
 
 
 p "Seeded"
