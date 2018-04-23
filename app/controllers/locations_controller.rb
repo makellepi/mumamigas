@@ -1,5 +1,4 @@
 class LocationsController < ApplicationController
-   before_action :set_location, only: [:index, :new, :show, :create]
    before_action :set_user
 
   def index
@@ -21,6 +20,11 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     @location.user = @user
+    if @location.save
+      redirect_to @location.user
+    else
+      render :new
+    end
     @location.save
   end
 
@@ -31,12 +35,11 @@ private
     @user = current_user
   end
 
-  def set_location
-    @location = Location.find(params[:id])
-  end
 
   def location_params
-    params.require(:location).permit(:city, :country)
+    params.require(:location).permit(:city, :country )
   end
+
+end
 
 

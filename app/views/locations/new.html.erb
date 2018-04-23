@@ -1,0 +1,8 @@
+<h1> Update Location </h1>
+
+
+<!-- action="/restaurants/42/reviews" -->
+<%= simple_form_for [@user, @location] do |f| %>
+  <%= f.input :city %>
+  <%= f.button :submit, "Update info", class: "btn btn-block" %>
+<% end %>
