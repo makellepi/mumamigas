@@ -1,9 +1,6 @@
 require 'faker'
 
 User.destroy_all
-Interest.destroy_all
-Location.destroy_all
-Match.destroy_all
 
 
 p "Clean DB"
