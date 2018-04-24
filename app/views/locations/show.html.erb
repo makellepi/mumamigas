@@ -21,14 +21,14 @@
   </div>
     </div>
 
-   <div id="search- results-container">
+   <div id="search-container" style="display: flex; justify-content: center;">
     <% if @locations.nil? || @locations.empty? %>
       <div class="post-button-container">
         <p> No nearby mums in your location yet... </p>
         <%#= link_to "Post me for this movie!", "#", class: "btn btn-md" %>
       </div>
     <% else %>
-     <div class="user-profiles">
+     <div class="card-user">
       <%= cl_image_tag @user.photo, height: 100, width: 150, radius: 20 %> <%= @user.first_name %> is in <%= @locations.first.city %>
     </div>
     <% end %>
