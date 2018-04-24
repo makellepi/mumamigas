@@ -20,7 +20,8 @@
       </div>
   </div>
     </div>
-    <div> <%= @user.first_name %> is in <%= @locations.first.city %></div>
-    <div> <%= @user.photo %></div>
+
+     <div class="user-profiles">
+      <%= cl_image_tag @user.photo, height: 100, width: 150, radius: 20 %> <%= @user.first_name %> is in <%= @locations.first.city %> </div>
   </div>
 </div>
