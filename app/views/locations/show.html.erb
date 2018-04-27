@@ -1,0 +1,36 @@
+<div class="container" style="color: grey;">
+  <div class="location-title-wrapper">
+    <h1>Find friends nearby... </h1>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="row">
+        <%= form_tag location_path, method: :get do %>
+        <div class="col-xs-9">
+          <div class="form-group">
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your city..." %>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <%= submit_tag 'Search', name: nil, class: "btn btn-search btn-block" %>
+        </div>
+        <% end %>
+      </div>
+  </div>
+    </div>
+
+   <div id="search-container" style="display: flex; justify-content: center;">
+    <% if @locations.nil? || @locations.empty? %>
+      <div class="post-button-container">
+        <p> No nearby mums in your location yet... </p>
+        <%#= link_to "Post me for this movie!", "#", class: "btn btn-md" %>
+      </div>
+    <% else %>
+     <div class="card-user">
+      <%= cl_image_tag @user.photo, height: 100, width: 150, radius: 20 %> <%= @user.first_name %> is in <%= @locations.first.city %>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -21,3 +21,21 @@
   opacity: 1.0;
   text-decoration: none;
 }
+
+.search-container{
+  display: flex;
+  justify-content: center;
+}
+
+.card-user{
+  height: 150px;
+  width: 350px;
+  background-size: cover !important;
+  background-position: center;
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+
