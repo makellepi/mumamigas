@@ -32,7 +32,15 @@
       <div class="col-xs-12 col-sm-6 full-padded">
         <div class="card-user">
          <div class="picture">
-          <p><i class=""></i><%= location.user.photo %></p>
+          <% if location.user.photo %>
+            <div class="user-profile-photo">
+              <%= location.user.photo %>
+            </div>
+          <% else %>
+          <div class="empty-picture"">
+              <p>-- No picture --</p>
+          </div>
+          <% end %>
         </div>
         <div class="friend-details">
           <p><i class="glyphicon glyphicon-user"></i> <%= location.user.first_name %></p>

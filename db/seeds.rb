@@ -1,6 +1,7 @@
 require 'faker'
 
 User.destroy_all
+Location.destroy_all
 
 
 p "Clean DB"
@@ -15,12 +16,13 @@ users = []
 10.times do
 
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
+  remote_photo_url = UiFaces.woman
   user = User.create(
     first_name: Faker::Name.first_name,
     second_name: Faker::Name.last_name,
     email: Faker::Internet.email,
     password: "xxxxxx",
-    photo: UiFaces.woman,
+    remote_photo_url: remote_photo_url,
     language: languages,
     children: Faker::Number.between(1, 3),
     children_age: Faker::Number.between(0, 5),
