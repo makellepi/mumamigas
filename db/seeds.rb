@@ -10,11 +10,12 @@ def round_to_5_minutes(t)
   t.is_a?(DateTime) ? rounded.to_datetime : rounded
 end
 
+users = []
 
 10.times do
 
-languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
-user = User.create(
+  languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
+  user = User.create(
     first_name: Faker::Name.first_name,
     second_name: Faker::Name.last_name,
     email: Faker::Internet.email,
@@ -26,13 +27,26 @@ user = User.create(
     age: Faker::Number.between(25, 40),
     work_status: true,
     )
-user.save!
+  users << user
+  user.save!
 end
 
 
 
 p "Almost there"
 
+locations = []
 
-p "Seeded"
+cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"]
+
+(0...10).each do |i|
+  location = Location.new(
+    city: cities[i],
+    user: users.sample
+    )
+    locations << location
+    location.save!
+  end
+
+  p "Seeded"
 
