@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/search', to: 'pages#search', as: 'search'
 
 
-  resources :users do
-    resources :locations, only: [:index, :new, :create]
+  resources :locations do
+    resources :matches, only: [:index, :new, :create]
   end
   resources :locations, only: [:show]
 
