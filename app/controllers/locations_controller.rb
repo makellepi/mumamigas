@@ -1,9 +1,9 @@
 class LocationsController < ApplicationController
-   before_action :set_user
+    before_action :set_user
 
   def index
     if params[:query].present?
-      @locations = Location.where(title: params[:query])
+      @locations = Location.where(city: params[:query])
     else
       @locations = Location.all
     end
@@ -18,7 +18,11 @@ class LocationsController < ApplicationController
   end
 
   def new
-    @location = Location.new
+    if user_signed_in?
+      @location = Location.new
+    else
+      redirect_to locations_path, alert: "To post a new location please sign in."
+    end
   end
 
 
