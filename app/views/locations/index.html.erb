@@ -30,7 +30,7 @@
     <div class="row">
       <% @locations.each do |location| %>
       <div class="col-xs-12 col-sm-6">
-        <%= link_to location_path(location) do %>
+        <%= link_to location_matches_path(location) do %>
         <div class="card-user">
          <div class="picture">
           <% if location.user.photo %>

@@ -9,8 +9,14 @@ Rails.application.routes.draw do
 
 
   resources :locations do
-    resources :matches, only: [:index, :new, :create]
+    resources :matches, only: [:create, :index]
   end
+
   resources :locations, only: [:show]
+
+
+  resources :matches, only: [:show] do
+    resources :messages, only: [:create]
+  end
 
 end
