@@ -50,5 +50,19 @@ cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "Lond
     location.save!
   end
 
+ matches = []
+
+10.times do |i|
+   friend_status = %w(pending accepted declined).sample
+  match = Match.new(
+    location: locations.sample,
+    user: users.sample,
+    status: true,
+    friend_status: friend_status,
+    )
+    matches << match
+    match.save!
+end
+
   p "Seeded"
 

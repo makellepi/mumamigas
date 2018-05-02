@@ -19,4 +19,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
+  get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
+  get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
+
+
 end
