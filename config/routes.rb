@@ -12,6 +12,13 @@ Rails.application.routes.draw do
     resources :matches, only: [:create, :index]
   end
 
+
+  resources :locations do
+   resources :users, only: [:destroy, :create, :index ] do
+    resources :matches, only: [:create, :index]
+    end
+  end
+
   resources :locations, only: [:show]
 
 
