@@ -8,9 +8,26 @@ Rails.application.routes.draw do
   get '/search', to: 'pages#search', as: 'search'
 
 
-  resources :users do
-    resources :locations, only: [:index, :new, :create]
+  resources :locations do
+    resources :matches, only: [:create, :index]
   end
+
+
+  resources :locations do
+   resources :users, only: [:destroy, :create, :index ] do
+    resources :matches, only: [:create, :index]
+    end
+  end
+
   resources :locations, only: [:show]
+
+
+  resources :matches, only: [:show] do
+    resources :messages, only: [:create]
+  end
+
+  get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
+  get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
+
 
 end
