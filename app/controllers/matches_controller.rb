@@ -2,7 +2,6 @@ class MatchesController < ApplicationController
 before_action :user
 before_action :set_location, only: [:new, :create, :show]
 
-
 def new
   @match = Match.new
 end
@@ -18,7 +17,7 @@ end
 def create
   @match = Match.new(location: @location, user: @user)
   @match.user = @user
-  @match.location = @location
+  @match.location.user = @location
   if @match.save
     redirect_to matches_path(@match)
   else
