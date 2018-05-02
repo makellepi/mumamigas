@@ -1,9 +1,10 @@
 class MatchesController < ApplicationController
 before_action :user
-before_action :set_location, only: [:new, :create, :show]
+before_action :set_location, only: [ :create, :edit, :index ]
+## before_action :set_match, only: [ :show, :accept, :decline ]
 
 def new
-  @match = Match.new
+  @match = Match.new(match_params)
 end
 
 def index
@@ -12,12 +13,15 @@ def index
 end
 
 def show
+  @match = Match.new(location: @location, user: @user)
+  @match.user = @user
+  @match.location = @location
 end
 
 def create
   @match = Match.new(location: @location, user: @user)
   @match.user = @user
-  @match.location.user = @location
+  @match.location = @location
   if @match.save
     redirect_to matches_path(@match)
   else
@@ -42,12 +46,16 @@ end
 
 
 def set_location
-  @location = Location.find(:location_id)
+  @location = Location.find(params[:location_id])
 end
 
 
 def match_params
   params.require(:match).permit(:status, :friend_status, :location_id)
+end
+
+def set_match
+  @match = Match.find(:id)
 end
 
 
