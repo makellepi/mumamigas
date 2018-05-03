@@ -16,29 +16,28 @@ def create
   @match = Match.new(location: @location, user: @user)
   @match.user = @user
   @match.location = @location
-  if @match.save
-    redirect_to matches_path(@match)
-  else
-    redirect_to locations_path(@match.location)
-  end
-  @match.save
+   if @match.save
+     redirect_to user_path(@user), alert: "Your friend request is pending confirmation"
+    else
+     redirect_to user_path(@user)
+    end
 end
 
 def accept
   @match.friend_status = 'accepted'
   if @match.save
-    redirect_to home_path
+    redirect_to user_path(@user)
   else
-    redirect_to home_path, alert: "The appointment could not be accepted"
+    redirect_to user_path(@user), alert: "The friend request could not be accepted"
   end
 end
 
 def decline
-  @match.status ='declined'
+  @match.friend_status ='declined'
   if @match.save
-    redirect_to home_path
+    redirect_to user_path(@user)
   else
-    redirect_to home_path, alert: "The appointment could not be declined"
+    redirect_to user_path(@user), alert: "The friend request could not be declined"
   end
 end
 

@@ -14,7 +14,7 @@
           <%= simple_form_for ([@location, @match]) do |f| %>
           <br>
           <div class="form-inputs">
-            <%= f.input :status, label: "Your message: ", placeholder:"Tell your Mumamiga why you are excited to become her friend.", as: :text %>
+            <%= f.input :status, label: "Your friend request: ", placeholder:"Tell your Mumamiga why you are excited to become her friend.", as: :text %>
           </div>
           <div class="form-actions text-center">
             <%= f.submit "Send friend request", class: 'btn btn-search btn-block' %>

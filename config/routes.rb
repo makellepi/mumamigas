@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :locations, only: [:show]
 
 
-  resources :matches, only: [:index] do
+  resources :matches, only: [:show] do
     resources :messages, only: [:create]
   end
 

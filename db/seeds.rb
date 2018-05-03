@@ -2,6 +2,7 @@ require 'faker'
 
 User.destroy_all
 Location.destroy_all
+Match.destroy_all
 
 
 p "Clean DB"
@@ -35,8 +36,6 @@ end
 
 
 
-p "Almost there"
-
 locations = []
 
 cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"]
@@ -50,7 +49,7 @@ cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "Lond
     location.save!
   end
 
- matches = []
+matches = []
 
 10.times do |i|
    friend_status = %w(pending accepted declined).sample
@@ -63,6 +62,22 @@ cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "Lond
     matches << match
     match.save!
 end
+
+p "Almost there"
+
+messages = []
+
+10.times do |i|
+  message_content = ["Let's be friends"]
+  message = Message.new(
+    match: matches.sample,
+    user: users.sample,
+    content: message_content,
+    )
+    messages << message
+    message.save!
+end
+
 
   p "Seeded"
 

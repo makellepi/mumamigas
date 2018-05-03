@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
     else
       redirect_to @match, alert: "Your message was not sent"
     end
+    @message.save
   end
 
   private
