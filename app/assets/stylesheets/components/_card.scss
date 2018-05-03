@@ -40,7 +40,7 @@
 
 
 .carduserpairing{
-  width: 100%;
+  width: 420px;
   background-size: cover !important;
   background-position: center;
   position: relative;
@@ -70,5 +70,16 @@
     box-shadow: 0 0 1px rgba(0,0,0,.5);
     }
  }
+
+.messagebox{
+  color: black;
+  width: 400px;
+}
+
+.matchcontainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 
