@@ -7,6 +7,7 @@ mount_uploader :photo, PhotoUploader
          :recoverable, :rememberable, :trackable, :validatable
 
 has_many :locations, dependent: :destroy
+has_many :matches, dependent: :destroy
 has_many :messages, dependent: :destroy
 has_many :interests, dependent: :destroy
 has_many :activities, dependent: :destroy
