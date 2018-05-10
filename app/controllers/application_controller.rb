@@ -13,6 +13,10 @@ class ApplicationController < ActionController::Base
   { host: ENV["mumamigas.space"] || "localhost:3000" }
   end
 
+  def after_sign_in_path_for(resource)
+    @user = current_user
+  end
+
 end
 
 
