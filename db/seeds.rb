@@ -15,7 +15,7 @@ end
 users = []
 
 10.times do
-
+  categories = [ "Special needs", "Playing dates", "Food", "Tech", "Relaxed Parenting", "Mindfullness", "Others", "Fitness", "Party Animal", "Sole parent"]
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
   remote_photo_url = UiFaces.woman
   user = User.create(
@@ -34,6 +34,17 @@ users = []
   user.save!
 end
 
+interests = []
+
+ 10.times do |i|
+    categories = [ "Special needs", "Playing dates", "Food", "Tech", "Relaxed Parenting", "Mindfullness", "Others", "Fitness", "Party Animal", "Sole parent"]
+    interest = Interest.new(
+    category: categories.sample,
+    user: users.sample,
+    )
+    interests << interest
+    interest.save!
+end
 
 
 locations = []

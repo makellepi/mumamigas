@@ -14,7 +14,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @interests = Interest.all.map{|i| [ i.category, i.id ]}
   end
 
   def update
