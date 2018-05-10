@@ -2,15 +2,15 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :create, :new]
 
   def new
-    @interests = Interest.all.map{|i| [ i.category, i.id ]}
+    @interests = Interest.all.map{|i| [ i.category, i.id ] }
   end
-
 
   def show
   end
 
   def create
     @user = User.new(user_params)
+    @user.interest_id = params[:interest_id]
   end
 
   def edit
