@@ -2,15 +2,19 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :create, :new]
 
   def new
+    @interests = Interest.all.map{|i| [ i.category, i.id ]}
   end
+
 
   def show
   end
 
   def create
+    @user = User.new(user_params)
   end
 
   def edit
+    @interests = Interest.all.map{|i| [ i.category, i.id ]}
   end
 
   def update
@@ -33,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language)
+    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :interest_id)
   end
 
 end
