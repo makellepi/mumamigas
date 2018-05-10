@@ -16,15 +16,10 @@
     <%= f.input :password_confirmation, required: true %>
     <%= f.input :photo %>
     <%= f.input :photo_cache, as: :hidden %>
-    <%= f.input :children, label: 'Number of children', autofocus: true %>
-    <%= f.input :children_age, autofocus: true %>
-    <%= f.input :bio,label: 'Tell us about yourself:', autofocus: true %>
-    <%= f.input :language, label: 'Languages', autofocus: true %>
-    <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+    <%= f.button :submit, "Sign-up" %>
   </div>
 <% end %>
 
