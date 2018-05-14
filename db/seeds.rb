@@ -34,7 +34,7 @@ users = []
   user.save!
 end
 
-interests = []
+interests_users = []
 
  10.times do |i|
     categories = [ "Special needs", "Playing dates", "Food", "Tech", "Relaxed Parenting", "Mindfullness", "Others", "Fitness", "Party Animal", "Sole parent"]
@@ -42,7 +42,7 @@ interests = []
     category: categories.sample,
     user: users.sample,
     )
-    interests << interest
+    interests_users << interest
     interest.save!
 end
 

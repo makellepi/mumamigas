@@ -30,7 +30,10 @@
      <p> "<%= @user.bio %>" </p>
      <div class="btn-group" role="group">
 
-     <p> "<%= @user.interests %>" </p>
+      <div class="user-children-age">
+       <%= @user.user_interests %>
+     </div>
+
      <div class="btn-group" role="group">
 
       <% if @user == current_user %>

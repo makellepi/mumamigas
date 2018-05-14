@@ -12,8 +12,11 @@
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
     <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
-    <%= f.label :interests %><br />
-    <%= f.text_field :interests %>
+    <strong>Interests:</strong>
+    <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :category do |cb| %>
+    <%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
+    <br><br>
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
    </div>
 

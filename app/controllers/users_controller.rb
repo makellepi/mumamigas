@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def create
@@ -16,10 +17,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:success] = "Profile updated"
       redirect_to @user
     else
+      flash[:alert] = "Profile could not be updated."
       render :edit
     end
+  end
+
+  def interest
+  @my_interests = current_user.interest_ids
+  @interest = Interest.select { |i| (i.interest_ids & @my_interests).any? }
   end
 
   def destroy
@@ -34,7 +42,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :interests)
+    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :interest_ids)
   end
 
 end
