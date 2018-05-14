@@ -25,10 +25,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def interest
-  @my_interests = current_user.interest_ids
-  @interest = Interest.select { |i| (i.interest_ids & @my_interests).any? }
-  end
 
   def destroy
     @user.destroy
@@ -42,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :interest_ids)
+    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :user_interest)
   end
 
 end

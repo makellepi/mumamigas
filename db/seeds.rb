@@ -15,7 +15,6 @@ end
 users = []
 
 10.times do
-  categories = [ "Special needs", "Playing dates", "Food", "Tech", "Relaxed Parenting", "Mindfullness", "Others", "Fitness", "Party Animal", "Sole parent"]
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
   remote_photo_url = UiFaces.woman
   user = User.create(

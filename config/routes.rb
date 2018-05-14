@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
  as :user do
@@ -21,6 +22,8 @@ end
 
   resources :locations, only: [:show]
 
+  resources :interests
+
 
   resources :matches, only: [:show] do
     resources :messages, only: [:create]
@@ -30,5 +33,6 @@ end
   get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
 
   get "/friends", to: 'users#friends'
+
 
 end

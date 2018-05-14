@@ -11,6 +11,5 @@ has_many :matches, dependent: :destroy
 has_many :messages, dependent: :destroy
 has_many :activities, dependent: :destroy
 has_many :user_interests, dependent: :destroy
-has_many :interests, dependent: :destroy, through: :user_interests
-
+has_many :interests, dependent: :destroy
 end
