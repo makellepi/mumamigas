@@ -14,4 +14,6 @@ has_many :activities, dependent: :destroy
 
 accepts_nested_attributes_for :interests, :allow_destroy => true
 
+attr_accessor :interests
+
 end

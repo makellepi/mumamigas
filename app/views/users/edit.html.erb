@@ -12,7 +12,8 @@
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
     <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
-    <%= f.input :interests, label: 'Select one', as: :select, autofocus: true %>
+    <%= f.label :interests %><br />
+    <%= f.text_field :interests %>
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
    </div>
 
