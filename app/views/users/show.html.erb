@@ -30,8 +30,14 @@
      <p> A little bit about yourself: "<%= @user.bio %>" </p>
      <div class="btn-group" role="group">
 
-      <div class="user-children-age">
-        <p> These are your interests: <%= @user.interests.last.category %></p>
+      <div class="user-interests">
+        <% @user.interests.each do |interest| %>
+          <% if @user.interests.any? %>
+            <p> These are your interests: <%= @user.interests.last.category %></p>
+          <% else %>
+            <p> No interests defined yet.. </p>
+          <% end %>
+       <% end %>
      </div>
 
      <div class="btn-group" role="group">
