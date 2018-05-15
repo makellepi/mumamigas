@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy, :create, :new]
 
   def new
+    @user = User.new
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def create
@@ -15,11 +17,14 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:success] = "Profile updated"
       redirect_to @user
     else
+      flash[:alert] = "Profile could not be updated."
       render :edit
     end
   end
+
 
   def destroy
     @user.destroy
@@ -33,7 +38,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language)
+    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :user_interest)
   end
 
 end
