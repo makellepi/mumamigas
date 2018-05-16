@@ -3,7 +3,11 @@ class InterestsController < ApplicationController
   before_action :find_interest, only: [:show, :edit, :update, :destroy]
 
   def index
-    @interests = Interest.all
+    if params[:query].present?
+      @lnterests = Interest.where(category: params[:query])
+    else
+      @interests = Interest.all
+    end
   end
 
   def new
@@ -22,7 +26,6 @@ class InterestsController < ApplicationController
     @interest.save
   end
 
-  d
 
   def show
   end
