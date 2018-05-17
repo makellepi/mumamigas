@@ -31,25 +31,29 @@
       <% @interests.each do |interest| %>
       <div class="col-xs-12 col-sm-6">
         <%= link_to user_path(@user) do %>
-        <div class="card-user">
-         <div class="picture">
-          <% if interest.user.photo %>
-            <div class="user-profile-photo">
-              <%= image_tag interest.user.photo %>
-            </div>
-          <% else %>
-          <div class="empty-picture"">
+        <% if interest.user != @user %>
+          <div class="card-user">
+          <div class="picture">
+           <% if interest.user.photo %>
+              <div class="user-profile-photo">
+                <%= image_tag interest.user.photo %>
+              </div>
+            <% else %>
+            <div class="empty-picture"">
               <p>-- No picture --</p>
+            </div>
+            <% end %>
           </div>
-          <% end %>
-        </div>
-        <div class="friend-details">
+          <div class="friend-details">
           <p><i class="glyphicon glyphicon-user"></i> <%= interest.user.first_name %></p>
-        </div>
-        <div class="pic-location">
+          </div>
+          <div class="pic-location">
           <p><i class="glyphicon glyphicon-heart"></i> <%= interest.category %></p>
+          </div>
         </div>
-      </div>
+        <% else %>
+       <p></p>
+       <% end %>
       <% end %>
     </div>
       <% end %>
