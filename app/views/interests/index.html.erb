@@ -22,17 +22,18 @@
   </div>
   <div id="search-container">
     <% if @interests.nil? || @interests.empty? %>
-    <div class="post-button-container">
+
       <p> No mums with similar interests... </p>
       <%#= link_to "Post me for this movie!", "#", class: "btn btn-md" %>
-    </div>
     <% else %>
-    <div class="row">
+    <div class="class row">
       <% @interests.each do |interest| %>
-      <div class="col-xs-12 col-sm-6">
         <%= link_to user_path(@user) do %>
-        <% if interest.user != @user %>
-          <div class="card-user">
+        <% unless interest.user == @user %>
+          <div class="card_interest">
+          <div class="class interest">
+          <p><i class="glyphicon glyphicon-heart"></i> <%= interest.category %></p>
+          </div>
           <div class="picture">
            <% if interest.user.photo %>
               <div class="user-profile-photo">
@@ -44,21 +45,17 @@
             </div>
             <% end %>
           </div>
-          <div class="friend-details">
+          <div class="interest-details">
           <p><i class="glyphicon glyphicon-user"></i> <%= interest.user.first_name %></p>
           </div>
-          <div class="pic-location">
-          <p><i class="glyphicon glyphicon-heart"></i> <%= interest.category %></p>
-          </div>
         </div>
-        <% else %>
-       <p></p>
        <% end %>
       <% end %>
-    </div>
       <% end %>
-  </div>
+    </div>
   <% end %>
+  </div>
+</div>
 </div>
 
 

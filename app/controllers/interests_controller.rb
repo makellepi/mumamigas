@@ -4,7 +4,7 @@ class InterestsController < ApplicationController
 
   def index
     if params[:query].present?
-      @lnterests = Interest.where(category: params[:query])
+      @interests = Interest.where(category: params[:query])
     else
       @interests = Interest.all
     end
