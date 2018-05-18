@@ -28,6 +28,7 @@ class InterestsController < ApplicationController
 
 
   def show
+   @interest = Interest.find(params[:id])
   end
 
   def edit
@@ -65,11 +66,11 @@ class InterestsController < ApplicationController
   end
 
   def interest_params
-    params.require(:interest).permit(:category, :user_interests_ids)
+    params.require(:interest).permit(:category)
   end
 
   def find_interest
-    @Interest = Interest.find(params[:id])
+    @interest = Interest.find(params[:id])
   end
 
 end

@@ -35,5 +35,4 @@ end
 
   get "/friends", to: 'users#friends'
 
-
 end
