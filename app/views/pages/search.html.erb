@@ -85,7 +85,7 @@
     <% else %>
     <div class="class row">
       <% @interests.each do |interest| %>
-        <%= link_to user_path(@user) do %>
+        <%= link_to matches_path(@match) do %>
         <% unless interest.user == @user %>
           <div class="card_interest">
           <div class="class interest">
