@@ -8,6 +8,11 @@
           <%= image_tag @match.user.photo.url, class: "style_image"   %>
           <%= image_tag @match.location.user.photo.url, class: "style_image"  %>
         </div>
+        <div>
+         <% @user.matches.each do |match| %>
+            <h4 style="display: flex; justify-content: center;" > Your frienship is <%= match.friend_status %><h4>
+            <% end %>
+        </div>
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="messagebox">

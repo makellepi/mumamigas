@@ -3,7 +3,11 @@ class InterestsController < ApplicationController
   before_action :find_interest, only: [:show, :edit, :update, :destroy]
 
   def index
-    @interests = Interest.all
+    if params[:query].present?
+      @interests = Interest.where(category: params[:query])
+    else
+      @interests = Interest.all
+    end
   end
 
   def new
@@ -22,9 +26,9 @@ class InterestsController < ApplicationController
     @interest.save
   end
 
-  d
 
   def show
+   @interest = Interest.find(params[:id])
   end
 
   def edit
@@ -62,11 +66,11 @@ class InterestsController < ApplicationController
   end
 
   def interest_params
-    params.require(:interest).permit(:category, :user_interests_ids)
+    params.require(:interest).permit(:category)
   end
 
   def find_interest
-    @Interest = Interest.find(params[:id])
+    @interest = Interest.find(params[:id])
   end
 
 end

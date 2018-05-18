@@ -29,10 +29,10 @@ end
     resources :messages, only: [:create]
   end
 
+
   get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
   get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
 
   get "/friends", to: 'users#friends'
-
 
 end
