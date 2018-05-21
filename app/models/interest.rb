@@ -4,10 +4,13 @@ class Interest < ApplicationRecord
   has_many :users, through: :user_interests
 
    include PgSearch
-  pg_search_scope :search_by_category,
-    against: [ :category ],
+  multisearchable :against => [ :category ],
     using: {
       tsearch: { prefix: true }
     }
+
+   def self.rebuild_pg_search_documents
+    find_each { |record| record.update_pg_search_document }
+   end
 
 end

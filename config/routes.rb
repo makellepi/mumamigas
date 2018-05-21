@@ -35,4 +35,6 @@ end
 
   get "/friends", to: 'users#friends'
 
+  post '/search/:query' => 'search#index'
+
 end

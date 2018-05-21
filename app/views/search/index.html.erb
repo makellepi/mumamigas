@@ -1,0 +1,9 @@
+<%=form_tag [locations_path, interests_path], class: "form-inline", method: :get do %>
+  <div class="form-group">
+    <%= text_field_tag :query, params[:query], class: "form-control" %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% if params[:query].present? %>
+    <%= link_to "clear" %>
+    <% end %>
+  </div>
+  <% end %>
