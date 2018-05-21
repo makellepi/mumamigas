@@ -13,4 +13,17 @@ class PagesController < ApplicationController
         @interests = Interest.all
       end
   end
+
+  private
+
+  def location_params
+    params.require(:location).permit(:city, :country )
+  end
+
+  def interest_params
+    params.require(:interest).permit(:category)
+  end
+
+
+
 end
