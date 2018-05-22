@@ -17,10 +17,12 @@
     <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :category do |cb| %>
     <%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
     <% end %>
+    <br>
+    <%= link_to 'Add a new interest', new_user_interest_path(@user) %>
     <br><br>
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
    </div>
-
+   <br>
   <div class="form-actions">
     <%= f.button :submit, "Update info", class: "btn btn-block" %>
   </div>

@@ -33,6 +33,13 @@ class InterestsController < ApplicationController
   def edit
   end
 
+  def destroy
+    @interest = Interest.find(params[:id])
+    @interest.destroy!
+    flash[:notice] = "Interest deleted successfully"
+      redirect_to @interest.user
+  end
+
 
   def update
     if @interest.update(interest_params)
