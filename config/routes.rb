@@ -24,6 +24,10 @@ end
 
   resources :interests
 
+  resources :users do
+    resources :interests, only: [ :new, :create, :edit, :update ]
+  end
+
 
   resources :matches, only: [:show] do
     resources :messages, only: [:create]
