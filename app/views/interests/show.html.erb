@@ -2,8 +2,17 @@
 <div class="class matchcontainer">
   <div class="class row">
     <div class="col-xs-12 col-sm-6">
+     <% if @user.matches.empty? %>
       <div class="carduserpairing">
-
+      <h3 style="display: flex; justify-content: center;"><%= @interest.user.first_name %> & <%= @user.first_name %></h3>
+      <div class="class cardimageuserpairing">
+      <%= image_tag @interest.user.photo.url, class: "style_image" %>
+      <%= image_tag @user.photo.url, class: "style_image" %>
+      </div>
+      <h4 style="padding: 20px 0 0 20px; display: flex; justify-content: center;"> Your friendship is pending </h4>
+      </div>
+     <% else %>
+      <div class="carduserpairing">
         <% @user.matches.each do |match| %>
         <h3 style="display: flex; justify-content: center;"><%= @interest.user.first_name %> & <%= match.user.first_name %></h3>
         <div class="class cardimageuserpairing">
@@ -13,6 +22,7 @@
         <h4 style="padding: 20px 0 0 20px; display: flex; justify-content: center;"> Your friendship is <%= match.friend_status %></h4>
         <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>

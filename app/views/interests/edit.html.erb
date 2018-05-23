@@ -1,17 +1,7 @@
 <div class="col-sm-4 col-sm-offset-4">
 <h2>Edit profile</h2>
 
-<%= simple_form_for [ @user ] do |f| %>
-   <div class="form-inputs">
-    <%= f.input :first_name, autofocus: true %>
-    <%= f.input :second_name,label: 'Last name', autofocus: true %>
-    <%= f.input :age, label: 'How old are you?', autofocus: true %>
-    <%= f.input :photo, label: 'Submit your profile picture' %>
-    <%= f.input :photo_cache, as: :hidden %>
-    <%= f.input :children, label: 'How many children do you have?', autofocus: true %>
-    <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
-    <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
-    <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
+<%= simple_form_for [ @interest ] do |f| %>
     <strong>Interests:</strong>
     <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :category do |cb| %>
     <%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box( class: "checkbox") + cb.text} %>
