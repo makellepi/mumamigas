@@ -10,11 +10,7 @@ class LocationsController < ApplicationController
   end
 
   def show
-    if params[:query].present?
-      @locations = Location.where(city: params[:query])
-    else
-      @locations = Location.all
-    end
+
   end
 
   def new

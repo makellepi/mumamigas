@@ -12,4 +12,8 @@ has_many :messages, dependent: :destroy
 has_many :activities, dependent: :destroy
 has_many :user_interests, dependent: :destroy
 has_many :interests, dependent: :destroy
+
+accepts_nested_attributes_for :user_interests
+accepts_nested_attributes_for :interests
+
 end
