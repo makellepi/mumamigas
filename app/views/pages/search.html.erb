@@ -14,18 +14,18 @@
     <div class="col-sm-8 col-sm-offset-2">
       <div class="row">
         <%= form_tag locations_path, method: :get do %>
-          <%= submit_tag 'Search by location', name: nil, class: "btn btn-search btn-block" %>
-        </div>
-        <% end %>
+        <%= submit_tag 'Search by location', name: nil, class: "btn btn-search btn-block" %>
       </div>
+      <% end %>
     </div>
-    <br>
-    <p> or </p>
-      <div class="row">
+  </div>
+  <br>
+  <p> or </p>
+  <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
       <div class="row">
         <%= form_tag interests_path, method: :get do %>
-          <%= submit_tag 'Search by interest', name: nil, class: "btn btn-search btn-block" %>
+        <%= submit_tag 'Search by interest', name: nil, class: "btn btn-search btn-block" %>
         <% end %>
       </div>
     </div>

@@ -22,7 +22,11 @@ end
 
   resources :locations, only: [:show]
 
-  resources :interests
+  resources :interests, only: [:show, :index, :destroy, :edit, :update]
+
+  resources :users do
+    resources :interests, only: [ :new, :create ]
+  end
 
 
   resources :matches, only: [:show] do

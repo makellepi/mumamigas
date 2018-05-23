@@ -1,2 +1,12 @@
-<h1>Interests#new</h1>
-<p>Find me in app/views/interests/new.html.erb</p>
+
+<div class="col-sm-4 col-sm-offset-4">
+
+
+<div class="form-inputs">
+<%= simple_form_for [@user, @interest] do |f| %>
+  <%= f.input :category, label: "Type a new category of interests"%>
+  <%= f.submit "Add new interest", class: "btn btn-primary" %>
+<% end %>
+
+</div>
+</div>

@@ -2,17 +2,28 @@
 <div class="matchcontainer">
   <div class="row">
     <div class="col-xs-12 col-sm-6">
-      <div class="carduserpairing">
-        <h3 style="padding: 20px 0 0 20px; display: flex; justify-content: center;"><%= @match.user.first_name %> & <%= @match.location.user.first_name %></h3>
-        <div class = "cardimageuserpairing">
-          <%= image_tag @match.user.photo.url, class: "style_image"   %>
-          <%= image_tag @match.location.user.photo.url, class: "style_image"  %>
-        </div>
-        <div>
-         <% @user.matches.each do |match| %>
+      <% if @user.matches.empty? %>
+        <div class="carduserpairing">
+          <h3 style="padding: 20px 0 0 20px; display: flex; justify-content: center;"><%= @match.user.first_name %> & <%= @match.location.user.first_name %></h3>
+         <div class = "cardimageuserpairing">
+            <%= image_tag @match.user.photo.url, class: "style_image"   %>
+            <%= image_tag @match.location.user.photo.url, class: "style_image"  %>
+          </div>
+          <h4 style="padding: 20px 0 0 20px; display: flex; justify-content: center;"> Your friendship is pending </h4>
+          </div>
+      <% else %>
+          <div class="carduserpairing">
+          <h3 style="padding: 20px 0 0 20px; display: flex; justify-content: center;"><%= @match.user.first_name %> & <%= @match.location.user.first_name %></h3>
+          <div class = "cardimageuserpairing">
+            <%= image_tag @match.user.photo.url, class: "style_image"   %>
+            <%= image_tag @match.location.user.photo.url, class: "style_image"  %>
+          </div>
+            <% @user.matches.each_with_index do |match, index| %>
+            <% next if index == 0 %>
             <h4 style="display: flex; justify-content: center;" > Your frienship is <%= match.friend_status %><h4>
             <% end %>
-        </div>
+          <% end %>
+          </div>
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="messagebox">

@@ -1,6 +1,5 @@
 class InterestsController < ApplicationController
   before_action :set_user
-  before_action :find_interest, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:query].present?
@@ -32,6 +31,13 @@ class InterestsController < ApplicationController
   end
 
   def edit
+  end
+
+  def destroy
+    @interest = Interest.find(params[:id])
+    @interest.destroy!
+    flash[:notice] = "Interest deleted successfully"
+      redirect_to @interest.user
   end
 
 
@@ -67,10 +73,6 @@ class InterestsController < ApplicationController
 
   def interest_params
     params.require(:interest).permit(:category)
-  end
-
-  def find_interest
-    @interest = Interest.find(params[:id])
   end
 
 end
