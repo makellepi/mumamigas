@@ -22,10 +22,10 @@ end
 
   resources :locations, only: [:show]
 
-  resources :interests, only: [:show, :index, :destroy]
+  resources :interests, only: [:show, :index, :destroy, :edit, :update]
 
   resources :users do
-    resources :interests, only: [ :new, :create, :edit, :update ]
+    resources :interests, only: [ :new, :create ]
   end
 
 
