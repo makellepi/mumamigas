@@ -12,7 +12,9 @@
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
     <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
-    <%= f.input :interest_category,  as: :radio_buttons , collection: [['0', 'Reading'], ['1', 'Tech'], ["2","Food"], ["3","Mindfullness"], ["4","Sports"],["5","Parenting"], ["6", "Yoga"]], label_method: :second, label: "Select your interests: "%>
+    <%= f.input :interest_category, collection: [['0', 'Reading'], ['1', 'Tech'], ["2","Food"], ["3","Mindfullness"], ["4","Sports"],["5","Parenting"], ["6", "Yoga"]], multiple: true, class: 'multiselectuser', label_method: :second, label: "Select your interest: "%>
+
+
 
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
    </div>
