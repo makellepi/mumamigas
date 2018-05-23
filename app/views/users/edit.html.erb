@@ -18,6 +18,7 @@
     <%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
     <% end %>
     <br>
+
     <%= link_to 'Add a new interest', new_user_interest_path(@user) %>
     <br><br>
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>

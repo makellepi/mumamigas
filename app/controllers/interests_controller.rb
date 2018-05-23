@@ -31,6 +31,7 @@ class InterestsController < ApplicationController
   end
 
   def edit
+    @interest = Interest.find(params[:id])
   end
 
   def destroy

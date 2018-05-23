@@ -1,5 +1,5 @@
 <div class="col-sm-4 col-sm-offset-4">
-<h2>Edit profiles</h2>
+<h2>Edit profile</h2>
 
 <%= simple_form_for [ @user ] do |f| %>
    <div class="form-inputs">
@@ -18,7 +18,8 @@
     <% end %>
     <br>
     <%= link_to 'Add a new interest', new_user_interest_path(@user) %>
-    <br><br>
+    <br>
+
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
    </div>
 
