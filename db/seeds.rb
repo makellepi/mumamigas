@@ -16,6 +16,7 @@ users = []
 
 10.times do
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
+  categories = [ "Food", "Mindfullness", "Sports", "Parenting", "Yoga", "Tech", "Reading", "Shopping", "Childcare"].sample
   remote_photo_url = UiFaces.woman
   user = User.create(
     first_name: Faker::Name.first_name,
@@ -28,6 +29,7 @@ users = []
     children_age: Faker::Number.between(0, 5),
     age: Faker::Number.between(25, 40),
     work_status: true,
+    interest_category: categories,
     )
   users << user
   user.save!

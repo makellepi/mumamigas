@@ -31,13 +31,7 @@
      <div class="btn-group" role="group">
 
       <div class="user-interests">
-        <% @user.interests.each do |interest| %>
-          <% if @user.interests.any? %>
-            <p> These are your interests: <%= interest.category %></p>
-          <% else %>
-            <p> No interests defined yet.. </p>
-          <% end %>
-       <% end %>
+       <p> These are your interests: <%= @user.interest_category %></p>
      </div>
 
      <div class="btn-group" role="group">
