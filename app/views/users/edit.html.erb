@@ -12,13 +12,13 @@
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
     <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
-    <strong>Interests:</strong>
-    <%= f.collection_check_boxes :interest_ids, Interest.all, :id, :category do |cb| %>
-    <%= cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
-    <% end %>
-    <br><br>
+    <%= f.input :city, label: 'Where do you live?', autofocus: true %>
+    <%= f.input :interest_category, collection: [['0', 'Reading'], ['1', 'Tech'], ["2","Food"], ["3","Mindfullness"], ["4","Sports"],["5","Parenting"], ["6", "Yoga"]], multiple: true, label_method: :second, label: "Select your interest: "%>
+    <% f.association :interests, as: :check_boxes, label_method: :category, value_method: :id, include_blank: false %>
+
+    <%f.association :locations, as: :radio_buttons, label_method: :city, value_method: :id, include_blank: false%>
+
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
-   </div>
 
   <div class="form-actions">
     <%= f.button :submit, "Update info", class: "btn btn-block" %>
