@@ -26,7 +26,7 @@
         <% end %>
      </div>
      <div class="user-children">
-      <% if @user.age.nil? %>
+      <% if @user.age.nil? && current_user == @user %>
         <p> Please tell us how many children you have </p>
        <% else %>
         <p> <%= @user.first_name %> has <%= @user.children %> children and
@@ -34,7 +34,7 @@
        <% end %>
      </div>
      <div class="user-children-age">
-      <% if @user.language.empty? %>
+      <% if @user.language.empty? && current_user == @user %>
         <p> Please share what languages you speak </p>
        <% else %>
         <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>
@@ -42,25 +42,23 @@
      </div>
 
      <div class="user-location">
-      <% if @user.city.empty? %>
+      <% if @user.city.empty? && current_user == @user %>
         <p> Please tell us where you live </p>
       <% else %>
        <p> <%= @user.first_name %> lives in <%= @user.city %></p>
       <% end %>
      </div>
 
-     <% if @user.bio.empty? %>
-       <p> Please tell us a bit about yourself </p>
-     <% else %>
-       <p> A little bit about yourself: "<%= @user.bio %>" </p>
-     <% end %>
+
+       <p> A little bit about <%= @user.first_name %>: <%= @user.bio %> </p>
+
      <div class="btn-group" role="group">
 
      <div class="user-interests">
-     <% if @user.interest_category.empty? %>
+     <% if @user.interest_category.empty? && current_user == @user %>
         <p> Share your interests </p>
      <% else %>
-        <p> These are your interests: <%= @user.interest_category %></p>
+        <p> These are <%= @user.first_name %> interests: <%= @user.interest_category %></p>
       <% end %>
      </div>
 
