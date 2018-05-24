@@ -1,0 +1,55 @@
+<div class="container" style="color: grey;">
+  <div class="location-title-wrapper">
+    <h1>Find friends with similar interests... </h1>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="row">
+        <%= form_tag users_path, method: :get do %>
+        <div class="col-xs-9">
+          <div class="form-group">
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests..." %>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <%= submit_tag 'Search', name: nil, class: "btn btn-search btn-block" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="search-container">
+    <% if @user.interest_category.nil? || @user.interest_category.empty? %>
+
+      <p> No mums with similar interests... </p>
+      <%#= link_to "Post me for this movie!", "#", class: "btn btn-md" %>
+    <% else %>
+    <div class="class row">
+      <% @users.each do |user| %>
+        <%= link_to user_path(user) do %>
+        <div class="card_interest">
+           <div class="interest-details">
+            <p><i class="glyphicon glyphicon-user"></i> <%= user.first_name %></p>
+          </div>
+          <div class="picture">
+           <% if user.photo? %>
+              <div class="user-profile-photo">
+                <%= image_tag user.photo %>
+              </div>
+            <% else %>
+            <div class="empty-picture"">
+              <p>-- No picture --</p>
+            </div>
+            <% end %>
+          </div>
+          <div class="class interest">
+            <p><i class="glyphicon glyphicon-heart"></i> <%= user.interest_category %></p>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+

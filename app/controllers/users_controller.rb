@@ -1,8 +1,16 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :create, :new]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :create, :new, :index]
 
   def new
     @user = User.new
+  end
+
+  def index
+    if params[:query].present?
+      @users = User.where(interest_category: params[:query])
+    else
+      @users = User.all
+    end
   end
 
   def show
@@ -34,7 +42,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def user_params
