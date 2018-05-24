@@ -21,6 +21,7 @@
   <div id="search-container">
     <div class="class row">
       <% @users.each do |user| %>
+      <div class="col-xs-12 col-sm-6">
         <%= link_to user_path(user) do %>
         <div class="card-user">
            <div class="interest-details">
@@ -29,7 +30,7 @@
           <div class="picture">
            <% if user.photo? %>
               <div class="user-profile-photo">
-                <%= image_tag user.photo %>
+                <%= image_tag user.photo, width: 140, height: 140, radius:5 %>
               </div>
             <% else %>
             <div class="empty-picture"">
@@ -43,6 +44,7 @@
           <div class="class interest">
             <p><i class="glyphicon glyphicon-map-marker"></i> <%= user.city %></p>
           </div>
+        </div>
         </div>
         <% end %>
         <% end %>
