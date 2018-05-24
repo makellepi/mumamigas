@@ -16,10 +16,4 @@ has_many :interests, dependent: :destroy
 accepts_nested_attributes_for :user_interests
 accepts_nested_attributes_for :interests
 
-  include PgSearch
-  multisearchable :against => [ :interest_category, :city],
-    using: {
-      tsearch: { prefix: true }
-    }
-
 end

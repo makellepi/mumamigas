@@ -19,47 +19,25 @@
     <div class="col-right">
       <h3> Bio </h3>
       <div class="user-age">
-        <% if @user.age.nil? %>
-          <p> Please complete your age </p>
-          <% else %>
-          <p><%= @user.age %> years old</p>
-        <% end %>
+       <p> <%= @user.age %> years old</p>
      </div>
      <div class="user-children">
-      <% if @user.age.nil? && current_user == @user %>
-        <p> Please tell us how many children you have </p>
-       <% else %>
-        <p> <%= @user.first_name %> has <%= @user.children %> children and
-        they are <%= @user.children_age %> years old. </p>
-       <% end %>
+       <p> <%= @user.first_name %> has <%= @user.children %> children and they are <%= @user.children_age %> years old. </p>
      </div>
      <div class="user-children-age">
-      <% if @user.language.empty? && current_user == @user %>
-        <p> Please share what languages you speak </p>
-       <% else %>
-        <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>
-      <% end %>
+       <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>
      </div>
-
-     <div class="user-location">
-      <% if @user.city.empty? && current_user == @user %>
-        <p> Please tell us where you live </p>
-      <% else %>
-       <p> <%= @user.first_name %> lives in <%= @user.city %></p>
-      <% end %>
-     </div>
-
-
-       <p> A little bit about <%= @user.first_name %>: <%= @user.bio %> </p>
-
+     <p> A little bit about yourself: "<%= @user.bio %>" </p>
      <div class="btn-group" role="group">
 
-     <div class="user-interests">
-     <% if @user.interest_category.empty? && current_user == @user %>
-        <p> Share your interests </p>
-     <% else %>
-        <p> These are <%= @user.first_name %> interests: <%= @user.interest_category %></p>
-      <% end %>
+      <div class="user-interests">
+        <% @user.interests.each do |interest| %>
+          <% if @user.interests.any? %>
+            <p> These are your interests: <%= interest.category %></p>
+          <% else %>
+            <p> No interests defined yet.. </p>
+          <% end %>
+       <% end %>
      </div>
 
      <div class="btn-group" role="group">
