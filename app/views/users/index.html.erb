@@ -1,6 +1,6 @@
 <div class="container" style="color: grey;">
   <div class="location-title-wrapper">
-    <h1>Find friends with similar interests... </h1>
+    <h1>Start connecting with other mums... </h1>
   </div>
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
@@ -8,7 +8,7 @@
         <%= form_tag users_path, method: :get do %>
         <div class="col-xs-9">
           <div class="form-group">
-            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests..." %>
+            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests or city" %>
           </div>
         </div>
         <div class="col-xs-3">
@@ -19,15 +19,10 @@
     </div>
   </div>
   <div id="search-container">
-    <% if @user.interest_category.nil? || @user.interest_category.empty? %>
-
-      <p> No mums with similar interests... </p>
-      <%#= link_to "Post me for this movie!", "#", class: "btn btn-md" %>
-    <% else %>
     <div class="class row">
       <% @users.each do |user| %>
         <%= link_to user_path(user) do %>
-        <div class="card_interest">
+        <div class="card-user">
            <div class="interest-details">
             <p><i class="glyphicon glyphicon-user"></i> <%= user.first_name %></p>
           </div>
@@ -45,11 +40,13 @@
           <div class="class interest">
             <p><i class="glyphicon glyphicon-heart"></i> <%= user.interest_category %></p>
           </div>
+          <div class="class interest">
+            <p><i class="glyphicon glyphicon-map-marker"></i> <%= user.city %></p>
+          </div>
         </div>
         <% end %>
         <% end %>
     </div>
-    <% end %>
   </div>
 </div>
 
