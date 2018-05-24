@@ -20,7 +20,8 @@
   </div>
   <div id="search-container">
     <div class="class row">
-      <% @users.each do |user| %>
+     <% @users.each do |user| %>
+     <% unless user == current_user %>
       <div class="col-xs-12 col-sm-6">
         <%= link_to user_path(user) do %>
         <div class="card-user">
@@ -46,6 +47,7 @@
           </div>
         </div>
         </div>
+        <% end %>
         <% end %>
         <% end %>
     </div>
