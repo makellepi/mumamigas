@@ -26,7 +26,7 @@ end
 
 
   resources :matches, only: [:show] do
-    resources :messages, only: [:create]
+    resources :messages, only: [:create, :new]
   end
 
 
