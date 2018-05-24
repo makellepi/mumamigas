@@ -1,17 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :create, :new, :index]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :create, :new]
 
   def new
     @user = User.new
-  end
-
-  def index
-    if params[:query].present?
-      sql_query = "interest_category ILIKE :query OR city ILIKE :query"
-      @users = User.where(sql_query, query: "%#{params[:query]}%")
-    else
-      @users = User.all
-    end
   end
 
   def show
@@ -43,11 +34,11 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :interest_category, :city)
+    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :user_interest)
   end
 
 end
