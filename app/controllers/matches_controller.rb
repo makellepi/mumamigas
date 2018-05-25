@@ -1,6 +1,5 @@
 class MatchesController < ApplicationController
 before_action :user
-before_action :set_location, only: [ :create, :edit, :index]
 
 def new
   @match = Match.new
@@ -20,7 +19,6 @@ end
 def create
   @match = Match.new(match_params)
   @match.user = @user
-  @match.location = @location
    if @match.save
      redirect_to user_path(@user), alert: "Your friend request was sent and is pending confirmation"
     else
@@ -57,10 +55,6 @@ def set_match
  @match = Match.find(params[:id])
 end
 
-
-def set_location
-  @location = Location.find(params[:location_id])
-end
 
 
 def match_params
