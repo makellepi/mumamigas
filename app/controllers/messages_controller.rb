@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     @message.match = @match
     @message.user = @user
     if @message.save
-      redirect_to @message.match, notice: "Your message was sent"
+      redirect_to @message.match.user , notice: "Your friend request was sent"
     else
       render :new
     end
