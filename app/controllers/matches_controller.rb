@@ -16,7 +16,7 @@ def create
   @match = Match.new(match_params)
   @match.user = @user
    if @match.save
-     redirect_to @match.user, alert: "Your friend request was sent and is pending confirmation"
+     redirect_to @match.user, notice: "Your friend request was sent and is pending confirmation"
     else
      render :new
     end
