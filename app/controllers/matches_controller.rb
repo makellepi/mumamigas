@@ -3,12 +3,15 @@ before_action :user
 before_action :set_location, only: [ :create, :edit, :index]
 
 def new
-  @match = Match.new(match_params)
+  @match = Match.new
 end
 
 def index
   @matches = Match.all
-  @match = Match.new(location: @location, user: @user)
+  @message = Message.new
+    @messages = @match.messages
+    @sent_messages = @match.messages.where(user: current_user)
+    @received_messages = @match.messages.where.not(user: current_user)
 end
 
 def show
@@ -19,10 +22,11 @@ def create
   @match.user = @user
   @match.location = @location
    if @match.save
-     redirect_to user_path(@user), alert: "Your friend request is pending confirmation"
+     redirect_to user_path(@user), alert: "Your friend request was sent and is pending confirmation"
     else
-     redirect_to user_path(@user)
+     render :new
     end
+  @match.save
 end
 
 def accept
@@ -47,6 +51,10 @@ private
 
 def user
  @user = current_user
+end
+
+def set_match
+ @match = Match.find(params[:id])
 end
 
 

@@ -24,6 +24,7 @@ end
 
   resources :interests
 
+  resources :matches, only: [ :new, :create ]
 
   resources :matches, only: [:show] do
     resources :messages, only: [ :new, :create ]
