@@ -6,11 +6,7 @@ def new
 end
 
 def index
-  @matches = Match.all
-  @message = Message.new
-    @messages = @match.messages
-    @sent_messages = @match.messages.where(user: current_user)
-    @received_messages = @match.messages.where.not(user: current_user)
+  @matches = Match.al
 end
 
 def show
@@ -20,46 +16,25 @@ def create
   @match = Match.new(match_params)
   @match.user = @user
    if @match.save
-     redirect_to user_path(@user), alert: "Your friend request was sent and is pending confirmation"
+     redirect_to @match.user, alert: "Your friend request was sent and is pending confirmation"
     else
      render :new
     end
-  @match.save
+    @match.save
 end
 
-def accept
-  @match.friend_status = 'accepted'
-  if @match.save
-    redirect_to user_path(@user)
-  else
-    redirect_to user_path(@user), alert: "The friend request could not be accepted"
-  end
-end
-
-def decline
-  @match.friend_status ='declined'
-  if @match.save
-    redirect_to user_path(@user)
-  else
-    redirect_to user_path(@user), alert: "The friend request could not be declined"
-  end
-end
 
 private
+
+def match_params
+  params.require(:match).permit( :status, :friend_status )
+end
 
 def user
  @user = current_user
 end
 
-def set_match
- @match = Match.find(params[:id])
-end
 
-
-
-def match_params
-  params.require(:match).permit(:status, :friend_status)
-end
 
 
 end
