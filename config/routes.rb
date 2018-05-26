@@ -15,18 +15,17 @@ end
 
 
   resources :users
-   resources :locations, only: [:destroy, :create, :index ] do
-    resources :matches, only: [:create, :index]
-  end
 
 
-  resources :locations, only: [:show]
+
+  resources :matches, only: [ :new, :create, :show, :index ]
+
 
   resources :interests
 
 
   resources :matches, only: [:show] do
-    resources :messages, only: [:create, :new]
+    resources :messages, only: [ :new, :create ]
   end
 
 

@@ -1,19 +1,19 @@
 class MessagesController < ApplicationController
   before_action :user
-  before_action :set_match, only: [:create]
+  before_action :set_match, only: [:new, :create]
 
   def new
-    @message = Message.new(message_params)
+    @message = Message.new
   end
 
   def create
-    @message = Message.new(match: @match, user: @user)
+    @message = Message.new(message_params)
     @message.match = @match
     @message.user = @user
     if @message.save
-      redirect_to @match, notice: "Your message was sent"
+      redirect_to @message.match.user , notice: "Your friend request was sent and is pending confirmation"
     else
-      redirect_to @match, alert: "Your message was not sent"
+      render :new
     end
     @message.save
   end
@@ -21,7 +21,7 @@ class MessagesController < ApplicationController
   private
 
   def message_params
-    params.require(:message).permit(:content, :match_id)
+    params.require(:message).permit(:content)
   end
 
   def set_match

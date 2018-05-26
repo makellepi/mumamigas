@@ -1,11 +1,5 @@
-
-
-
-<% @user.matches.each do |match| %>
-<p> Match status: "<%= match.friend_status %>"</p>
- <%= image_tag match.user.photo.url, class: "style_image" %>
- <%= image_tag match.location.user.photo.url, class: "style_image" %>
-<% end %>
+<%= @user.first_name %>
+<%= @match.user.first_name %>
 
 
 
