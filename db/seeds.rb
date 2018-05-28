@@ -43,7 +43,6 @@ matches = []
 10.times do |i|
    friend_status = %w(pending accepted declined).sample
   match = Match.new(
-    location: locations.sample,
     user: users.sample,
     status: true,
     friend_status: friend_status,
