@@ -8,8 +8,17 @@ class PagesController < ApplicationController
   end
 
   def friends
+   @user = current_user
   end
 
   private
+
+  def set_match
+  @match = Match.find(params[:match_id])
+  end
+
+  def set_message
+   @message = Message.find(params[:match_id])
+  end
 
 end
