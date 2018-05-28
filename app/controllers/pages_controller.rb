@@ -5,25 +5,11 @@ class PagesController < ApplicationController
   end
 
   def search
-      if params[:query].present?
-        @locations = Location.where(city: params[:query])
-        @interests = Interest.where(category: params[:query])
-      else
-        @locations = Location.all
-        @interests = Interest.all
-      end
+  end
+
+  def friends
   end
 
   private
-
-  def location_params
-    params.require(:location).permit(:city, :country )
-  end
-
-  def interest_params
-    params.require(:interest).permit(:category)
-  end
-
-
 
 end
