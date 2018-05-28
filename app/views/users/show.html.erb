@@ -19,7 +19,7 @@
     <div class="col-right">
       <h3> Bio </h3>
       <div class="user-age">
-        <% if @user.age.nil? %>
+        <% if !@user.age.nil? %>
           <p> Please complete your age </p>
           <% else %>
           <p><%= @user.age %> years old</p>

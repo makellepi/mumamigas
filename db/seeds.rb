@@ -37,31 +37,6 @@ users = []
   user.save!
 end
 
-interests_users = []
-
- 10.times do |i|
-    categories = [ "Special needs", "Playing dates", "Food", "Tech", "Relaxed Parenting", "Mindfullness", "Others", "Fitness", "Party Animal", "Sole parent"]
-    interest = Interest.new(
-    category: categories.sample,
-    user: users.sample,
-    )
-    interests_users << interest
-    interest.save!
-end
-
-
-locations = []
-
-cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"]
-
-(0...10).each do |i|
-  location = Location.new(
-    city: cities[i],
-    user: users.sample
-    )
-    locations << location
-    location.save!
-  end
 
 matches = []
 
