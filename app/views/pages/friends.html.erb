@@ -3,31 +3,14 @@
 <% if @user.matches.nil? %>
   <%= No matched Mumamigas %>
 <% else %>
-  <p> Your sent friend requests: </p>
-  <% @user.matches.each do |match| %>
-    <% if match.friend_status != %w(accepted) %>
-       <ul>"<%= match.friend_status %>"</ul>
-       <ul><p> Your friend status is pending</p></ul>
+  <% @friends.each do |friend| %>
+    <% if friend.friend_status.include?("accepted")||friend.friend_status.include?("declined") %>
+      <ul> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %></ul>
     <% else %>
-      <ul>"<%= match.friend_status %>"</ul>
-       <ul><p> Your friend status is approved</p></ul>
-       <p> test </p>
+      <ul> Your friend request to <%= friend.user.first_name %> is pending</ul>
     <% end %>
   <% end %>
-    <% if @user.messages.nil? %>
-     <p> </p>
-    <% else %>
-      <% @user.messages.each do |message| %>
-      <ul> "<%= message.content %>" to <%= message.match.user.first_name %></ul>
-      <ul>Your friend status is <%= message.match.friend_status %></ul>
-      <% end %>
-    <% end %>
 <% end %>
-
-<% @friends.each do |friend| %>
- <ul> Your friend request to <%= friend.user.first_name %></ul>
- <ul> Your friend status is <%= friend.friend_status %></ul>
- <% end %>
 
 
 
