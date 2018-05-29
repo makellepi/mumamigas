@@ -4,10 +4,14 @@
   <%= No matched Mumamigas %>
 <% else %>
   <% @friends.each do |friend| %>
-    <% if friend.friend_status.include?("accepted")||friend.friend_status.include?("declined") %>
-      <ul> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %></ul>
+    <% if friend.friend_status.include?("accepted")%>
+      <ol> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %>
+      <%= image_tag friend.user.photo.url, class: "style_image"  %> </ol>
+    <% elsif friend.friend_status.include?("declined") %>
+      <ol> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %>
+    </p>
     <% else %>
-      <ul> Your friend request to <%= friend.user.first_name %> is pending</ul>
+      <ol> Your friend request to <%= friend.user.first_name %> is pending </ol>
     <% end %>
   <% end %>
 <% end %>
