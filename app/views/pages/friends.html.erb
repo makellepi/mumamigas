@@ -25,7 +25,9 @@
 <% end %>
 
 <% @friends.each do |friend| %>
- <ul> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %></ul>
-<% end %>
+ <ul> Your friend request to <%= friend.user.first_name %></ul>
+ <ul> Your friend status is <%= friend.friend_status %></ul>
+ <% end %>
+
 
 
