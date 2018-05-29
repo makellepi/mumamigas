@@ -18,7 +18,7 @@ class PagesController < ApplicationController
   end
 
   def set_message
-   @message = Message.find(params[:match_id])
+   @message = Message.find(params[:message_id])
   end
 
 end

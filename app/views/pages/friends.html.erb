@@ -1,3 +1,17 @@
 <%= @user.first_name %>
 
-<%= @match %>
+
+<% if @user.matches.nil? %>
+  <%= No matched Mumamigas %>
+<% else %>
+  <p> Your sent friend requests: </p>
+  <% @user.matches.each do |match| %>
+  <ul><%= match.friend_status %> </ul>
+  <% end %>
+  <% @user.messages.each do |message| %>
+  <ul><%= message.content %> to <%= message.match.user.first_name %></ul>
+  <ul>Your current friend status is <%= message.match.friend_status %></ul>
+  <% end %>
+<% end %>
+
+
