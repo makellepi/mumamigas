@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 
   def friends
    @user = current_user
+   @friends = Match.all.where.not(user: current_user)
   end
 
   private

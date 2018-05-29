@@ -1,4 +1,3 @@
-<%= @user.first_name %>
 
 
 <% if @user.matches.nil? %>
@@ -6,12 +5,27 @@
 <% else %>
   <p> Your sent friend requests: </p>
   <% @user.matches.each do |match| %>
-  <ul><%= match.friend_status %> </ul>
+    <% if match.friend_status != %w(accepted) %>
+       <ul>"<%= match.friend_status %>"</ul>
+       <ul><p> Your friend status is pending</p></ul>
+    <% else %>
+      <ul>"<%= match.friend_status %>"</ul>
+       <ul><p> Your friend status is approved</p></ul>
+       <p> test </p>
+    <% end %>
   <% end %>
-  <% @user.messages.each do |message| %>
-  <ul><%= message.content %> to <%= message.match.user.first_name %></ul>
-  <ul>Your current friend status is <%= message.match.friend_status %></ul>
-  <% end %>
+    <% if @user.messages.nil? %>
+     <p> </p>
+    <% else %>
+      <% @user.messages.each do |message| %>
+      <ul> "<%= message.content %>" to <%= message.match.user.first_name %></ul>
+      <ul>Your friend status is <%= message.match.friend_status %></ul>
+      <% end %>
+    <% end %>
+<% end %>
+
+<% @friends.each do |friend| %>
+ <ul> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %></ul>
 <% end %>
 
 
