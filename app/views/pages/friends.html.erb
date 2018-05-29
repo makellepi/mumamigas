@@ -6,8 +6,10 @@
  <p> Your current Mumamigas: </p>
   <% @friends.each do |friend| %>
     <% if friend.friend_status.include?("accepted")%>
-      <ul><%= image_tag friend.user.photo.url, class: "style_image"  %>
-       <%= friend.user.first_name %></ul>
+      <ul><%= image_tag friend.user.photo.url, class: "style_image" %> </ul>
+      <ul> Name: <%= friend.user.first_name %></ul>
+      <ul> Hobbies:<%= friend.user.interest_category %></ul>
+      <ul> Location: <%= friend.user.city %></ul>
       <% end %>
     <% end %>
 <% end %>
