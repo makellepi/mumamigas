@@ -19,14 +19,14 @@
     <div class="col-right">
       <h3> Bio </h3>
       <div class="user-age">
-        <% if !@user.age.nil? && current_user == @user %>
+        <% if @user.age.nil? && current_user == @user %>
           <p> Please complete your age </p>
           <% else %>
           <p><%= @user.age %> years old</p>
         <% end %>
      </div>
      <div class="user-children">
-      <% if !@user.age.nil? && current_user == @user %>
+      <% if @user.age.nil? && current_user == @user %>
         <p> Please tell us how many children you have </p>
        <% else %>
         <p> <%= @user.first_name %> has <%= @user.children %> children and
@@ -34,7 +34,7 @@
        <% end %>
      </div>
      <div class="user-children-age">
-      <% if !@user.language.nil? && current_user == @user %>
+      <% if @user.language.nil? && current_user == @user %>
         <p> Please share what languages you speak </p>
        <% else %>
         <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>
