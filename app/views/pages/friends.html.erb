@@ -1,20 +1,17 @@
 
-
+<div class="container">
 <% if @user.matches.nil? %>
   <%= No matched Mumamigas %>
 <% else %>
+ <p> Your current Mumamigas: </p>
   <% @friends.each do |friend| %>
     <% if friend.friend_status.include?("accepted")%>
-      <ol> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %>
-      <%= image_tag friend.user.photo.url, class: "style_image"  %> </ol>
-    <% elsif friend.friend_status.include?("declined") %>
-      <ol> Your friend request to <%= friend.user.first_name %> is <%= friend.friend_status %>
-    </p>
-    <% else %>
-      <ol> Your friend request to <%= friend.user.first_name %> is pending </ol>
+      <ul><%= image_tag friend.user.photo.url, class: "style_image"  %>
+       <%= friend.user.first_name %></ul>
+      <% end %>
     <% end %>
-  <% end %>
 <% end %>
+</div>
 
 
 
