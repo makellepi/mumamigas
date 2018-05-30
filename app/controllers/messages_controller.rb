@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
     @message.match = @match
     @message.user = @user
     if @message.save
-      redirect_to @message.match.user , notice: "Your friend request was sent and is pending confirmation"
+      redirect_to friends_path, notice: "Your friend request was sent and is pending confirmation"
     else
       render :new
     end

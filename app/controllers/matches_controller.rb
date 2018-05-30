@@ -6,7 +6,7 @@ def new
 end
 
 def index
-  @matches = Match.al
+  @matches = Match.all
 end
 
 def show
@@ -15,8 +15,9 @@ end
 def create
   @match = Match.new(match_params)
   @match.user = @user
+
    if @match.save
-     redirect_to @match.user, notice: "Your friend request was sent and is pending confirmation"
+     redirect_to friends_path, notice: "Your friend request was sent and is pending confirmation"
     else
      render :new
     end
