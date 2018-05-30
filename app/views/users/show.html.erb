@@ -34,7 +34,8 @@
        <% end %>
      </div>
      <div class="user-children-age">
-      <% if @user.language.nil? && current_user == @user %>
+      <% if
+        @user.language.nil? && current_user == @user %>
         <p> Please share what languages you speak </p>
        <% else %>
         <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>

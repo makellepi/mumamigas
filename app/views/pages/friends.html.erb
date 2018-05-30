@@ -4,15 +4,17 @@
   <%= No matched Mumamigas %>
 <% else %>
  <h4> Your current Mumamigas: </h4>
-  <% @friends.each do |friend| %>
+    <% @friends.each do |friend| %>
+    <div class="card-friends">
     <% if friend.friend_status.include?("accepted")%>
       <h4> <%= friend.user.first_name %></h4>
       <ul><%= image_tag friend.user.photo.url, class: "style_image" %> </ul>
       <ul> Hobbies:<%= friend.user.interest_category %></ul>
       <ul> Location: <%= friend.user.city %></ul>
       <% end %>
+    </div>
     <% end %>
-<% end %>
+  <% end %>
 </div>
 
 
