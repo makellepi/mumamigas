@@ -1,0 +1,10 @@
+
+<p> Sent messages </p>
+<% @user.messages.each do |message| %>
+<ul> <%= message.content %> sent to  <%= message.match.user.first_name %></ul>
+<% end %>
+
+<p> Received messages </p>
+<% @received_messages.each do |message| %>
+<ul> <%= message.content %> from <%= message.user.first_name %></ul>
+<% end %>

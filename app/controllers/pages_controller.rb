@@ -14,7 +14,7 @@ class PagesController < ApplicationController
 
   def messages
    @user = current_user
-   @sent_messages = Message.all.where(user: current_user)
+   @sent_messages = @user.messages
    @received_messages = Message.all.where.not(user: current_user)
   end
 
