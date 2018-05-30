@@ -12,6 +12,12 @@ class PagesController < ApplicationController
    @friends = Match.all.where.not(user: current_user)
   end
 
+  def messages
+   @user = current_user
+   @sent_messages = Message.all.where(user: current_user)
+   @received_messages = Message.all.where.not(user: current_user)
+  end
+
   private
 
   def set_match
