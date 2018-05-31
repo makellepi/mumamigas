@@ -1,10 +1,19 @@
-
-<p> Sent messages </p>
-<% @user.messages.each do |message| %>
-<ul> <%= message.content %> sent to  <%= message.match.user.first_name %></ul>
-<% end %>
-
-<p> Received messages </p>
-<% @received_messages.each do |message| %>
-<ul> <%= message.content %> from <%= message.user.first_name %></ul>
-<% end %>
+<div class="container">
+  <h3> Mumamiga messenger </h3>
+  <div class="messagebox">
+  <h4> Sent messages: </h4>
+  <% @user.messages.each do |message| %>
+    <%= link_to user_path(message.match.user.id) do %>
+      <ul> "<%= message.content %>" sent to <%= message.match.user.first_name %> </ul>
+       <% end %>
+    <% end %>
+  </div>
+  <div class="messagebox">
+  <h4> Received messages: </h4>
+  <% @received_messages.each do |message| %>
+    <%= link_to user_path(message.user.id) do %>
+      <ul>"<%= message.content %>" from <%= message.user.first_name %></ul>
+    <% end %>
+  <% end %>
+  </div>
+</div>
