@@ -74,7 +74,15 @@
 
 .messagebox{
   color: black;
+  padding: 15px;
+  text-align: left;
+  margin-left: 80px;
   width: 400px;
+  .message_avatar{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+   }
 }
 
 .matchcontainer{
