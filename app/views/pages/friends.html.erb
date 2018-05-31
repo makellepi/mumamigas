@@ -14,6 +14,11 @@
       <% end %>
     </div>
     <% end %>
+ <h4> Your pending friends </h4>
+    <% @sent_requests.each do |pending| %>
+      <%= link_to new_match_message_path(@user.match_ids) do , class: "btn-btn-default" %>
+    <% end %>
+    <% end %>
 <% end %>
 </div>
 
