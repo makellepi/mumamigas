@@ -3,7 +3,7 @@
 <% if @user.matches.nil? %>
   <%= No matched Mumamigas %>
 <% else %>
- <h4> Your current Mumamigas: </h4>
+ <h4> Your matches: </h4>
     <% @friends.each do |friend| %>
     <div class="card-friends">
     <% if friend.friend_status.include?("accepted")%>
