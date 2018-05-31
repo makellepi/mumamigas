@@ -4,7 +4,7 @@
   <h4> Sent messages: </h4>
   <% @user.messages.each do |message| %>
     <%= link_to user_path(message.match.user.id) do %>
-      <ul> "<%= message.content %>" sent to <%= message.match.user. first_name %> sent on <%= message.created_at.to_date.iso8601 %> </ul>
+      <ul> "<%= message.content %>" sent to <%= message.match.user. first_name %> on <%= message.created_at.to_date.iso8601 %> </ul>
        <% end %>
     <% end %>
   </div>
@@ -12,7 +12,7 @@
   <h4> Received messages: </h4>
   <% @received_messages.each do |message| %>
     <%= link_to user_path(message.user.id) do %>
-      <ul>"<%= message.content %>" from <%= message.user.first_name %> received on <%= message.created_at.to_date.iso8601 %></ul>
+      <ul>"<%= message.content %>" from <%= message.user.first_name %> on <%= message.created_at.to_date.iso8601 %></ul>
     <% end %>
   <% end %>
   </div>
