@@ -59,7 +59,7 @@
      <% if @user.interest_category.nil? && current_user == @user %>
         <p> Share your interests </p>
      <% else %>
-        <p> These are <%= @user.first_name %> interests: <%= @user.interest_category %></p>
+        <p> Preferred interests: <%= @user.interest_category %></p>
       <% end %>
      </div>
 
