@@ -53,19 +53,6 @@ end
 
 p "Almost there"
 
-messages = []
-
-10.times do |i|
-  message_content = ["Let's be friends"]
-  message = Message.new(
-    match: matches.sample,
-    user: users.sample,
-    content: message_content,
-    )
-    messages << message
-    message.save!
-end
-
 
   p "Seeded"
 

@@ -1,15 +1,15 @@
 <h1> Send your friend request</h1>
 
 <div class="col-sm-4 col-sm-offset-4">
-  <div class="messagebox">
     <%= simple_form_for [@match] do |f| %>
       <%= f.input :friend_status, label: "Your message:", placeholder: "Tell your Mumamiga why you are excited to connect with her."%>
         <% f.input :status %>
         <%= f.button :submit, "Send", class: "btn btn-block" %>
     <% end %>
-  </div>
-
 </div>
+
+
+<%= @match.user.first_name %>
 
 
 
