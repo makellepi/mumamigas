@@ -54,7 +54,7 @@
   <% unless @user.interest_category.blank? || @same_hobbies.blank? %>
   <div id="search-container">
     <div class="class row">
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-sm-8 col-sm-offset-2">
     <% @same_hobbies.each do |hobby| %>
     <% unless hobby == current_user %>
       <%= link_to user_path(hobby) do %>
