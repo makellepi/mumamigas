@@ -18,6 +18,7 @@ end
 
   resources :users
 
+  resources :follows
 
 
   resources :matches, only: [ :new, :create, :show, :index ]
