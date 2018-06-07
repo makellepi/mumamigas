@@ -1,10 +1,11 @@
 <div class="follow">
   <% if current_user.following?(@user) %>
     <% current_user.stop_following(@user) %>
-    <p> You are already friends with <%= @user.first_name %>
-    <%= button_tag 'unfollow?', class: 'btn-btn-default' %></p>
+    <p> You are already following <%= @user.first_name %> - <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+    <%= link_to "Stop following her?", user_path, class: "btn-btn-default"%>
   <% else %>
-     <% current_user.follow(@user) %>
-      <%= button_tag 'follow', class: 'btn btn-success' %>
+     <% current_user.follow(@user)%>
+     <p><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= link_to "Send a request to", user_path, class: "btn-btn-default"%>
+   <%= @user.first_name %></p>
   <% end %>
 </div>
