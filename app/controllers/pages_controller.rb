@@ -14,6 +14,7 @@ class PagesController < ApplicationController
    @user = current_user
    @friends = Match.all.where.not(user: current_user)
    @sent_requests = Match.all.where(user: current_user)
+   @following = Follow.all.where(follower_id: current_user)
   end
 
   def messages
@@ -30,6 +31,10 @@ class PagesController < ApplicationController
 
   def set_message
    @message = Message.find(params[:message_id])
+  end
+
+  def set_follow
+   @follow = Follow.find(params[:follow_id])
   end
 
 end
