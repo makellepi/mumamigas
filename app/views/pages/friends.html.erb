@@ -15,8 +15,19 @@
     </div>
     <% end %>
 <% end %>
+
+  <h4> Mumamigas you are following: </h4>
   <% @following.each do |f| %>
-    <%= f.followable_id %>
+    <% f.followable_id %>
+    <% @pending = User.select(:first_name, :photo, :interest_category, :city).all.where(id: f.followable_id)%>
+    <% @pending.each do |user| %>
+    <div class="card-friends">
+      <h4> <%= user.first_name %></h4>
+      <ul><%= image_tag user.photo.url, class: "style_image", height: 150, width: 150 %> </ul>
+      <ul> Hobbies:<%= user.interest_category %></ul>
+      <ul> Location: <%= user.city %></ul>
+      <% end %>
+     </div>
   <% end %>
 </div>
 
