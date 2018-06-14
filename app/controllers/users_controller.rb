@@ -34,6 +34,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow
+    current_user.follow(@user)
+    @follow = Follow.find_by(follower: @current_user, followable: @user)
+    respond_to :js
+  end
+
+  def unfollow
+    current_user.stop_following(@user)
+    respond_to :js
+  end
+
 
   def destroy
     @user.destroy

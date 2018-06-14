@@ -3,9 +3,10 @@ class FollowsController < ApplicationController
   respond_to :js
 
   def create
-    @user = User.find(params[:user_id])
+    @follow = Follow.create(follow_params)
+    @user = User.find(params[:id])
     current_user.follow(@user)
-    if @message.save
+    if @follow.save
       redirect_to friends_path, notice: "Your request was sent"
     else
       "There was an error with your request"
@@ -13,7 +14,7 @@ class FollowsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:id])
     current_user.stop_following(@user)
   end
 
