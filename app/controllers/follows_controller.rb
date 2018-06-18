@@ -13,10 +13,10 @@ class FollowsController < ApplicationController
     end
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    current_user.stop_following(@user)
-  end
+  # def destroy
+  #   @user = User.find(params[:id])
+  #   current_user.stop_following(@user)
+  # end
 
 end
 
