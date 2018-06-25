@@ -12,21 +12,23 @@ end
 
   root to: 'pages#home'
   get '/search', to: 'pages#search', as: 'search'
+  get '/friends', to: 'pages#friends', as: 'friends'
+  get '/mesages', to: 'pages#messages', as: 'messages'
 
 
   resources :users
-   resources :locations, only: [:destroy, :create, :index ] do
-    resources :matches, only: [:create, :index]
-  end
+
+  resources :follows
 
 
-  resources :locations, only: [:show]
+  resources :matches, only: [ :new, :create, :show, :index ]
+
 
   resources :interests
 
 
   resources :matches, only: [:show] do
-    resources :messages, only: [:create]
+    resources :messages, only: [ :new, :create ]
   end
 
 

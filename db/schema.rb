@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518171258) do
+ActiveRecord::Schema.define(version: 20180607115436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,20 @@ ActiveRecord::Schema.define(version: 20180518171258) do
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_activities_on_location_id"
     t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.string "followable_type", null: false
+    t.bigint "followable_id", null: false
+    t.string "follower_type", null: false
+    t.bigint "follower_id", null: false
+    t.boolean "blocked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["followable_id", "followable_type"], name: "fk_followables"
+    t.index ["followable_type", "followable_id"], name: "index_follows_on_followable_type_and_followable_id"
+    t.index ["follower_id", "follower_type"], name: "fk_follows"
+    t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
   create_table "interests", force: :cascade do |t|
@@ -49,9 +63,7 @@ ActiveRecord::Schema.define(version: 20180518171258) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "location_id"
     t.string "friend_status"
-    t.index ["location_id"], name: "index_matches_on_location_id"
     t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
@@ -107,6 +119,8 @@ ActiveRecord::Schema.define(version: 20180518171258) do
     t.boolean "work_status"
     t.bigint "location_id"
     t.string "interests"
+    t.string "interest_category"
+    t.string "city"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -116,7 +130,6 @@ ActiveRecord::Schema.define(version: 20180518171258) do
   add_foreign_key "activities", "users"
   add_foreign_key "interests", "users"
   add_foreign_key "locations", "users"
-  add_foreign_key "matches", "locations"
   add_foreign_key "matches", "users"
   add_foreign_key "messages", "matches"
   add_foreign_key "messages", "users"

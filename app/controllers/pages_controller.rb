@@ -5,25 +5,36 @@ class PagesController < ApplicationController
   end
 
   def search
-      if params[:query].present?
-        @locations = Location.where(city: params[:query])
-        @interests = Interest.where(category: params[:query])
-      else
-        @locations = Location.all
-        @interests = Interest.all
-      end
+    @user = current_user
+    @local_mums = User.all.where(city: @user.city)
+    @same_hobbies = User.all.where(interest_category: @user.interest_category)
+  end
+
+  def friends
+   @user = current_user
+   @friends = Match.all.where.not(user: current_user)
+   @sent_requests = Match.all.where(user: current_user)
+   @following = Follow.all.where(follower_id: current_user)
+  end
+
+  def messages
+   @user = current_user
+   @sent_messages = @user.messages
+   @received_messages = Message.all.where.not(user: current_user)
   end
 
   private
 
-  def location_params
-    params.require(:location).permit(:city, :country )
+  def set_match
+  @match = Match.find(params[:match_id])
   end
 
-  def interest_params
-    params.require(:interest).permit(:category)
+  def set_message
+   @message = Message.find(params[:message_id])
   end
 
-
+  def set_follow
+   @follow = Follow.find(params[:follow_id])
+  end
 
 end

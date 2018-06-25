@@ -1,0 +1,25 @@
+<div class="container">
+  <h3> Mumamigas Messenger </h3>
+<div class="class row">
+ <div class="col-sm-8 col-sm-offset-2">
+  <div class="messagebox">
+  <h4> Sent messages: </h4>
+  <% @user.messages.each do |message| %>
+    <%= link_to user_path(message.match.user.id) do %>
+      <ul> <h4><%= image_tag message.match.user.photo.url, class: "message_avatar" %> "<%= message.content %>"</h4> </ul>
+      <ul><p> sent to <%= message.match.user. first_name %> on <%= message.created_at.to_date.iso8601%></p></ul>
+       <% end %>
+    <% end %>
+  </div>
+  <div class="messagebox">
+  <h4> Received messages: </h4>
+  <% @received_messages.each do |message| %>
+    <%= link_to user_path(message.user.id) do %>
+      <ul><h4><%= image_tag message.user.photo.url, class: "message_avatar" %> "<%= message.content %>"</h4></ul>
+       <ul><p>from <%= message.user.first_name %> on <%= message.created_at.to_date.iso8601 %></p></ul>
+    <% end %>
+  <% end %>
+  </div>
+ </div>
+</div>
+</div>

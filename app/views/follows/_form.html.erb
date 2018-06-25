@@ -1,0 +1,12 @@
+<div class="follow">
+  <% if current_user.following?(@user) %>
+    <%= form_tag current_user.stop_following(@user), method: :post, remote: true do %>
+      <%= button_tag 'Stop Following', class: 'btn btn-primary' %>
+    <% end %>
+  <% else %>
+     <% current_user.follow(@user)%>
+    <%= form_tag current_user.follow(@user), method: :post, remote: true do %>
+      <%= button_tag 'Start Following', class: 'btn btn-success' %>
+    <% end %>
+  <% end %>
+</div>
