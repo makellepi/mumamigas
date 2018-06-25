@@ -14,10 +14,8 @@
     <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
     <%= f.input :city, label: 'Where do you live?', autofocus: true %>
 
-    <%#f.input :interest_category,as collection: [['0', 'Reading'], ['1', 'Tech'], ["2","Food"], ["3","Mindfullness"], ["4","Sports"],["5","Parenting"], ["6", "Yoga"]], input_html: { multiple: true } , label_method: :second, label: "Select your interest: "%>
+    <%= f.input :interest_category, collection: [['0', 'Reading'], ['1', 'Tech'], ["2","Food"], ["3","Mindfullness"], ["4","Sports"],["5","Parenting"], ["6", "Yoga"]], input_html: { multiple: true } , label_method: :second, include_blank: false, include_hidden: false, label: "Select your interest: "%>
 
-     <%= f.input :interest_category, as: :check_boxes, collection: [['0', 'Reading'], ['1', 'Tech'], ["2","Food"], ["3","Mindfullness"], ["4","Sports"],["5","Parenting"], ["6", "Yoga"]], label_method: :second, label: "Select your interest: " %>
-     <%#f.collection_check_boxes :interest_category, [["0", "Reading"], ["1", "Tech"], ["2","Food"], ["3","Mindfullness"], ["4","Sports"],["5","Parenting"], ["6", "Yoga"]] %>
 
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
 
