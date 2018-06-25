@@ -14,6 +14,36 @@ end
 
 users = []
 
+
+userMarta = User.create(
+  first_name: "Marta",
+  second_name: "Keller",
+  email: "martatest7@hotmail.com",
+  password: "test123",
+  remote_photo_url: "http://res.cloudinary.com/dj70a4jbi/image/upload/c_scale,w_800/v1523030894/c1feu1qwzgnztnsgjkho.jpg",
+  language: "english",
+  children: Faker::Number.between(1, 3),
+  children_age: Faker::Number.between(0, 5),
+  age: Faker::Number.between(25, 40),
+  work_status: true,
+  )
+
+
+userJoana = User.create(
+  first_name: "Joana",
+  second_name: "Banana",
+  email: "joanabananatest7@hotmail.com",
+  password: "test123",
+  remote_photo_url: "http://rochellerice.com/wp-content/uploads/Cathey-Armillas_headshot-small.jpg",
+  language: "english",
+  children: Faker::Number.between(1, 3),
+  children_age: Faker::Number.between(0, 5),
+  age: Faker::Number.between(25, 40),
+  work_status: true,
+  )
+
+p "Created admin users"
+
 10.times do
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
   remote_photo_url = UiFaces.woman
@@ -33,6 +63,8 @@ users = []
   user.save!
 end
 
+p "Created users"
+
 interests_users = []
 
  10.times do |i|
@@ -45,6 +77,7 @@ interests_users = []
     interest.save!
 end
 
+p "Created categories"
 
 locations = []
 
@@ -58,6 +91,8 @@ cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "Lond
     locations << location
     location.save!
   end
+
+p "Created locations"
 
 matches = []
 
@@ -73,7 +108,7 @@ matches = []
     match.save!
 end
 
-p "Almost there"
+p "Created matches"
 
 messages = []
 
@@ -87,6 +122,8 @@ messages = []
     messages << message
     message.save!
 end
+
+p "Created messages"
 
 
   p "Seeded"

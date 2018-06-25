@@ -105,8 +105,10 @@ ActiveRecord::Schema.define(version: 20180518171258) do
     t.integer "age"
     t.text "bio"
     t.boolean "work_status"
+    t.bigint "location_id"
     t.string "interests"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -120,4 +122,5 @@ ActiveRecord::Schema.define(version: 20180518171258) do
   add_foreign_key "messages", "users"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
+  add_foreign_key "users", "locations"
 end
