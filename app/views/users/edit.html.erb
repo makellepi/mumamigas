@@ -10,9 +10,9 @@
     <%= f.input :photo_cache, as: :hidden %>
     <%= f.input :children, label: 'How many children do you have?', autofocus: true %>
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
-    <%= f.input :pregnant, as: :boolean, label: "Are you currently pregnant?" %>
+    <%= f.input :pregnant, as: :boolean, id: 'pregnant', label: "Are you currently pregnant?" %>
 
-    <%= content_tag :div, class: 'js-dependent-fields', data: { 'checkbox-id': 'pregnant', 'checkbox-value': 'true'} do %>
+    <%= content_tag :div, class: 'js-dependent-fields', data: { 'checkbox-id': 'user_pregnant', 'checkbox-value': 'true'} do %>
           <%= f.input :pregnantmonths, label: "When are you due?" %>
     <% end %>
 
@@ -25,7 +25,7 @@
     <%f.association :locations, as: :radio_buttons, label_method: :city, value_method: :id, include_blank: false%>
 
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
-
+  </div>
   <div class="form-actions">
     <%= f.button :submit, "Update info", class: "btn btn-block" %>
   </div>
@@ -33,4 +33,4 @@
 
 
 
-</div>
+
