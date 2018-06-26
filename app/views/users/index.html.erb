@@ -3,9 +3,9 @@
     <h1>Start connecting with other mums... </h1>
   </div>
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-12">
       <div class="row">
-        <%= form_tag users_path, method: :get do %>
+        <%= form_tag users_path, id:"search-form", method: :get do %>
         <div class="col-xs-9">
           <div class="form-group">
             <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests or city" %>
