@@ -17,7 +17,10 @@
       <% if user.pregnant %>
           <div class="card-icons-pregnancy-months">
             <%= image_tag("pregnant-icon.png", size: "30x30") %>
-            <% months = (Date.today - user.pregnantdue) %>
+            <% date2 = user.pregnantdue %>
+            <% date1 = Date.today %>
+            <% months = (date2.year - date1.year) * 12 + date2.month - date1.month - (date2.day >= date1.day ? 0 : 1) %>
+            <%= months.to_s+"M" %>
           </div>
       <% end %>
       <%# raise %>
