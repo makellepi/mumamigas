@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.3'
 
+gem 'turbolinks', '~> 5.0.0'
 gem 'jquery-rails'
 gem 'underscore-rails'
 gem 'dependent-fields-rails'
