@@ -62,6 +62,7 @@ p "Created admin users"
     work_status: true,
     interest_category: categories,
     city: cities,
+    bio: Faker::Lorem.paragraphs(4),
     )
   users << user
   user.save!

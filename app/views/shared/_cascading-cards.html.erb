@@ -1,0 +1,26 @@
+<div class="cascading-card">
+  <a id="cascading-card-link" href=""></a>
+  <div class="cascading-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),url('<%= cl_image_path @user.photo, crop: :fill %>')">
+  </div>
+  <div class="cascading-card-body">
+    <div class="cascading-card-name">
+      <%= @user.first_name+" "+@user.last_name %>
+    </div>
+    <div class="cascading-card-city">
+      <%= @user.city %>
+    </div>
+    <div class="cascading-card-icons">
+      <div class="card-icons-children-count">
+        <%= image_tag("baby-icon.png") %>
+        <%= "X "+@user.children.to_s %>
+      </div>
+      <div class="card-icons-pregnancy-months">
+        <%= image_tag("pregnant-icon.png") %>
+        <%=  %>
+      </div>
+      <div class="card-icons-shopping-items">
+
+      </div>
+    </div>
+  </div>
+</div>
