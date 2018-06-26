@@ -21,35 +21,8 @@
   <div id="search-container">
     <div class="class row">
      <% @users.each do |user| %>
-     <% unless user == current_user %>
-      <div class="col-xs-12 col-sm-6">
-        <%= link_to user_path(user) do %>
-        <div class="card-user">
-           <div class="interest-details">
-            <p><i class="glyphicon glyphicon-user"></i> <%= user.first_name %></p>
-          </div>
-          <div class="picture">
-           <% if user.photo? %>
-              <div class="user-profile-photo">
-                <%= image_tag user.photo, width: 140, height: 140, radius:5 %>
-              </div>
-            <% else %>
-            <div class="empty-picture"">
-              <p>-- No picture --</p>
-            </div>
-            <% end %>
-          </div>
-          <div class="class interest">
-            <p><i class="glyphicon glyphicon-heart"></i> <%= user.interest_category %></p>
-          </div>
-          <div class="class interest">
-            <p><i class="glyphicon glyphicon-map-marker"></i> <%= user.city %></p>
-          </div>
-        </div>
-        </div>
-        <% end %>
-        <% end %>
-        <% end %>
+        <%= render 'shared/cascading-cards', user: user %>
+     <% end %>
     </div>
   </div>
 </div>

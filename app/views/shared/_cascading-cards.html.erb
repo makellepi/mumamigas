@@ -4,20 +4,22 @@
   </div>
   <div class="cascading-card-body">
     <div class="cascading-card-name">
-      <%= @user.first_name+" "+@user.last_name %>
+      <%= user.first_name+" "+user.second_name %>
     </div>
     <div class="cascading-card-city">
-      <%= @user.city %>
+      <%= user.city %>
     </div>
     <div class="cascading-card-icons">
       <div class="card-icons-children-count">
-        <%= image_tag("baby-icon.png") %>
-        <%= "X "+@user.children.to_s %>
+        <%= image_tag("baby-icon.png", size: "30x30") %>
+        <%= "X "+user.children.to_s %>
       </div>
-      <div class="card-icons-pregnancy-months">
-        <%= image_tag("pregnant-icon.png") %>
-        <%=  %>
-      </div>
+      <% if user.pregnant %>
+          <div class="card-icons-pregnancy-months">
+            <%= image_tag("pregnant-icon.png", size: "30x30") %>
+            <% months = (Date.today - user.pregnantdue) %>
+          </div>
+      <% end %>
       <div class="card-icons-shopping-items">
 
       </div>
