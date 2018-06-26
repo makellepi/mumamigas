@@ -216,6 +216,7 @@ GEM
     uglifier (4.1.8)
       execjs (>= 0.3.0, < 3)
     ui_faces (0.1.4)
+    underscore-rails (1.8.3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
@@ -263,6 +264,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   uglifier
   ui_faces
+  underscore-rails
   web-console (>= 3.3.0)
   webpacker
 

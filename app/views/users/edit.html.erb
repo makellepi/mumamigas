@@ -10,8 +10,11 @@
     <%= f.input :photo_cache, as: :hidden %>
     <%= f.input :children, label: 'How many children do you have?', autofocus: true %>
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
-    <%= f.input :pregnant, label: "Are you currently pregnant?" %>
-    <%= f.input :pregnantmonths, label: "When are you due?" %>
+    <%= f.input :pregnant, as: :boolean, label: "Are you currently pregnant?" %>
+    <div class="js-dependent-fields" data-radio-value='true'
+       data-radio-name="project_date[pregnant]">
+        <%= f.input :pregnantmonths, label: "When are you due?" %>
+    </div>
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
     <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
     <%= f.input :city, label: 'Where do you live?', autofocus: true %>
@@ -30,3 +33,9 @@
 
 
 </div>
+
+<script>
+  $(function() {
+    DependentFields.bind();
+  });
+</script>

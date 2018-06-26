@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.4.3'
 
+gem 'underscore-rails'
 gem 'dependent-fields-rails'
 gem 'devise'
 gem 'figaro'
