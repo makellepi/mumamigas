@@ -10,9 +10,9 @@
     <%= f.input :photo_cache, as: :hidden %>
     <%= f.input :children, label: 'How many children do you have?', autofocus: true %>
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
-    <%= f.input :pregnant, as: :boolean, id: 'pregnant', label: "Are you currently pregnant?" %>
+    <%= f.input :pregnant, as: :radio_buttons, label: "Are you currently pregnant?" %>
 
-    <%= content_tag :div, class: 'js-dependent-fields', data: { 'checkbox-id': 'user_pregnant', 'checkbox-value': 'true'} do %>
+    <%= content_tag :div, class: 'js-dependent-fields', data: { 'radio-name': 'user[pregnant]', 'radio-value': 'true'} do %>
           <%= f.input :pregnantmonths, label: "When are you due?" %>
     <% end %>
 
