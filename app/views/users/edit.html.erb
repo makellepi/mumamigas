@@ -13,7 +13,7 @@
     <%= f.input :pregnant, as: :radio_buttons, label: "Are you currently pregnant?" %>
 
     <%= content_tag :div, class: 'js-dependent-fields', data: { 'radio-name': 'user[pregnant]', 'radio-value': 'true'} do %>
-          <%= f.input :pregnantmonths, label: "When are you due?" %>
+          <%= f.input :pregnantdue, label: "When are you due?" %>
     <% end %>
 
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
