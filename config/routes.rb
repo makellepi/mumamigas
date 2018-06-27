@@ -11,7 +11,7 @@ end
 
 
   root to: 'pages#home'
-  get '/search', to: 'pages#search', as: 'search'
+  get '/search', to: 'users#index', as: 'search'
   get '/friends', to: 'pages#friends', as: 'friends'
   get '/mesages', to: 'pages#messages', as: 'messages'
 

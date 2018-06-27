@@ -1,7 +1,7 @@
-<div class="col-xs-12 col-xs-offset-4 col-sm-6 col-sm-offset-0 col-md-4 col-md-offset-0">
+<div class="col-xs-12 col-xs-offset-4 col-sm-6 col-sm-offset-0 col-md-3 col-md-offset-0">
   <div class="card cascading-card">
       <a id="cascading-card-link" href=""></a>
-      <div class="cascading-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),url('<%= cl_image_path @user.photo, crop: :fill %>')">
+      <div class="cascading-card-image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),url('<%= cl_image_path user.photo, height: 250, crop: :fill %>')">
       </div>
       <div class="cascading-card-body .card-body">
         <div class="cascading-card-name">
