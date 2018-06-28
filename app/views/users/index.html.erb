@@ -1,55 +1,26 @@
 <div class="container" style="color: grey;">
-  <div class="location-title-wrapper">
-    <h1>Start connecting with other mums... </h1>
-  </div>
-  <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <div class="row">
-        <%= form_tag users_path, method: :get do %>
-        <div class="col-xs-9">
-          <div class="form-group">
-            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests or city" %>
+  <div id="search-form-container">
+    <div class="row">
+      <div class="col-sm-12">
+          <%= form_tag users_path, id:"search-form", method: :get do %>
+          <div class="col-xs-10">
+            <div class="form-group">
+              <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests or city" %>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-3">
-          <%= submit_tag 'Search', name: nil, class: "btn btn-search btn-block" %>
-        </div>
-        <% end %>
+          <div class="col-xs-2">
+            <%= submit_tag 'Search', name: nil, id: "search-button" %>
+          </div>
+          <% end %>
       </div>
     </div>
   </div>
+
   <div id="search-container">
-    <div class="class row">
+    <div class="row">
      <% @users.each do |user| %>
-     <% unless user == current_user %>
-      <div class="col-xs-12 col-sm-6">
-        <%= link_to user_path(user) do %>
-        <div class="card-user">
-           <div class="interest-details">
-            <p><i class="glyphicon glyphicon-user"></i> <%= user.first_name %></p>
-          </div>
-          <div class="picture">
-           <% if user.photo? %>
-              <div class="user-profile-photo">
-                <%= image_tag user.photo, width: 140, height: 140, radius:5 %>
-              </div>
-            <% else %>
-            <div class="empty-picture"">
-              <p>-- No picture --</p>
-            </div>
-            <% end %>
-          </div>
-          <div class="class interest">
-            <p><i class="glyphicon glyphicon-heart"></i> <%= user.interest_category %></p>
-          </div>
-          <div class="class interest">
-            <p><i class="glyphicon glyphicon-map-marker"></i> <%= user.city %></p>
-          </div>
-        </div>
-        </div>
-        <% end %>
-        <% end %>
-        <% end %>
+        <%= render 'shared/cascading-cards', user: user %>
+     <% end %>
     </div>
   </div>
 </div>

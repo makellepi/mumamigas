@@ -10,6 +10,12 @@
     <%= f.input :photo_cache, as: :hidden %>
     <%= f.input :children, label: 'How many children do you have?', autofocus: true %>
     <%= f.input :children_age, label: 'How old are your children?', autofocus: true %>
+    <%= f.input :pregnant, as: :radio_buttons, label: "Are you currently pregnant?" %>
+
+    <%= content_tag :div, class: 'js-dependent-fields', data: { 'radio-name': 'user[pregnant]', 'radio-value': 'true'} do %>
+          <%= f.input :pregnantdue, label: "When are you due?" %>
+    <% end %>
+
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
     <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
     <%= f.input :city, label: 'Where do you live?', autofocus: true %>
@@ -18,7 +24,7 @@
 
 
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
-
+  </div>
   <div class="form-actions">
     <%= f.button :submit, "Update info", class: "btn btn-block" %>
   </div>
@@ -26,4 +32,4 @@
 
 
 
-</div>
+

@@ -48,7 +48,13 @@ p "Created admin users"
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
   categories = [ "Food", "Mindfullness", "Sports", "Parenting", "Yoga", "Tech", "Reading", "Shopping", "Childcare"].sample
   cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"].sample
-  remote_photo_url = UiFaces.woman
+  remote_photo_url = UiFaces.woman('epic')
+  pregnant = [true,false].sample
+  if pregnant
+    pregnantdue = Date.today + rand(1..250)
+  else
+    pregnantdue = nil
+  end
   user = User.create(
     first_name: Faker::Name.first_name,
     second_name: Faker::Name.last_name,
@@ -62,6 +68,10 @@ p "Created admin users"
     work_status: true,
     interest_category: categories,
     city: cities,
+    bio: Faker::Lorem.paragraphs(4),
+    pregnant: pregnant,
+    pregnantdue: pregnantdue,
+
     )
   users << user
   user.save!
