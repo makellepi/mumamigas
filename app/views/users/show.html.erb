@@ -1,20 +1,12 @@
-<div class="Username">
-  <h1><%= @user.first_name %>´s Profile</h1>
-</div>
-
 <div class="container">
-  <div class="clas row">
-   <div class="col-left">
+  <div class="row">
     <div class="user-profile-photo">
-      <%= cl_image_tag @user.photo, height: 250, width: 250, crop: :fill, radius: 0 %>
+      <%= cl_image_tag @user.photo, class:"avatar-large" %>
     </div>
 
-    <br>
     <div class="button" role="group">
       <%= link_to "Back", friends_path, class: "btn btn-default" %>
     </div>
-    </div>
-
 
     <div class="col-right">
       <h3> Bio </h3>
@@ -24,8 +16,8 @@
           <% else %>
           <p><%= @user.age %> years old</p>
         <% end %>
-     </div>
-     <div class="user-children">
+    </div>
+    <div class="user-children">
       <% if @user.age.nil? && current_user == @user %>
         <p> Please tell us how many children you have </p>
        <% else %>
