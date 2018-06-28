@@ -1,15 +1,18 @@
-.col-left{
-  float: left;
-  width: 20vw;
-  text-align: left;
-  margin-right: 100px;
-  margin-left: 100px;
+.profile-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
   margin-top: 20px;
-  // border: 1px solid brown;
+}
+
+.profile-banner {
+  width: 100%;
+  height: 30vh;
+  background-color: lightgrey;
 }
 
 
-
-.col-right{
-  text-align: left;
+.avatar-user-show {
+  margin-top: -50px;
 }
