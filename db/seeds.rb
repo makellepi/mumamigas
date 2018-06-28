@@ -93,20 +93,6 @@ end
 
 p "Created categories"
 
-locations = []
-
-cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"]
-
-(0...10).each do |i|
-  location = Location.new(
-    city: cities[i],
-    user: users.sample
-    )
-    locations << location
-    location.save!
-  end
-
-p "Created locations"
 
 matches = []
 

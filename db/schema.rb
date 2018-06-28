@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180626095021) do
+ActiveRecord::Schema.define(version: 20180628135949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,9 @@ ActiveRecord::Schema.define(version: 20180626095021) do
     t.string "description"
     t.date "date"
     t.time "time"
-    t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["location_id"], name: "index_activities_on_location_id"
+    t.string "location"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
@@ -117,18 +116,15 @@ ActiveRecord::Schema.define(version: 20180626095021) do
     t.integer "age"
     t.text "bio"
     t.boolean "work_status"
-    t.bigint "location_id"
     t.string "interests"
     t.string "interest_category"
     t.string "city"
     t.boolean "pregnant"
     t.date "pregnantdue"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["location_id"], name: "index_users_on_location_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "activities", "locations"
   add_foreign_key "activities", "users"
   add_foreign_key "interests", "users"
   add_foreign_key "locations", "users"
@@ -137,5 +133,4 @@ ActiveRecord::Schema.define(version: 20180626095021) do
   add_foreign_key "messages", "users"
   add_foreign_key "user_interests", "interests"
   add_foreign_key "user_interests", "users"
-  add_foreign_key "users", "locations"
 end
