@@ -1,25 +1,23 @@
 <div class="container" style="color: grey;">
-  <div class="location-title-wrapper">
-    <h1>Start connecting with other mums... </h1>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-        <%= form_tag users_path, id:"search-form", method: :get do %>
-        <div class="col-xs-10">
-          <div class="form-group">
-            <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests or city" %>
+  <div id="search-form-container">
+    <div class="row">
+      <div class="col-sm-12">
+          <%= form_tag users_path, id:"search-form", method: :get do %>
+          <div class="col-xs-10">
+            <div class="form-group">
+              <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Please choose your interests or city" %>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-2">
-          <%= submit_tag 'Search', name: nil, class: "btn btn-search btn-block" %>
-        </div>
-        <% end %>
+          <div class="col-xs-2">
+            <%= submit_tag 'Search', name: nil, id: "search-button" %>
+          </div>
+          <% end %>
       </div>
     </div>
   </div>
+
   <div id="search-container">
-    <div class="class row">
+    <div class="row">
      <% @users.each do |user| %>
         <%= render 'shared/cascading-cards', user: user %>
      <% end %>

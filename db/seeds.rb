@@ -44,11 +44,11 @@ userJoana = User.create(
 
 p "Created admin users"
 
-200.times do
+10.times do
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
   categories = [ "Food", "Mindfullness", "Sports", "Parenting", "Yoga", "Tech", "Reading", "Shopping", "Childcare"].sample
   cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"].sample
-  remote_photo_url = UiFaces.woman
+  remote_photo_url = UiFaces.woman('epic')
   pregnant = [true,false].sample
   if pregnant
     pregnantdue = Date.today + rand(1..250)
