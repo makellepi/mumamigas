@@ -8,7 +8,9 @@ class UsersController < ApplicationController
   def index
     if params[:query].present?
       sql_query = "interest_category ILIKE :query OR city ILIKE :query"
-      @users = User.where(sql_query, query: "%#{params[:query]}%")
+
+      @users = User.where(sql_query, query: "%#{params[:query].gsub(/[~;:"'<>?#\s\]\\\[]+/, '')}%")
+
     else
       @users = User.all
     end
@@ -47,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, :interest_category, :city, :pregnant, :pregnantdue)
+    params.require(:user).permit(:first_name, :second_name, :children, :children_age, :age, :bio, :work_status, :photo, :language, {interest_category: []}, :city, :pregnant, :pregnantdue)
   end
 
 end

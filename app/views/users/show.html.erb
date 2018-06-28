@@ -59,8 +59,13 @@
      <% if @user.interest_category.nil? && current_user == @user %>
         <p> Share your interests </p>
      <% else %>
-        <p> Preferred interests: <%= @user.interest_category %></p>
-      <% end %>
+
+    <%= "Preferred interests:" %>
+    <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+      <%= interest %>
+    <% end %>
+        <!-- <p> Preferred interests: <%#= @user.interest_category.gsub(/[~;:"'<>?#\s]+/, '')%></p> -->
+    <% end %>
      </div>
 
      <div class="btn-group" role="group">
