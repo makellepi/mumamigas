@@ -18,14 +18,12 @@
   </div>
 
   <div class="row">
+
     <div class="profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
-
-      <div class="left-border">
-
-      </div>
+      <div class="left-border"></div>
       <div class="right-content-column">
         <div class="profile-user-location">
-          <% if @user.city.nil? && current_user == @user %>
+          <% if (@user.city.nil? || @user.city == "") && current_user == @user %>
             <div class="profile-unknown-attribute">
                 <div class="tag-dot"></div>
                 <p> Please tell us where you live </p>
@@ -34,6 +32,12 @@
             <p> <%= @user.first_name %> lives in <%= @user.city %></p>
           <% end %>
         </div>
+      </div>
+    </div>
+
+    <div class="profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border"></div>
+      <div class="right-content-row">
         <div class="profile-user-age">
             <% if @user.age.nil? && current_user == @user %>
               <p> Please complete your age </p>
@@ -53,14 +57,9 @@
     </div>
 
     <div class="profile-box-icons col-xs-12 col-md-8 col-md-offset-2">
-      <div class="left-border">
-
-      </div>
+      <div class="left-border"></div>
       <div class="right-content-row">
-
-          <div class="profile-user-pregnant profile-icon-box"></div>
           <div class="profile-user-pregnant-due profile-icon-box">
-
               <% if @user.pregnant %>
                   <div class="card-icons-pregnancy-months">
                     <%= image_tag("pregnant-icon.png", size: "25x25") %>
@@ -70,9 +69,7 @@
                     <%=months.to_s+"M"%>
                   </div>
               <% end %>
-
           </div>
-
           <div class="profile-user-children profile-icon-box">
               <% if @user.children.nil? && current_user == @user %>
                 <p> No info </p>
@@ -83,7 +80,6 @@
                 </div>
               <% end %>
           </div>
-
           <div class="profile-user-children-age profile-icon-box">
               <% if @user.children_age.nil? && current_user == @user %>
                 <p> No info </p>
@@ -96,22 +92,36 @@
   </div>
   <div class="row">
     <div class="profile-box-bottom col-xs-12 col-md-8 col-md-offset-2">
-      <div class="left-border">
-
-      </div>
+      <div class="left-border"></div>
       <div class="right-content-column">
-
         <div class="profile-user-bio">
-            <p> A little bit about <%= @user.first_name %>: <%= @user.bio %> </p>
-        </div>
-        <div class="profile-user-interests">
-           <% if @user.interest_category.nil? && current_user == @user %>
-              <p> Share your interests </p>
-           <% else %>
-              <%= "Preferred interests:" %>
-              <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
-              <%= interest %>
+          <% if (@user.bio.nil? || @user.bio == "") && current_user == @user %>
+            <div class="profile-unknown-attribute">
+                <div class="tag-dot"></div>
+                <p> Complete your bio </p>
+            </div>
+          <% else %>
+            <%= @user.bio %>
           <% end %>
+        </div>
+       </div>
+    </div>
+    <div class="profile-box-bottom col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border"></div>
+      <div class="right-content-row">
+        <div class="profile-user-interests">
+           <% if (@user.interest_category.nil? || @user.interest_category == "[\"\"]") && current_user == @user %>
+              <div class="profile-unknown-attribute">
+                  <div class="tag-dot"></div>
+                  <p> Complete your interests </p>
+              </div>
+           <% else %>
+              <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="profile-unknown-attribute">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
               <!-- <p> Preferred interests: <%#= @user.interest_category.gsub(/[~;:"'<>?#\s]+/, '')%></p> -->
           <% end %>
         </div>

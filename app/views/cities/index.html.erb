@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+// Find the city select box
+var city = document.getElementById("user_city");
+
+// Clear the options in the select box
+while (city.firstChild) city.removeChild(city.firstChild);
+
+// Add a placeholder
+var placeholder = document.createElement("option");
+placeholder.text = "Choose a city";
+placeholder.value = "";
+city.appendChild(placeholder);
+
+// Add the cities
+<% @cities.each do |c| %>
+    city.options[city.options.length] = new Option('<%= c %>');
+<% end %>
+
+</script>
+

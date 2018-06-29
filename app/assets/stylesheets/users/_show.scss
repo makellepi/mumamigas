@@ -51,7 +51,7 @@
 
 .left-border {
   width: 10%;
-  background-color: wheat;
+  background-color: #2bbced;;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -65,6 +65,7 @@
   justify-content: space-between;
   flex-direction: row;
   width: 100%;
+  min-height: 60px;
   margin-top: 30px;
   align-self: center;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
@@ -83,6 +84,7 @@
   position: relative;
   border-radius: 10px;
   color: whitesmoke;
+  margin: 5px;
 }
 
 .tag-dot {
@@ -109,7 +111,6 @@
   justify-content: center;
   flex-direction: column;
   font-size: 13px;
-  margin-top: 10px;
   color: #2bbced;
 }
 
@@ -119,6 +120,16 @@
   flex-direction: column;
   font-size: 13px;
   margin-top: 10px;
+  width: 50%;
+}
+
+.profile-user-language {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 13px;
+  margin-top: 10px;
+  width: 50%;
 }
 
 
@@ -135,14 +146,11 @@
 }
 
 .profile-icon-box {
-  min-width: 25%;
+  min-width: 33%;
   height: 60px;
-  background-color: grey;
-  margin: 3px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
 
 .profile-user-pregnant {
@@ -162,6 +170,7 @@
 .profile-box-bottom {
   display: flex;
   width: 100%;
+  min-height: 60px;
   padding: 0 15px 0 0;
   justify-content: space-between;
   flex-direction: row;
@@ -170,3 +179,25 @@
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
 }
 
+.profile-user-bio {
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+  color: slategray;
+  font-weight: lighter;
+  border-style: solid;
+  margin: 15px;
+  border-width: 0.25px;
+  border-color: #2bbced;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-user-interests {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 10px;
+
+}
