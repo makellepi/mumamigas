@@ -1,0 +1,18 @@
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+  <p> My posted activities: </p>
+    <% @user_activities.each do |user_activity| %>
+      <ul><%= image_tag user_activity.user.photo.url%></ul>
+      <ul><%= user_activity.user.first_name %></ul>
+      <ul><%= user_activity.description.gsub(/[~;:"'<>?#\s\]\\\[]+/, '') %></ul>
+      <ul><%= user_activity.date%></ul>
+      <ul><%= user_activity.time %></ul>
+    <% end %>
+  <p> Activities posted:</p>
+    <% @other_activities.each do |activity| %>
+        <ul><%= image_tag activity.user.photo.url%></ul>
+        <ul><%= activity.user.first_name %></ul>
+        <ul><%= activity.description.gsub(/[~;:"'<>?#\s\]\\\[]+/, '') %></ul>
+        <ul><%= activity.date%></ul>
+        <ul><span class="glyphicon glyphicon-time"></span> <%= activity.time %></ul>
+    <% end %>
+</div>

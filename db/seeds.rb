@@ -125,16 +125,17 @@ p "Created messages"
 
 activities = []
 
+
+
 10.times do |i|
   activity_description = ["Lorem impsum Lorem impsumLorem impsumLorem impsumLorem impsumLorem impsumLorem impsum"]
   cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"].sample
-  time = Time.now + rand(1..250)
   activity = Activity.new(
     user: users.sample,
     description: activity_description,
     location: cities,
     date: Faker::Date.forward(23),
-    time: time,
+    time: Faker::Number.decimal(2),
     )
     activities << activity
     activity.save!
