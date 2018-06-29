@@ -1,67 +1,131 @@
 <div class="container">
   <div class="row">
-    <div class="profile-box">
-        <div class="profile-banner">
-
+    <div class="profile-box-top col-xs-12 col-md-8 col-md-offset-2">
+        <div class="profile-banner-box">
+          <%=cl_image_tag @user.photo, class: "profile-banner" %>
         </div>
         <div class="user-profile-photo avatar-user-show">
           <%= cl_image_tag @user.photo, class:"avatar-large" %>
+        </div>
+        <div class="profile-user-name">
+          <%= @user.first_name+" "+@user.second_name %>
         </div>
 
         <div class="float-button hidden-sm hidden-md hidden-lg">
           <%= link_to "Back", friends_path %>
         </div>
+    </div>
+  </div>
 
-        <h3> Bio </h3>
-        <div class="user-age">
+  <div class="row">
+    <div class="profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
+
+      <div class="left-border">
+
+      </div>
+      <div class="right-content-column">
+        <div class="profile-user-location">
+          <% if @user.city.nil? && current_user == @user %>
+            <div class="profile-unknown-attribute">
+                <div class="tag-dot"></div>
+                <p> Please tell us where you live </p>
+            </div>
+          <% else %>
+            <p> <%= @user.first_name %> lives in <%= @user.city %></p>
+          <% end %>
+        </div>
+        <div class="profile-user-age">
             <% if @user.age.nil? && current_user == @user %>
               <p> Please complete your age </p>
               <% else %>
               <p><%= @user.age %> years old</p>
             <% end %>
         </div>
-        <div class="user-children">
-          <% if @user.age.nil? && current_user == @user %>
-            <p> Please tell us how many children you have </p>
-           <% else %>
-            <p> <%= @user.first_name %> has <%= @user.children %> children and
-            they are <%= @user.children_age %> years old. </p>
-           <% end %>
-         </div>
-         <div class="user-children-age">
+        <div class="profile-user-language">
           <% if
             @user.language.nil? && current_user == @user %>
             <p> Please share what languages you speak </p>
            <% else %>
             <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>
           <% end %>
-         </div>
+        </div>
+      </div>
+    </div>
 
-         <div class="user-location">
-          <% if @user.city.nil? && current_user == @user %>
-            <p> Please tell us where you live </p>
-          <% else %>
-           <p> <%= @user.first_name %> lives in <%= @user.city %></p>
+    <div class="profile-box-icons col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+
+      </div>
+      <div class="right-content-row">
+
+          <div class="profile-user-pregnant profile-icon-box"></div>
+          <div class="profile-user-pregnant-due profile-icon-box">
+
+              <% if @user.pregnant %>
+                  <div class="card-icons-pregnancy-months">
+                    <%= image_tag("pregnant-icon.png", size: "25x25") %>
+                    <% date2 = @user.pregnantdue %>
+                    <% date1 = Date.today %>
+                    <% months = (date2.year - date1.year) * 12 + date2.month - date1.month - (date2.day >= date1.day ? 0 : 1) %>
+                    <%=months.to_s+"M"%>
+                  </div>
+              <% end %>
+
+          </div>
+
+          <div class="profile-user-children profile-icon-box">
+              <% if @user.children.nil? && current_user == @user %>
+                <p> No info </p>
+              <% else %>
+                <div class="children-count">
+                    <%= image_tag("baby-icon.png", size: "25x25") %>
+                    <%= "X "+@user.children.to_s %>
+                </div>
+              <% end %>
+          </div>
+
+          <div class="profile-user-children-age profile-icon-box">
+              <% if @user.children_age.nil? && current_user == @user %>
+                <p> No info </p>
+              <% else %>
+                <%= @user.children_age.to_i %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="profile-box-bottom col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+
+      </div>
+      <div class="right-content-column">
+
+        <div class="profile-user-bio">
+            <p> A little bit about <%= @user.first_name %>: <%= @user.bio %> </p>
+        </div>
+        <div class="profile-user-interests">
+           <% if @user.interest_category.nil? && current_user == @user %>
+              <p> Share your interests </p>
+           <% else %>
+              <%= "Preferred interests:" %>
+              <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+              <%= interest %>
           <% end %>
-         </div>
+              <!-- <p> Preferred interests: <%#= @user.interest_category.gsub(/[~;:"'<>?#\s]+/, '')%></p> -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
-           <p> A little bit about <%= @user.first_name %>: <%= @user.bio %> </p>
 
-         <div class="btn-group" role="group">
+    <div class="btn-group" role="group">
 
-         <div class="user-interests">
-         <% if @user.interest_category.nil? && current_user == @user %>
-            <p> Share your interests </p>
-         <% else %>
 
-        <%= "Preferred interests:" %>
-        <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
-          <%= interest %>
-        <% end %>
-            <!-- <p> Preferred interests: <%#= @user.interest_category.gsub(/[~;:"'<>?#\s]+/, '')%></p> -->
-        <% end %>
-         </div>
+    </div>
+
 
          <div class="btn-group" role="group">
 
@@ -75,9 +139,4 @@
               <% end %>
           <% end %>
         </div>
-        </div>
-
-    </div>
- </div>
 </div>
-
