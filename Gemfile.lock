@@ -60,6 +60,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    city-state (0.0.13)
+      rubyzip (~> 1.1)
     cloudinary (1.9.1)
       aws_cf_signer
       rest-client
@@ -182,6 +184,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rubyzip (1.2.1)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -246,6 +249,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass (~> 3.3)
   carrierwave
+  city-state
   cloudinary
   dependent-fields-rails
   devise
