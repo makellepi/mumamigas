@@ -133,10 +133,22 @@
   justify-content: center;
   flex-direction: column;
   font-size: 13px;
-  margin-top: 10px;
-  width: 50%;
+  width: 100%;
+  .language-flags {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+  }
 }
 
+
+
+.country-flag {
+  height: 30px;
+  width: 50px;
+  margin: 3px;
+}
 
 // Box Icons
 

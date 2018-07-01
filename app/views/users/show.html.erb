@@ -80,11 +80,29 @@
       </div>
       <div class="right-content-row">
         <div class="profile-user-language">
-          <% if
-            @user.language.nil? && current_user == @user %>
+          <% if @user.language.nil? && current_user == @user %>
             <p> Please share what languages you speak </p>
            <% else %>
-            <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>
+            <div class="language-flags">
+                <% if @user.language.include?("English") %>
+                    <%= image_tag("English.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("French") %>
+                    <%= image_tag("France.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Italian") %>
+                    <%= image_tag("Italy.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("German") %>
+                    <%= image_tag("Germany.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Spanish") %>
+                    <%= image_tag("Spain.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Portuguese") %>
+                    <%= image_tag("Portugal.png", class: "country-flag") %>
+                <% end %>
+            </div>
           <% end %>
         </div>
       </div>

@@ -17,7 +17,8 @@
     <% end %>
 
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
-    <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
+
+    <%= f.input :language, collection: ['English', 'French', 'Italian' ,'Portuguese', 'Spanish', 'German'], input_html: { multiple: true }, include_blank: false, include_hidden: false, label: "Choose which languages you speak"%>
 
     <div class="field">
       <!-- Country -->
