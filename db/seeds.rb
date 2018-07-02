@@ -2,6 +2,7 @@ require 'faker'
 
 User.destroy_all
 Match.destroy_all
+Activity.destroy_all
 
 
 p "Clean DB"
