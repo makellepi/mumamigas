@@ -136,12 +136,17 @@
                 <% if @user.language.include?("Portuguese") %>
                     <%= image_tag("Portugal.png", class: "country-flag") %>
                 <% end %>
+                <% if @user.language.include?("Chinese") %>
+                    <%= image_tag("China.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Russian") %>
+                    <%= image_tag("Russia.png", class: "country-flag") %>
+                <% end %>
             </div>
           <% end %>
         </div>
       </div>
     </div>
-    <% raise %>
 
     <div class="profile-box-icons col-xs-12 col-md-8 col-md-offset-2">
       <div class="left-border">
@@ -159,7 +164,7 @@
                   </div>
               <% else %>
                 <div class="profile-unknown-attribute">
-                  <%= @user.first_name + " is not pregnant" %>
+                  <%= image_tag("not-pregnant-icon.png", size: "25x25") %>
                 </div>
               <% end %>
           </div>
