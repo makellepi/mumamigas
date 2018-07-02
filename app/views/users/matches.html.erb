@@ -1,6 +1,24 @@
-<% @user_matches.each do |match| %>
-  <div class="match-profile">
-    <%= match.first_name %>
-    <%= match.city %>
-  </div>
+<% real_matches = [] %>
+<% if @user_matches != nil %>
+
+    <% @user_matches.each do |match| %>
+      <% if match.interest_category != nil %>
+        <% real_matches << match %>
+      <% end %>
+    <% end %>
+
+
+    <% real_matches.each do |match| %>
+      <% match_length = (match.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") && @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",")) %>
+      <div class="match-profile">
+        <%= match.first_name %>
+        <%= match.city %>
+        <%= match_length %>
+        <%= match.interest_category %>
+      </div>
+    <% end %>
+
 <% end %>
+
+
+

@@ -18,7 +18,10 @@ class UsersController < ApplicationController
 
   def matches
     @user = current_user
-    @user_matches = User.all.where(city: @user.city)
+    if @user.interest_category != nil
+      @user_interests = @user.interest_category.split(",")
+      @user_matches = User.where(city: @user.city)
+    end
   end
 
   def show
