@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def matches
+    @user = current_user
+    @user_matches = User.all.where(city: @user.city)
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -40,7 +45,6 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
   end
-
 
   private
 
