@@ -23,6 +23,12 @@ class PagesController < ApplicationController
    @received_messages = Message.all.where.not(user: current_user)
   end
 
+  def activities
+    @user = current_user
+    @user_activities = Activity.all.where(user: current_user)
+    @other_activities = Activity.all.where.not(user: current_user)
+  end
+
   private
 
   def set_match

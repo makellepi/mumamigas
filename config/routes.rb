@@ -16,6 +16,7 @@ end
   get '/search', to: 'users#index', as: 'search'
   get '/friends', to: 'pages#friends', as: 'friends'
   get '/mesages', to: 'pages#messages', as: 'messages'
+  get '/activities', to: 'pages#activities', as: 'activities'
 
 
   resources :users
@@ -32,6 +33,9 @@ end
   resources :matches, only: [:show] do
     resources :messages, only: [ :new, :create ]
   end
+
+  resources :activities, only: [ :new, :create, :index, :show ]
+
 
 
   get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
