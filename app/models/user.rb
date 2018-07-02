@@ -6,7 +6,6 @@ mount_uploader :photo, PhotoUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-has_many :locations, dependent: :destroy
 has_many :matches, dependent: :destroy
 has_many :messages, dependent: :destroy
 has_many :activities, dependent: :destroy
@@ -24,5 +23,13 @@ acts_as_follower
     using: {
       tsearch: { prefix: true }
     }
+
+  def get_colors
+    colors = Miro::DominantColors.new(self.file.url)
+    colors = colors.to_hex.join(',')
+    self.colors = colors
+    self.save
+  end
+
 
 end

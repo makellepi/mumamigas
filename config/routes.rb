@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/users/sign_up', to: 'devise/registrations#new'
 end
 
+  resources :cities, only: :index
+  resources :states, only: :index
 
   devise_for :users
 
@@ -14,6 +16,7 @@ end
   get '/search', to: 'users#index', as: 'search'
   get '/friends', to: 'pages#friends', as: 'friends'
   get '/mesages', to: 'pages#messages', as: 'messages'
+  get '/activities', to: 'pages#activities', as: 'activities'
 
 
   resources :users
@@ -31,6 +34,9 @@ end
     resources :messages, only: [ :new, :create ]
   end
 
+  resources :activities, only: [ :new, :create, :index, :show ]
+
+
 
   get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
   get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
@@ -38,5 +44,7 @@ end
   get "/friends", to: 'users#friends'
 
   post '/search/:query' => 'search#index'
+
+
 
 end

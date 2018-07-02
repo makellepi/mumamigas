@@ -17,10 +17,31 @@
     <% end %>
 
     <%= f.input :bio,label: 'Tell us more about yourself:', autofocus: true %>
-    <%= f.input :language, label: 'What languages do you speak?', autofocus: true %>
+
+    <%= f.input :language, collection: ['Chinese', 'English', 'French', 'German', 'Italian' ,'Portuguese', 'Russian', 'Spanish' ], input_html: { multiple: true }, include_blank: false, include_hidden: false, label: "Choose which languages you speak"%>
+
+    <div class="field">
+      <!-- Country -->
+      <%= label_tag :country %>
+      <%= select_tag :country, options_for_select(CS.countries.map { |c| [c[1], c[0]] } ) %>
+    </div>
+
+    <div class="field">
+      <!-- State -->
+      <%= label_tag :state %>
+      <%= select_tag :state, options_for_select([]) %>
+    </div>
+
+    <div class="field">
+      <!-- City -->
+      <%= f.label :hometown %>
+      <%= f.select :city, options_for_select([]) %>
+    </div>
+
+
     <%= f.input :city, label: 'Where do you live?', autofocus: true %>
 
-    <%= f.input :interest_category, collection: ['Reading', 'Tech' ,'Food', 'Mindfullness', 'Sports', 'Parenting', 'Yoga'], input_html: { multiple: true }, include_blank: false, include_hidden: false, label: "Select your interest: "%>
+    <%= f.input :interest_category, collection: ['Reading', 'Tech' ,'Food', 'Mindfullness', 'Sports', 'Parenting', 'Yoga'], input_html: { multiple: true }, include_blank: true, include_hidden: false, label: "Select your interest: "%>
 
 
     <%= f.input :work_status,label: 'Working full time?', autofocus: true %>
@@ -29,7 +50,5 @@
     <%= f.button :submit, "Update info", class: "btn btn-block" %>
   </div>
 <% end %>
-
-
 
 
