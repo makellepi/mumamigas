@@ -50,6 +50,13 @@
   a {
     padding: 0px;
     margin: 0px;
+    color: #2bbced;
+    text-decoration: none;
+    transition: color 1s;
+    transition-timing-function: ease;
+  }
+  a:hover {
+    color: #007bff;
   }
 }
 
@@ -70,10 +77,14 @@
   justify-content: center;
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  transition: background-color 2s;
+  transition-timing-function: ease;
+
   a {
     text-decoration: none;
   }
 }
+
 
 .valid-option {
   background-color: whitesmoke;
@@ -88,9 +99,17 @@
   justify-content: center;
   border-radius: 10px;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  transition: background-color 2s;
+  transition-timing-function: ease;
   a {
     text-decoration: none;
   }
+}
+
+.valid-option:hover {
+  background-color: green;
+  color: whitesmoke;
+  text-decoration: none;
 }
 
 button.valid-option {

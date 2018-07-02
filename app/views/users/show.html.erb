@@ -111,7 +111,7 @@
       <div class="right-content-row">
         <div class="profile-user-language">
           <% if @user.language.nil? && current_user == @user %>
-            <p> Please share what languages you speak </p>
+            <%= link_to "Please share what languages you speak", edit_user_path%>
           <% elsif @user.language.nil? || @user.language == "[\"\"]"%>
             <div class="profile-unknown-attribute">
                 <%= @user.first_name + " didn't provide info on this just yet" %>
@@ -154,7 +154,9 @@
       </div>
       <div class="right-content-row">
           <div class="profile-user-pregnant-due profile-icon-box">
-              <% if @user.pregnant %>
+              <% if @user.pregnant.nil? && current_user == @user %>
+                <%= link_to "Complete this info", edit_user_path%>
+              <% elsif @user.pregnant %>
                   <div class="card-icons-pregnancy-months">
                     <%= image_tag("pregnant-icon.png", size: "25x25") %>
                     <% date2 = @user.pregnantdue %>
@@ -170,7 +172,7 @@
           </div>
           <div class="profile-user-children profile-icon-box">
               <% if @user.children.nil? && current_user == @user %>
-                <p> No info </p>
+                <%= link_to "Complete this info", edit_user_path%>
               <% else %>
                 <div class="children-count">
                     <%= image_tag("baby-icon.png", size: "25x25") %>
@@ -179,8 +181,12 @@
               <% end %>
           </div>
           <div class="profile-user-children-age profile-icon-box">
-              <% if @user.children_age.nil? && current_user == @user %>
+              <% if @user.children_age.nil? && @user.children.nil? && current_user == @user %>
                 <p> No info </p>
+              <% elsif @user.children_age.nil? && @user.children != nil && current_user == @user%>
+                <%= link_to "Complete this info", edit_user_path%>
+              <% elsif @user.children_age.nil? && @user.children.nil? %>
+                <%= @user.first_name + " has no children" %>
               <% elsif @user.children_age.nil? %>
                 <%= @user.first_name + " didn't provide info on this just yet" %>
               <% else %>
@@ -199,7 +205,7 @@
         <div class="profile-user-bio">
           <% if (@user.bio.nil? || @user.bio == "") && current_user == @user %>
             <div class="profile-unknown-attribute">
-                <p> Complete your bio </p>
+                <%= link_to "Complete your bio", edit_user_path%>
             </div>
           <% elsif @user.bio.nil?%>
             <div class="profile-unknown-attribute">
@@ -219,7 +225,7 @@
         <div class="profile-user-interests">
            <% if (@user.interest_category.nil? or @user.interest_category == "[\"\"]") && current_user == @user %>
               <div class="profile-unknown-attribute">
-                  <p> Complete your interests </p>
+                  <%= link_to "Complete your interests", edit_user_path%>
               </div>
            <% elsif @user.interest_category.nil? %>
               <div class="profile-unknown-attribute">
