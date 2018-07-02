@@ -125,8 +125,6 @@ p "Created messages"
 
 activities = []
 
-
-
 10.times do |i|
   activity_description = ["Lorem impsum Lorem impsumLorem impsumLorem impsumLorem impsumLorem impsumLorem impsum"]
   cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"].sample
@@ -135,7 +133,7 @@ activities = []
     description: activity_description,
     location: cities,
     date: Faker::Date.forward(23),
-    time: Faker::Number.decimal(2),
+    time: Faker::Time.between(3.hours.ago, Time.now, :between),
     )
     activities << activity
     activity.save!

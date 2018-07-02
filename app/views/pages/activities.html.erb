@@ -13,6 +13,6 @@
         <ul><%= activity.user.first_name %></ul>
         <ul><%= activity.description.gsub(/[~;:"'<>?#\s\]\\\[]+/, '') %></ul>
         <ul><%= activity.date%></ul>
-        <ul><span class="glyphicon glyphicon-time"></span> <%= activity.time %></ul>
+        <ul><span class="glyphicon glyphicon-time"></span> <%= activity.time.strftime("%H:%M") %></ul>
     <% end %>
 </div>
