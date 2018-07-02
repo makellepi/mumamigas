@@ -1,6 +1,6 @@
 //= require jquery
-//= require jquery_ujs
 //= require turbolinks
+//= require jquery_ujs
 //= require rails-ujs
 //= require underscore
 //= require dependent-fields

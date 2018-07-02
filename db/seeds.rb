@@ -21,11 +21,14 @@ userMarta = User.create(
   email: "martatest7@hotmail.com",
   password: "test123",
   remote_photo_url: "http://res.cloudinary.com/dj70a4jbi/image/upload/c_scale,w_800/v1523030894/c1feu1qwzgnztnsgjkho.jpg",
-  language: "english",
+  language: "English",
   children: Faker::Number.between(1, 3),
   children_age: Faker::Number.between(0, 5),
   age: Faker::Number.between(25, 40),
   work_status: true,
+  bio: "I love hanging out whenever I can with interesting people that share similar interests to mine. From reading a book, to watch an insightful movie, travel or simply go for a random walk with no clear destination. I'm looking to hang out with other mums, specially expats like myself, living in a foreign city but that were lucky enough to marry a wonderful portuguese man!",
+  pregnant: true,
+  pregnantdue: "25/07/2018",
   )
 
 
@@ -35,11 +38,12 @@ userJoana = User.create(
   email: "joanabananatest7@hotmail.com",
   password: "test123",
   remote_photo_url: "http://rochellerice.com/wp-content/uploads/Cathey-Armillas_headshot-small.jpg",
-  language: "english",
+  language: "English",
   children: Faker::Number.between(1, 3),
   children_age: Faker::Number.between(0, 5),
   age: Faker::Number.between(25, 40),
   work_status: true,
+  pregnant: false,
   )
 
 p "Created admin users"

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/users/sign_up', to: 'devise/registrations#new'
 end
 
+  resources :cities, only: :index
+  resources :states, only: :index
 
   devise_for :users
 
@@ -42,5 +44,7 @@ end
   get "/friends", to: 'users#friends'
 
   post '/search/:query' => 'search#index'
+
+
 
 end

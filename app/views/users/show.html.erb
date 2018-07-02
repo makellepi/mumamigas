@@ -1,92 +1,247 @@
-<div class="Username">
-  <h1><%= @user.first_name %>´s Profile</h1>
-</div>
-
 <div class="container">
-  <div class="clas row">
-   <div class="col-left">
-    <div class="user-profile-photo">
-      <%= cl_image_tag @user.photo, height: 250, width: 250, crop: :fill, radius: 0 %>
-    </div>
-
-    <br>
-    <div class="button" role="group">
-      <%= link_to "Back", friends_path, class: "btn btn-default" %>
-    </div>
-    </div>
-
-
-    <div class="col-right">
-      <h3> Bio </h3>
-      <div class="user-age">
-        <% if @user.age.nil? && current_user == @user %>
-          <p> Please complete your age </p>
+  <div class="row">
+    <div class="profile-box-top col-xs-12 col-md-8 col-md-offset-2">
+        <div class="profile-banner-box">
+          <% if @user.photo.nil? %>
+            <%= image_tag("female-placeholder.jpg", class:"profile-banner") %>
           <% else %>
-          <p><%= @user.age %> years old</p>
-        <% end %>
-     </div>
-     <div class="user-children">
-      <% if @user.age.nil? && current_user == @user %>
-        <p> Please tell us how many children you have </p>
-       <% else %>
-        <p> <%= @user.first_name %> has <%= @user.children %> children and
-        they are <%= @user.children_age %> years old. </p>
-       <% end %>
-     </div>
-     <div class="user-children-age">
-      <% if
-        @user.language.nil? && current_user == @user %>
-        <p> Please share what languages you speak </p>
-       <% else %>
-        <p> <%= @user.first_name %> speaks <%= @user.language %>.</p>
-      <% end %>
-     </div>
-
-     <div class="user-location">
-      <% if @user.city.nil? && current_user == @user %>
-        <p> Please tell us where you live </p>
-      <% else %>
-       <p> <%= @user.first_name %> lives in <%= @user.city %></p>
-      <% end %>
-     </div>
-
-
-       <p> A little bit about <%= @user.first_name %>: <%= @user.bio %> </p>
-
-     <div class="btn-group" role="group">
-
-     <div class="user-interests">
-     <% if @user.interest_category.nil? && current_user == @user %>
-        <p> Share your interests </p>
-     <% else %>
-
-    <%= "Preferred interests:" %>
-    <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
-      <%= interest %>
-    <% end %>
-        <!-- <p> Preferred interests: <%#= @user.interest_category.gsub(/[~;:"'<>?#\s]+/, '')%></p> -->
-    <% end %>
-     </div>
-
-     <div class="btn-group" role="group">
-
-      <% if @user == current_user %>
-        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <%= link_to "Complete your profile for better matches", edit_user_path, class: "btn-btn-default" %>
-      <% else %>
-          <% if @user.match_ids.blank? %>
-           <%= render 'follows/form' %>
-          <% else  %>
-          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> <%= link_to "Send message", new_match_message_path(@user.match_ids), class: "btn-btn-default" %>
+            <%=cl_image_tag @user.photo, class: "profile-banner" %>
           <% end %>
-      <% end %>
+        </div>
+        <div class="user-profile-photo avatar-user-show">
+          <% if @user.photo.nil? %>
+            <%= image_tag("female-placeholder.jpg", class:"avatar-large") %>
+          <% else %>
+            <%= cl_image_tag @user.photo, class:"avatar-large" %>
+          <% end %>
+        </div>
+        <div class="profile-user-name">
+          <%= @user.first_name %>
+          <% if @user.second_name.nil? %>
+          <% else %>
+            <%= +" "+@user.second_name %>
+          <% end %>
+        </div>
+        <div class="float-button hidden-sm hidden-md hidden-lg">
+          <%= link_to "Back", friends_path %>
+        </div>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="no-shadow profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
+        <% if @user == current_user %>
+            <%= link_to "Edit Profile", edit_user_path, class: "valid-option" %>
+        <% else %>
+            <div class="greyed-out-option">
+              <a>Edit Profile</a>
+            </div>
+        <% end %>
+        <% if @user.match_ids.blank? %>
+          <%= render 'follows/form' %>
+        <% else  %>
+            <div class="greyed-out-option">
+              <a>Follow</a>
+            </div>
+        <% end %>
+        <% if @user.match_ids != [] %>
+          <%= link_to "Send Message", new_match_message_path(@user.match_ids), class: "valid-option" %>
+        <% else %>
+          <div class="greyed-out-option">
+              <a>Send Message</a>
+          </div>
+        <% end %>
     </div>
-   </div>
+  </div>
 
- </div>
+  <div class="row">
 
+    <div class="profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+        <%= image_tag("Location.png") %>
+      </div>
+      <div class="right-content-column">
+        <div class="profile-user-location">
+          <% if (@user.city.nil? || @user.city == "") && current_user == @user %>
+            <div class="profile-unknown-attribute">
+                <%= link_to "Please tell us where you live.", edit_user_path%>
+            </div>
+          <% elsif @user.city.nil? %>
+            <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+            </div>
+          <% else %>
+            <p> <%= @user.first_name %> lives in <%= @user.city %></p>
+          <% end %>
+        </div>
+        <div class="profile-user-region">
+
+        </div>
+        <div class="profile-user-city">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+        <%= image_tag("Age.png") %>
+      </div>
+      <div class="right-content-row">
+        <div class="profile-user-age">
+            <% if @user.age.nil? && current_user == @user %>
+              <div class="profile-unknown-attribute">
+                <p> Please complete your age </p>
+              </div>
+            <% elsif @user.age.nil? %>
+              <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+            <% else %>
+              <p><%= @user.age %> years old</p>
+            <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+        <%= image_tag("Language.png") %>
+      </div>
+      <div class="right-content-row">
+        <div class="profile-user-language">
+          <% if @user.language.nil? && current_user == @user %>
+            <%= link_to "Please share what languages you speak", edit_user_path%>
+          <% elsif @user.language.nil? || @user.language == "[\"\"]"%>
+            <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+            </div>
+          <% else %>
+            <div class="language-flags">
+                <% if @user.language.include?("English") %>
+                    <%= image_tag("English.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("French") %>
+                    <%= image_tag("France.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Italian") %>
+                    <%= image_tag("Italy.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("German") %>
+                    <%= image_tag("Germany.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Spanish") %>
+                    <%= image_tag("Spain.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Portuguese") %>
+                    <%= image_tag("Portugal.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Chinese") %>
+                    <%= image_tag("China.png", class: "country-flag") %>
+                <% end %>
+                <% if @user.language.include?("Russian") %>
+                    <%= image_tag("Russia.png", class: "country-flag") %>
+                <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-box-icons col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+        <%= image_tag("Mother.png") %>
+      </div>
+      <div class="right-content-row">
+          <div class="profile-user-pregnant-due profile-icon-box">
+              <% if @user.pregnant.nil? && current_user == @user %>
+                <%= link_to "Complete this info", edit_user_path%>
+              <% elsif @user.pregnant %>
+                  <div class="card-icons-pregnancy-months">
+                    <%= image_tag("pregnant-icon.png", size: "25x25") %>
+                    <% date2 = @user.pregnantdue %>
+                    <% date1 = Date.today %>
+                    <% months = (date2.year - date1.year) * 12 + date2.month - date1.month - (date2.day >= date1.day ? 0 : 1) %>
+                    <%=months.to_s+"M"%>
+                  </div>
+              <% else %>
+                <div class="profile-unknown-attribute">
+                  <%= image_tag("not-pregnant-icon.png", size: "25x25") %>
+                </div>
+              <% end %>
+          </div>
+          <div class="profile-user-children profile-icon-box">
+              <% if @user.children.nil? && current_user == @user %>
+                <%= link_to "Complete this info", edit_user_path%>
+              <% else %>
+                <div class="children-count">
+                    <%= image_tag("baby-icon.png", size: "25x25") %>
+                    <%= "X "+@user.children.to_s %>
+                </div>
+              <% end %>
+          </div>
+          <div class="profile-user-children-age profile-icon-box">
+              <% if @user.children_age.nil? && @user.children.nil? && current_user == @user %>
+                <p> No info </p>
+              <% elsif @user.children_age.nil? && @user.children != nil && current_user == @user%>
+                <%= link_to "Complete this info", edit_user_path%>
+              <% elsif @user.children_age.nil? && @user.children.nil? %>
+                <%= @user.first_name + " has no children" %>
+              <% elsif @user.children_age.nil? %>
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+              <% else %>
+                <%= @user.children_age.to_i %>
+              <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="profile-box-bottom col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+        <%= image_tag("Profile.png") %>
+      </div>
+      <div class="right-content-column">
+        <div class="profile-user-bio">
+          <% if (@user.bio.nil? || @user.bio == "") && current_user == @user %>
+            <div class="profile-unknown-attribute">
+                <%= link_to "Complete your bio", edit_user_path%>
+            </div>
+          <% elsif @user.bio.nil?%>
+            <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+            </div>
+          <% else %>
+            <%= @user.bio %>
+          <% end %>
+        </div>
+       </div>
+    </div>
+    <div class="profile-box-bottom col-xs-12 col-md-8 col-md-offset-2">
+      <div class="left-border">
+        <%= image_tag("Heart.png") %>
+      </div>
+      <div class="right-content-row">
+        <div class="profile-user-interests">
+           <% if (@user.interest_category.nil? or @user.interest_category == "[\"\"]") && current_user == @user %>
+              <div class="profile-unknown-attribute">
+                  <%= link_to "Complete your interests", edit_user_path%>
+              </div>
+           <% elsif @user.interest_category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+           <% else %>
+              <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="interest-tag">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
+              <!-- <p> Preferred interests: <%#= @user.interest_category.gsub(/[~;:"'<>?#\s]+/, '')%></p> -->
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-</div>
-
