@@ -2,15 +2,26 @@
   <div class="row">
     <div class="profile-box-top col-xs-12 col-md-8 col-md-offset-2">
         <div class="profile-banner-box">
-          <%=cl_image_tag @user.photo, class: "profile-banner" %>
+          <% if @user.photo.nil? %>
+            <%= image_tag("female-placeholder.jpg", class:"profile-banner") %>
+          <% else %>
+            <%=cl_image_tag @user.photo, class: "profile-banner" %>
+          <% end %>
         </div>
         <div class="user-profile-photo avatar-user-show">
-          <%= cl_image_tag @user.photo, class:"avatar-large" %>
+          <% if @user.photo.nil? %>
+            <%= image_tag("female-placeholder.jpg", class:"avatar-large") %>
+          <% else %>
+            <%= cl_image_tag @user.photo, class:"avatar-large" %>
+          <% end %>
         </div>
         <div class="profile-user-name">
-          <%= @user.first_name+" "+@user.second_name %>
+          <%= @user.first_name %>
+          <% if @user.second_name.nil? %>
+          <% else %>
+            <%= +" "+@user.second_name %>
+          <% end %>
         </div>
-
         <div class="float-button hidden-sm hidden-md hidden-lg">
           <%= link_to "Back", friends_path %>
         </div>
@@ -55,6 +66,10 @@
             <div class="profile-unknown-attribute">
                 <%= link_to "Please tell us where you live.", edit_user_path%>
             </div>
+          <% elsif @user.city.nil? %>
+            <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+            </div>
           <% else %>
             <p> <%= @user.first_name %> lives in <%= @user.city %></p>
           <% end %>
@@ -75,10 +90,14 @@
       <div class="right-content-row">
         <div class="profile-user-age">
             <% if @user.age.nil? && current_user == @user %>
-                  <div class="profile-unknown-attribute">
-                    <p> Please complete your age </p>
-                  </div>
-              <% else %>
+              <div class="profile-unknown-attribute">
+                <p> Please complete your age </p>
+              </div>
+            <% elsif @user.age.nil? %>
+              <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+            <% else %>
               <p><%= @user.age %> years old</p>
             <% end %>
         </div>
@@ -93,7 +112,11 @@
         <div class="profile-user-language">
           <% if @user.language.nil? && current_user == @user %>
             <p> Please share what languages you speak </p>
-           <% else %>
+          <% elsif @user.language.nil? || @user.language == "[\"\"]"%>
+            <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+            </div>
+          <% else %>
             <div class="language-flags">
                 <% if @user.language.include?("English") %>
                     <%= image_tag("English.png", class: "country-flag") %>
@@ -118,6 +141,7 @@
         </div>
       </div>
     </div>
+    <% raise %>
 
     <div class="profile-box-icons col-xs-12 col-md-8 col-md-offset-2">
       <div class="left-border">
@@ -133,6 +157,10 @@
                     <% months = (date2.year - date1.year) * 12 + date2.month - date1.month - (date2.day >= date1.day ? 0 : 1) %>
                     <%=months.to_s+"M"%>
                   </div>
+              <% else %>
+                <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " is not pregnant" %>
+                </div>
               <% end %>
           </div>
           <div class="profile-user-children profile-icon-box">
@@ -148,6 +176,8 @@
           <div class="profile-user-children-age profile-icon-box">
               <% if @user.children_age.nil? && current_user == @user %>
                 <p> No info </p>
+              <% elsif @user.children_age.nil? %>
+                <%= @user.first_name + " didn't provide info on this just yet" %>
               <% else %>
                 <%= @user.children_age.to_i %>
               <% end %>
@@ -166,6 +196,10 @@
             <div class="profile-unknown-attribute">
                 <p> Complete your bio </p>
             </div>
+          <% elsif @user.bio.nil?%>
+            <div class="profile-unknown-attribute">
+                <%= @user.first_name + " didn't provide info on this just yet" %>
+            </div>
           <% else %>
             <%= @user.bio %>
           <% end %>
@@ -178,9 +212,13 @@
       </div>
       <div class="right-content-row">
         <div class="profile-user-interests">
-           <% if (@user.interest_category.nil? || @user.interest_category == "[\"\"]") && current_user == @user %>
+           <% if (@user.interest_category.nil? or @user.interest_category == "[\"\"]") && current_user == @user %>
               <div class="profile-unknown-attribute">
                   <p> Complete your interests </p>
+              </div>
+           <% elsif @user.interest_category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
               </div>
            <% else %>
               <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
