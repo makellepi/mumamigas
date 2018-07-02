@@ -3,7 +3,7 @@
 <% if @user.matches.nil? %>
   <%= No matched Mumamigas %>
 <% else %>
- <h4> Your accepted Mumamigas: </h4>
+ <h4> Your matched Mumamigas: </h4>
     <% @friends.each do |friend| %>
     <div class="card-friends">
     <% if friend.friend_status.include?("accepted")%>
@@ -20,7 +20,21 @@
   <% @following.each do |f| %>
     <% f.followable_id %>
     <% @pending = User.select(:first_name, :photo, :interest_category, :city).all.where(id: f.followable_id)%>
-    <% @pending.each do |user| %>
+      <% @pending.each do |user| %>
+      <div class="card-friends">
+        <h4> <%= user.first_name %></h4>
+        <ul><%= image_tag user.photo.url, class: "style_image", height: 150, width: 150 %> </ul>
+        <ul> Hobbies:<%= user.interest_category %></ul>
+        <ul> Location: <%= user.city %></ul>
+        <% end %>
+      </div>
+  <% end %>
+
+  <h4> Mumamigas that are following you: </h4>
+  <% @followers.each do |f| %>
+    <% f.follower_id %>
+    <% @fans = User.select(:first_name, :photo, :interest_category, :city).all.where(id: f.follower_id)%>
+    <% @fans.each do |user| %>
     <div class="card-friends">
       <h4> <%= user.first_name %></h4>
       <ul><%= image_tag user.photo.url, class: "style_image", height: 150, width: 150 %> </ul>

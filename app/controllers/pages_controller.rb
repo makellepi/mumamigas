@@ -15,6 +15,7 @@ class PagesController < ApplicationController
    @friends = Match.all.where.not(user: current_user)
    @sent_requests = Match.all.where(user: current_user)
    @following = Follow.all.where(follower_id: current_user)
+   @followers = Follow.all.where(followable_id: current_user)
   end
 
   def messages
