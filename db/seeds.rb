@@ -1,8 +1,8 @@
 require 'faker'
 
 User.destroy_all
-Location.destroy_all
 Match.destroy_all
+Activity.destroy_all
 
 
 p "Clean DB"
@@ -93,20 +93,6 @@ end
 
 p "Created categories"
 
-locations = []
-
-cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"]
-
-(0...10).each do |i|
-  location = Location.new(
-    city: cities[i],
-    user: users.sample
-    )
-    locations << location
-    location.save!
-  end
-
-p "Created locations"
 
 matches = []
 
@@ -137,6 +123,24 @@ messages = []
 end
 
 p "Created messages"
+
+activities = []
+
+10.times do |i|
+  activity_description = ["Lorem impsum Lorem impsumLorem impsumLorem impsumLorem impsumLorem impsumLorem impsum"]
+  cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"].sample
+  activity = Activity.new(
+    user: users.sample,
+    description: activity_description,
+    location: cities,
+    date: Faker::Date.forward(23),
+    time: Faker::Time.between(3.hours.ago, Time.now, :between),
+    )
+    activities << activity
+    activity.save!
+end
+
+p "Created activities"
 
 p "Seeded"
 
