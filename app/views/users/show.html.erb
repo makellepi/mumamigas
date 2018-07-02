@@ -18,19 +18,29 @@
   </div>
 
   <div class="row">
-
-      <div class="actions-section">
+    <div class="no-shadow profile-box-middle col-xs-12 col-md-8 col-md-offset-2">
         <% if @user == current_user %>
-          <%= link_to "Complete your profile for better matches", edit_user_path, class: "btn btn-default" %>
+            <%= link_to "Edit Profile", edit_user_path, class: "valid-option" %>
         <% else %>
-            <% if @user.match_ids.blank? %>
-              <%= render 'follows/form' %>
-            <% else  %>
-              <%= link_to "Send message", new_match_message_path(@user.match_ids), class: "btn btn-primary" %>
-            <% end %>
+            <div class="greyed-out-option">
+              <a>Edit Profile</a>
+            </div>
         <% end %>
-      </div>
-
+        <% if @user.match_ids.blank? %>
+          <%= render 'follows/form' %>
+        <% else  %>
+            <div class="greyed-out-option">
+              <a>Follow</a>
+            </div>
+        <% end %>
+        <% if @user.match_ids != [] %>
+          <%= link_to "Send Message", new_match_message_path(@user.match_ids), class: "valid-option" %>
+        <% else %>
+          <div class="greyed-out-option">
+              <a>Send Message</a>
+          </div>
+        <% end %>
+    </div>
   </div>
 
   <div class="row">
@@ -43,8 +53,7 @@
         <div class="profile-user-location">
           <% if (@user.city.nil? || @user.city == "") && current_user == @user %>
             <div class="profile-unknown-attribute">
-                <div class="tag-dot"></div>
-                <p> Please tell us where you live </p>
+                <%= link_to "Please tell us where you live.", edit_user_path%>
             </div>
           <% else %>
             <p> <%= @user.first_name %> lives in <%= @user.city %></p>
@@ -66,7 +75,9 @@
       <div class="right-content-row">
         <div class="profile-user-age">
             <% if @user.age.nil? && current_user == @user %>
-              <p> Please complete your age </p>
+                  <div class="profile-unknown-attribute">
+                    <p> Please complete your age </p>
+                  </div>
               <% else %>
               <p><%= @user.age %> years old</p>
             <% end %>
@@ -153,7 +164,6 @@
         <div class="profile-user-bio">
           <% if (@user.bio.nil? || @user.bio == "") && current_user == @user %>
             <div class="profile-unknown-attribute">
-                <div class="tag-dot"></div>
                 <p> Complete your bio </p>
             </div>
           <% else %>
@@ -170,12 +180,11 @@
         <div class="profile-user-interests">
            <% if (@user.interest_category.nil? || @user.interest_category == "[\"\"]") && current_user == @user %>
               <div class="profile-unknown-attribute">
-                  <div class="tag-dot"></div>
                   <p> Complete your interests </p>
               </div>
            <% else %>
               <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
-                <div class="profile-unknown-attribute">
+                <div class="interest-tag">
                   <div class="tag-dot"></div>
                     <%= interest%>
                 </div>
@@ -186,5 +195,4 @@
       </div>
     </div>
   </div>
-
 </div>
