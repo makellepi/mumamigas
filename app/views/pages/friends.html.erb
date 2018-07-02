@@ -7,11 +7,13 @@
     <% @friends.each do |friend| %>
     <div class="card-friends">
     <% if friend.friend_status.include?("accepted")%>
-      <h4> <%= friend.user.first_name %></h4>
-      <ul><%= image_tag friend.user.photo.url, class: "style_image" %> </ul>
-      <ul> Hobbies:<%= friend.user.interest_category %></ul>
-      <ul> Location: <%= friend.user.city %></ul>
+      <%= link_to user_path(friend.user.id) do %>
+        <h4> <%= friend.user.first_name %></h4>
+        <ul><%= image_tag friend.user.photo.url, class: "style_image" %> </ul>
+        <ul> Hobbies:<%= friend.user.interest_category %></ul>
+        <ul> Location: <%= friend.user.city %></ul>
       <% end %>
+    <% end %>
     </div>
     <% end %>
 <% end %>
@@ -19,27 +21,31 @@
   <h4> Mumamigas you are following: </h4>
   <% @following.each do |f| %>
     <% f.followable_id %>
-    <% @pending = User.select(:first_name, :photo, :interest_category, :city).all.where(id: f.followable_id)%>
+    <% @pending = User.select(:id,:first_name, :photo, :interest_category, :city).all.where(id: f.followable_id)%>
       <% @pending.each do |user| %>
       <div class="card-friends">
-        <h4> <%= user.first_name %></h4>
-        <ul><%= image_tag user.photo.url, class: "style_image", height: 150, width: 150 %> </ul>
-        <ul> Hobbies:<%= user.interest_category %></ul>
-        <ul> Location: <%= user.city %></ul>
+        <%= link_to user_path(user.id) do %>
+          <h4> <%= user.first_name %></h4>
+          <ul><%= image_tag user.photo.url, class: "style_image", height: 150, width: 150 %> </ul>
+          <ul> Hobbies:<%= user.interest_category %></ul>
+          <ul> Location: <%= user.city %></ul>
         <% end %>
+      <% end %>
       </div>
   <% end %>
 
   <h4> Mumamigas that are following you: </h4>
   <% @followers.each do |f| %>
     <% f.follower_id %>
-    <% @fans = User.select(:first_name, :photo, :interest_category, :city).all.where(id: f.follower_id)%>
+    <% @fans = User.select(:id, :first_name, :photo, :interest_category, :city).all.where(id: f.follower_id)%>
     <% @fans.each do |user| %>
     <div class="card-friends">
-      <h4> <%= user.first_name %></h4>
-      <ul><%= image_tag user.photo.url, class: "style_image", height: 150, width: 150 %> </ul>
-      <ul> Hobbies:<%= user.interest_category %></ul>
-      <ul> Location: <%= user.city %></ul>
+      <%= link_to user_path(user.id) do %>
+        <h4> <%= user.first_name %></h4>
+        <ul><%= image_tag user.photo.url, class: "style_image", height: 150, width: 150 %> </ul>
+        <ul> Hobbies:<%= user.interest_category %></ul>
+        <ul> Location: <%= user.city %></ul>
+        <% end %>
       <% end %>
      </div>
   <% end %>
