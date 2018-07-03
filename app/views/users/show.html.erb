@@ -45,7 +45,7 @@
             </div>
         <% end %>
         <% if @user.match_ids != [] %>
-          <%= link_to "Send Message", new_match_message_path(@user.match_ids), class: "valid-option" %>
+          <%#= link_to "Send Message", new_match_message_path(@user.match_ids), class: "valid-option" %>
         <% else %>
           <div class="greyed-out-option">
               <a>Send Message</a>

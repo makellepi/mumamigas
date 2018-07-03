@@ -7,17 +7,43 @@
       <% end %>
     <% end %>
 
+    <% @matches_array = [] %>
 
     <% real_matches.each do |match| %>
-      <% match_length = (match.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") && @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",")) %>
-      <div class="match-profile">
-        <%= match.first_name %>
-        <%= match.city %>
-        <%= match_length %>
-        <%= match.interest_category %>
-      </div>
+      <% match_real_categories = match.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") %>
+      <% user_real_categories = @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") %>
+      <% join_categories = match_real_categories & user_real_categories %>
+      <% join_length = join_categories.length %>
+
+      <!-- If there are no interests in common -->
+      <% if join_categories == 0 %>
+
+          <% match_value = 0 %>
+
+      <!-- If interests are exactly the same -->
+      <% elsif match_real_categories.sort == user_real_categories.sort %>
+          <% match_value = 1 %>
+          <% @matches_array << [match,match_value] %>
+      <!-- If there are more interests in common than the # user interests -->
+      <% else %>
+          <% match_value = join_categories.length.to_f*2 / (user_real_categories.length.to_f + match_real_categories.length.to_f) %>
+
+          <% @matches_array << [match,match_value] %>
+      <% end %>
+
+
+
+
+
+
     <% end %>
 
+    <% @matches_array_sorted = @matches_array.sort {|a,b| b[1]<=>a[1]} %>
+    <% @matches_array_sorted.each do |match| %>
+
+        <%= match[0].first_name %>
+
+    <% end %>
 <% end %>
 
 
