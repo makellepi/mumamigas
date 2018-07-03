@@ -4,6 +4,7 @@
       <i class="fa fa-bars" data-toggle="dropdown"></i>
 
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu-left">
+        <li><%= link_to "Get Matched!", matches_path, class: "navbar-wagon-cta navbar-wagon-link"%></li>
         <li><%= link_to "Activities", friends_path, class: "navbar-wagon-item navbar-wagon-link"%></li>
         <li><%= link_to "Friends", friends_path, class: "navbar-wagon-item navbar-wagon-link"%></li>
         <li><%= link_to "Messages", messages_path, class: "navbar-wagon-item navbar-wagon-link"%></li>
@@ -20,12 +21,12 @@
   </a>
 
   <!-- Right Navigation -->
-  
-  <div class="navbar-wagon-navigation hidden-xs hidden-sm">
 
-    <a href="" class="navbar-wagon-navigation-item navbar-wagon-link">Activities</a>
-    <a <li><%= link_to "Friends", friends_path, class: "navbar-wagon-navigation-item navbar-wagon-link"%></li></a>
-    <a <li><%= link_to "Messages", messages_path, class: "navbar-wagon-navigation-item navbar-wagon-link"%></li></a>
+  <div class="navbar-wagon-navigation hidden-xs hidden-sm">
+    <%= link_to "Get Matched!", matches_path, class: "navbar-wagon-navigation-item navbar-wagon-link navbar-wagon-cta"%>
+    <%= link_to "Activities", activities_path, class: "navbar-wagon-navigation-item navbar-wagon-link"%>
+    <%= link_to "Friends", friends_path, class: "navbar-wagon-navigation-item navbar-wagon-link"%>
+    <%= link_to "Messages", messages_path, class: "navbar-wagon-navigation-item navbar-wagon-link"%>
   </div>
 
     <!-- Profile picture with dropdown list -->
