@@ -1,50 +1,79 @@
 <% real_matches = [] %>
-<% if @user_matches != nil %>
+<% if @user.interest_category.nil? || @user.interest_category == "[\"\"]" %>
+    <%= "Plese complete your profile to get matches" %>
+<% else %>
+    <% if @user_matches != nil %>
 
-    <% @user_matches.each do |match| %>
-      <% if match.interest_category != nil %>
-        <% real_matches << match %>
-      <% end %>
-    <% end %>
+        <% @user_matches.each do |match| %>
+          <% if match != @user %>
+            <% if match.interest_category != nil %>
+              <% real_matches << match %>
+            <% end %>
+          <% end %>
+        <% end %>
 
-    <% @matches_array = [] %>
+        <% @matches_array = [] %>
 
-    <% real_matches.each do |match| %>
-      <% match_real_categories = match.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") %>
-      <% user_real_categories = @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") %>
-      <% join_categories = match_real_categories & user_real_categories %>
-      <% join_length = join_categories.length %>
+        <% real_matches.each do |match| %>
+          <% match_real_categories = match.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") %>
+          <% user_real_categories = @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",") %>
+          <% join_categories = match_real_categories & user_real_categories %>
+          <% join_length = join_categories.length %>
 
-      <!-- If there are no interests in common -->
-      <% if join_categories == 0 %>
+          <!-- If there are no interests in common -->
+          <% if join_categories.length == 0 %>
 
-          <% match_value = 0 %>
+              <% match_value = 0 %>
 
-      <!-- If interests are exactly the same -->
-      <% elsif match_real_categories.sort == user_real_categories.sort %>
-          <% match_value = 1 %>
-          <% @matches_array << [match,match_value] %>
-      <!-- If there are more interests in common than the # user interests -->
-      <% else %>
-          <% match_value = join_categories.length.to_f*2 / (user_real_categories.length.to_f + match_real_categories.length.to_f) %>
+          <!-- If interests are exactly the same -->
+          <% elsif match_real_categories.sort == user_real_categories.sort %>
+              <% match_value = 1 %>
+              <% @matches_array << [match,match_value, join_categories] %>
+          <!-- If there are more interests in common than the # user interests -->
+          <% else %>
+              <% match_value = join_categories.length.to_f*2 / (user_real_categories.length.to_f + match_real_categories.length.to_f) %>
 
-          <% @matches_array << [match,match_value] %>
-      <% end %>
-
-
-
-
+              <% @matches_array << [match,match_value,join_categories] %>
+          <% end %>
 
 
-    <% end %>
+        <% end %>
 
-    <% @matches_array_sorted = @matches_array.sort {|a,b| b[1]<=>a[1]} %>
-    <% @matches_array_sorted.each do |match| %>
+        <div class="container">
+          <div class="row">
 
-        <%= match[0].first_name %>
+
+
+              <% @matches_array_sorted = @matches_array.sort {|a,b| b[1]<=>a[1]} %>
+              <% @matches_array_sorted.each do |match| %>
+
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                  <div class="match-card">
+                    <%= link_to "", user_path(match[0]), class: 'cascading-card-link' %>
+                    <div class="match-card-picture" style="background-image:url('<%= cl_image_path match[0].photo, crop: :fill %>')"></div>
+                    <div class="match-card-first-name">
+                      <%= match[0].first_name %>
+                    </div>
+                    <div class="match-card-second-name">
+                      <%= match[0].second_name %>
+                    </div>
+                    <div class="match-card-match-value">
+                      <%= "#{(match[1]*100).round}%" %>
+                    </div>
+                    <div class="match-card-interests">
+                      <%#= match[0].interest_category %>
+                    </div>
+                    <div class="match-card-join">
+                      <%#= match[2] %>
+                    </div>
+                  </div>
+                 </div>
+              <% end %>
+
+          </div>
+        </div>
 
     <% end %>
 <% end %>
-
 
 
