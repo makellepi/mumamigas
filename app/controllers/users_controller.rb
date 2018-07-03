@@ -40,17 +40,25 @@ class UsersController < ApplicationController
 
           if join_categories.length == 0
             match_value = 0
-            # if match.pregnant == @user.pregnant
-            #   match_value += match_value*0.1
-            # end
-
           elsif match_real_categories.sort == user_real_categories.sort
             match_value = 1
-            @matches_array << [match,match_value, join_categories]
           else
             match_value = join_categories.length.to_f*2 / (user_real_categories.length.to_f + match_real_categories.length.to_f)
-            @matches_array << [match,match_value,join_categories]
           end
+
+          if match.pregnant == @user.pregnant
+            match_value = match_value*1.05
+          end
+
+          if @user.children == 0 and match.children > 0
+            match_value = match_value*1.1
+          end
+
+          if match_value > 1
+            match_value = 1
+          end
+
+          @matches_array << [match,match_value, join_categories]
         end
       end
     end

@@ -1,11 +1,11 @@
 <div class="container">
    <div class="row">
-      <% @matches_array_sorted = @matches_array.sort {|a,b| b[1]<=>a[1]} %>
+      <% @matches_array_sorted = @matches_array.keep_if{|a,b| b>0}.sort {|a,b| b[1]<=>a[1]} %>
       <% @matches_array_sorted.each do |match| %>
 
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
           <div class="match-card">
-            <%= link_to "", user_path(match[0]), class: 'cascading-card-link' %>
+            <%= link_to "", user_path(match[0]), class: 'match-card-link' %>
             <div class="match-card-picture" style="background-image:url('<%= cl_image_path match[0].photo, crop: :fill %>')"></div>
             <div class="match-card-first-name">
               <%= match[0].first_name %>
