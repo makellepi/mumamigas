@@ -5,8 +5,6 @@ class CreateActivities < ActiveRecord::Migration[5.1]
       t.string :description
       t.date :date
       t.time :time
-      t.references :location, foreign_key: true
-
       t.timestamps
     end
   end

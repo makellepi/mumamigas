@@ -1,7 +1,7 @@
+require 'resolv-replace'
 require 'faker'
 
 User.destroy_all
-Match.destroy_all
 Activity.destroy_all
 
 
@@ -83,50 +83,50 @@ end
 
 p "Created users"
 
-interests_users = []
+# interests_users = []
 
- 10.times do |i|
-    categories = [ "Special needs", "Playing dates", "Food", "Tech", "Relaxed Parenting", "Mindfullness", "Others", "Fitness", "Party Animal", "Sole parent"]
-    interest = Interest.new(
-    category: categories.sample,
-    user: users.sample,
-    )
-    interests_users << interest
-    interest.save!
-end
+#  10.times do |i|
+#     categories = [ "Special needs", "Playing dates", "Food", "Tech", "Relaxed Parenting", "Mindfullness", "Others", "Fitness", "Party Animal", "Sole parent"]
+#     interest = Interest.new(
+#     category: categories.sample,
+#     user: users.sample,
+#     )
+#     interests_users << interest
+#     interest.save!
+# end
 
-p "Created categories"
+# p "Created categories"
 
 
-matches = []
+# matches = []
 
-10.times do |i|
-   friend_status = %w(pending accepted declined).sample
-  match = Match.new(
-    user: users.sample,
-    status: true,
-    friend_status: friend_status,
-    )
-    matches << match
-    match.save!
-end
+# 10.times do |i|
+#    friend_status = %w(pending accepted declined).sample
+#   match = Match.new(
+#     user: users.sample,
+#     status: true,
+#     friend_status: friend_status,
+#     )
+#     matches << match
+#     match.save!
+# end
 
-p "Created matches"
+# p "Created matches"
 
-messages = []
+# messages = []
 
-10.times do |i|
-  message_content = ["Let's be friends"]
-  message = Message.new(
-    match: matches.sample,
-    user: users.sample,
-    content: message_content,
-    )
-    messages << message
-    message.save!
-end
+# 10.times do |i|
+#   message_content = ["Let's be friends"]
+#   message = Message.new(
+#     match: matches.sample,
+#     user: users.sample,
+#     content: message_content,
+#     )
+#     messages << message
+#     message.save!
+# end
 
-p "Created messages"
+# p "Created messages"
 
 activities = []
 
