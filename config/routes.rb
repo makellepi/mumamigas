@@ -24,22 +24,22 @@ end
   resources :follows
 
 
-  resources :matches, only: [ :new, :create, :show, :index ]
+  # resources :matches, only: [ :new, :create, :show, :index ]
 
 
   resources :interests
 
 
-  resources :matches, only: [:show] do
-    resources :messages, only: [ :new, :create ]
-  end
+  # resources :matches, only: [:show] do
+  #   resources :messages, only: [ :new, :create ]
+  # end
 
   resources :activities, only: [ :new, :create, :index, :show ]
 
+  get "/matches", to: 'users#matches'
 
-
-  get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
-  get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
+  # get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
+  # get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
 
   get "/friends", to: 'users#friends'
 
