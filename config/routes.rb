@@ -19,7 +19,12 @@ end
   get '/activities', to: 'pages#activities', as: 'activities'
 
 
-  resources :users
+  resources :users do
+    member do
+      get :follow
+      get :unfollow
+    end
+  end
 
   resources :follows
 

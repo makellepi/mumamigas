@@ -37,20 +37,19 @@
               <a>Edit Profile</a>
             </div>
         <% end %>
-        <% if @user.match_ids.blank? %>
-          <%= render 'follows/form' %>
-        <% else  %>
-            <div class="greyed-out-option">
+
+        <%= render 'follows/form' %>
+        <%#=<% else  %>
+            <%#=<div class="greyed-out-option">
               <a>Follow</a>
             </div>
-        <% end %>
-        <% if @user.match_ids != [] %>
+        <%#=<% end %>
+        <%#=<% if @user.match_ids != [] %>
           <%#= link_to "Send Message", new_match_message_path(@user.match_ids), class: "valid-option" %>
-        <% else %>
-          <div class="greyed-out-option">
-              <a>Send Message</a>
-          </div>
-        <% end %>
+        <%#=<% else %>
+        <div class="greyed-out-option">
+          <a>Send Message</a>
+        </div>
     </div>
   </div>
 
