@@ -48,10 +48,10 @@ userJoana = User.create(
 
 p "Created admin users"
 
-10.times do
+100.times do
   languages = ["Spanish", "English", "German", "French", "Portuguese", "Chinese", "Russian", "Italian"].sample
-  categories = [ "Food", "Mindfullness", "Sports", "Parenting", "Yoga", "Tech", "Reading", "Shopping", "Childcare"].sample
-  cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"].sample
+  categories = [ "Food", "Mindfullness", "Sports", "Parenting", "Yoga", "Tech", "Reading", "Shopping", "Childcare", "Music", "Design", "Culture", "Current Events", "Languages", "Literature", "Programming", "Writing"].sample(rand(1-9))
+  cities = ["Rome", "Lisbon", "London"].sample
   remote_photo_url = UiFaces.woman('epic')
   pregnant = [true,false].sample
   if pregnant

@@ -24,12 +24,4 @@ acts_as_follower
       tsearch: { prefix: true }
     }
 
-  def get_colors
-    colors = Miro::DominantColors.new(self.file.url)
-    colors = colors.to_hex.join(',')
-    self.colors = colors
-    self.save
-  end
-
-
 end
