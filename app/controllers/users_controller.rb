@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @follow = Follow.find_by(follower: current_user, followable: @user)
     respond_to do |format|
         format.html { redirect_to user_path(@user) }
-        format.js  # <-- will render `app/views/reviews/create.js.erb`
+        format.js  # <-- will render `app/views/reviews/follow.js.erb`
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     current_user.stop_following(@user)
     respond_to do |format|
         format.html { redirect_to user_path(@user) }
-        format.js  # <-- will render `app/views/reviews/create.js.erb`
+        format.js  # <-- will render `app/views/reviews/unfollow.js.erb`
     end
   end
 
