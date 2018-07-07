@@ -21,10 +21,11 @@ end
 
   resources :users do |variable|
     get :profile
-    resources :messages, only: [:new, :create] #-> domain.com/users/:user_id/messages/new
   end
 
-  resources :messages, only: [:index, :show, :destroy]
+  resources :conversations, only: [:index, :create] do
+    resources :messages, only: [:index, :create]
+  end
 
   resources :follows
 
