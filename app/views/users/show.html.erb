@@ -38,13 +38,17 @@
             </div>
         <% end %>
         <%= render 'follows/form' %>
-        <% if @user_matches.include?(@user) %>
-          <%= link_to "Send Message", conversations_path(sender_id: current_user.id, receiver_id: @user.id), method: :post, class: "valid-option"%>
-        <% else %>
-          <div class="greyed-out-option">
-              <a>Send Message</a>
-          </div>
-        <% end %>
+        <% if @user_matches != nil %>
+
+            <% if @user_matches.include?(@user) %>
+              <%= link_to "Send Message", conversations_path(sender_id: current_user.id, receiver_id: @user.id), method: :post, class: "valid-option"%>
+            <% else %>
+              <div class="greyed-out-option">
+                  <a>Send Message</a>
+              </div>
+            <% end %>
+
+          <% end %>
     </div>
   </div>
 

@@ -23,8 +23,17 @@ end
   get '/activities', to: 'pages#activities', as: 'activities'
   get '/matches', to: 'users#matches', as: 'matches'
 
-  resources :users do |variable|
-    get :profile
+  # resources :users do |variable|
+  #   get :profile
+  #   get :follow
+  #   get :unfollow
+  # end
+
+  resources :users do
+    member do
+      get :follow
+      get :unfollow
+    end
   end
 
 
@@ -35,22 +44,8 @@ end
   resources :follows
 
 
-  # resources :matches, only: [ :new, :create, :show, :index ]
-
-
-  # resources :interests
-
-
-  # resources :matches, only: [:show] do
-
-  # end
-
   resources :activities, only: [ :new, :create, :index, :show ]
 
-  # get "/matches", to: 'users#matches'
-
-  # get "/matches/:id/accept", to: 'matches#accept', as: 'accept'
-  # get "/matchess/:id/decline", to: 'matches#decline', as: 'decline'
 
   get "/friends", to: 'users#friends'
 
