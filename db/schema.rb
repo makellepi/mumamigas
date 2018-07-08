@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180628141857) do
+ActiveRecord::Schema.define(version: 20180707225803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20180628141857) do
     t.datetime "updated_at", null: false
     t.string "location"
     t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "receiver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "follows", force: :cascade do |t|
@@ -40,37 +47,15 @@ ActiveRecord::Schema.define(version: 20180628141857) do
     t.index ["follower_type", "follower_id"], name: "index_follows_on_follower_type_and_follower_id"
   end
 
-  create_table "interests", force: :cascade do |t|
-    t.bigint "user_id"
-    t.text "category"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_interests_on_user_id"
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "city"
-    t.string "country"
-  end
-
-  create_table "matches", force: :cascade do |t|
-    t.boolean "status"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "friend_status"
-    t.index ["user_id"], name: "index_matches_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
-    t.string "content"
+    t.text "body"
+    t.bigint "conversation_id"
     t.bigint "user_id"
-    t.bigint "match_id"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["match_id"], name: "index_messages_on_match_id"
+    t.string "sender"
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -81,15 +66,6 @@ ActiveRecord::Schema.define(version: 20180628141857) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id"
-  end
-
-  create_table "user_interests", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "interest_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
-    t.index ["user_id"], name: "index_user_interests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -114,20 +90,15 @@ ActiveRecord::Schema.define(version: 20180628141857) do
     t.integer "age"
     t.text "bio"
     t.boolean "work_status"
-    t.string "interests"
-    t.string "interest_category"
     t.string "city"
     t.boolean "pregnant"
     t.date "pregnantdue"
+    t.string "interest_category"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "activities", "users"
-  add_foreign_key "interests", "users"
-  add_foreign_key "matches", "users"
-  add_foreign_key "messages", "matches"
+  add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
-  add_foreign_key "user_interests", "interests"
-  add_foreign_key "user_interests", "users"
 end

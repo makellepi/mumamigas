@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="message-box">
+          <% @messages.each do |message| %>
+                <% if message.body %>
+                    <% if message.sender == current_user.id.to_s %>
+                        <div class="message-rigth">
+                          <div class="message-body-right">
+                            <%= message.body %>
+                          </div>
+                        </div>
+                        <% else %>
+                        <div class="message-left">
+                          <div class="message-body-left">
+                            <%= message.body %>
+                          </div>
+                        </div>
+                    <% end %>
+                <% end %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+        <%= form_for [@conversation, @message] do |f| %>
+        <div class="new-message">
+            <div class="message-field">
+              <%= f.text_area :body, placeholder: "Your message", class:"text-area" %>
+            </div>
+            <%= f.submit "Send", class: "send-button" %>
+        </div>
+        <% end %>
+  </div>
+  </div>
+</div>
+<%# raise %>

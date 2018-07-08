@@ -1,0 +1,28 @@
+.conversation {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px;
+  background-color: white;
+  margin: 2px;
+  font-size: 13px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.receiver-image {
+
+}
+.receiver-name {
+  width: 30%;
+  text-align: left;
+  padding: 10px;
+}
+.last-message-snippet {
+  width: 50%;
+  text-align: left;
+  padding: 10px;
+}
+.unread-count {
+  width: 30%;
+}

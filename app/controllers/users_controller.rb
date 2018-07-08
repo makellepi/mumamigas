@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # Moved the Matches method to the Application Controller so to be able to call it inside the Show method
+
   def follow
     @user = User.find(params[:id])
     current_user.follow(@user)
@@ -84,6 +86,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    # Calling the Matches method inside the Show method, so we can see the user matches at the Show page.
+    matches
     @user = User.find(params[:id])
   end
 

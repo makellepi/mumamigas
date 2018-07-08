@@ -1,34 +1,31 @@
 class MessagesController < ApplicationController
-  before_action :user
-  before_action :set_match, only: [:new, :create]
+  before_action :authenticate_user!
 
-  def new
-    @message = Message.new
+  before_action do
+    @conversation = Conversation.find(params[:conversation_id])
+  end
+
+  def index
+    @messages = @conversation.messages
+
+    @messages.where("user_id != ? AND read = ?", current_user.id, false).update_all(read: true)
+
+    @message = @conversation.messages.new
   end
 
   def create
-    @message = Message.new(message_params)
-    @message.match = @match
-    @message.user = @user
+    @message = @conversation.messages.new(message_params)
+    @message.user = current_user
+    @message.sender = current_user.id
+
     if @message.save
-      redirect_to messages_path, notice: "Your message was sent"
-    else
-      render :new
+      redirect_to conversation_messages_path(@conversation)
     end
-    @message.save
+
   end
 
   private
-
-  def message_params
-    params.require(:message).permit(:content)
-  end
-
-  def set_match
-    @match = Match.find(params[:match_id])
-  end
-
-  def user
-    @user = current_user
-  end
+    def message_params
+      params.require(:message).permit(:body, :user_id)
+    end
 end
