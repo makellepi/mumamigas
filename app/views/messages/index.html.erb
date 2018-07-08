@@ -4,7 +4,7 @@
       <div class="message-box">
           <% @messages.each do |message| %>
                 <% if message.body %>
-                    <% if message.user == current_user %>
+                    <% if message.sender == current_user.id.to_s %>
                         <div class="message-rigth">
                           <div class="message-body-right">
                             <%= message.body %>
@@ -35,3 +35,4 @@
   </div>
   </div>
 </div>
+<%# raise %>
