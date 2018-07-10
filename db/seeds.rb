@@ -1,6 +1,7 @@
 require 'resolv-replace'
 require 'faker'
 
+Message.destroy_all
 User.destroy_all
 Activity.destroy_all
 
@@ -103,7 +104,6 @@ p "Created users"
 # 10.times do |i|
 #    friend_status = %w(pending accepted declined).sample
 #   match = Match.new(
-#     user: users.sample,
 #     status: true,
 #     friend_status: friend_status,
 #     )
@@ -119,7 +119,6 @@ p "Created users"
 #   message_content = ["Let's be friends"]
 #   message = Message.new(
 #     match: matches.sample,
-#     user: users.sample,
 #     content: message_content,
 #     )
 #     messages << message

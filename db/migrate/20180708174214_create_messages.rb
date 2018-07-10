@@ -7,5 +7,6 @@ class CreateMessages < ActiveRecord::Migration[5.1]
       t.boolean :read, default: false
       t.timestamps
     end
+    add_column :messages, :sender, :string
   end
 end
