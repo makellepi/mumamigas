@@ -1,9 +1,77 @@
+.message-profile-box {
+  width: 100%;
+  height: fit-content;
+  margin-top: 15px;
+  display: block;
+  padding: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.message-user-profile-photo {
+  margin-top: 15px;
+}
+
+.message-profile-user-name {
+  font-size: 15px;
+  text-align: center;
+  color: #24c5da;
+  margin-top: 15px;
+}
+
+.message-profile-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.message-profile-item {
+  height: 32px;
+  min-width: 62px;
+  width: fit-content;
+  margin-top: 5px;
+  margin: 3px;
+  display: flex;
+  font-size: 13px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 15px;
+  background-color: whitesmoke;
+  color: #24c5da;
+  border-radius: 4px;
+  border: solid;
+  border-color: #24c5da;
+  border-width: 1px;
+  background-repeat: no-repeat;
+}
+
+.message-profile-user-children {
+  text-align: center;
+}
+
+
+.message-profile-interest {
+  margin-left: 5px;
+}
+
+
+.message-container {
+  min-width: 65%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.main-container {
+  display: flex;
+}
+
+
 .message-box {
   background-color: whitesmoke;
   width: 100%;
   padding: 15px;
   font-size: 13px;
   height: 75vh;
+  overflow: scroll;
 }
 
 .message-rigth {

@@ -1,38 +1,190 @@
-<div class="container">
+<div class="main-container container">
+<% if current_user == User.find(@conversation.sender_id) %>
+  <% @user = User.find(@conversation.receiver_id)  %>
+<% else%>
+  <% @user = User.find(@conversation.sender_id) %>
+<% end %>
+
+<div class="container hidden-xs">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <div class="message-box">
-          <% @messages.each do |message| %>
-                <% if message.body %>
-                    <% if message.sender == current_user.id.to_s %>
-                        <div class="message-rigth">
-                          <div class="message-body-right">
-                            <%= message.body %>
-                          </div>
-                        </div>
-                        <% else %>
-                        <div class="message-left">
-                          <div class="message-body-left">
-                            <%= message.body %>
-                          </div>
-                        </div>
-                    <% end %>
-                <% end %>
+    <div class="message-profile-box col-xs-12">
+        <div class="message-user-profile-photo">
+
+          <% if @user.photo.nil? %>
+            <%= image_tag("female-placeholder.jpg", class:"avatar-large") %>
+          <% else %>
+            <%= cl_image_tag @user.photo, class:"avatar-large" %>
           <% end %>
+
+        </div>
+        <div class="message-profile-user-name">
+          <%= @user.first_name %>
+          <% if @user.second_name.nil? %>
+          <% else %>
+            <%= +" "+@user.second_name %>
+          <% end %>
+        </div>
+        <div class="message-profile-attributes">
+            <% if @user.age.nil? %>
+            <% else %>
+                <div class="message-profile-item">
+                  <div class="message-profile-age">
+                    <%= "#{@user.age} years old" %>
+                  </div>
+                </div>
+            <% end %>
+            <% if @user.children.nil? %>
+            <% else %>
+                <div class="message-profile-item">
+                  <div class="message-profile-user-children">
+                    <div class="children-count">
+                        <%= image_tag("baby-icon.png", size: "25x25") %>
+                        <%= "X "+@user.children.to_s %>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+            <% if @user.city.nil? %>
+            <% else %>
+                <div class="message-profile-item">
+                  <div class="message-profile-location">
+                      <%= @user.city %>
+                  </div>
+                </div>
+            <% end %>
+            <% if @user.language.nil? || @user.language == "[\"\"]"%>
+            <% else %>
+              <div class="language-flags">
+                  <% if @user.language.include?("English") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'English.png' %>)">
+                    </div>
+                  <% end %>
+                  <% if @user.language.include?("French") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'France.png' %>)">
+                    </div>
+                  <% end %>
+                  <% if @user.language.include?("Italian") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'Italy.png' %>)">
+                    </div>
+                  <% end %>
+                  <% if @user.language.include?("German") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'Germany.png' %>)">
+                    </div>
+                  <% end %>
+                  <% if @user.language.include?("Spanish") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'Spain.png' %>)">
+                    </div>
+                  <% end %>
+                  <% if @user.language.include?("Portuguese") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'Portugal.png' %>)">
+                    </div>
+                  <% end %>
+                  <% if @user.language.include?("Chinese") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'China.png' %>)">
+                    </div>
+                  <% end %>
+                  <% if @user.language.include?("Russian") %>
+                    <div class="message-profile-item" style="background-image: url(<%= asset_path 'Russia.png' %>)">
+                    </div>
+                  <% end %>
+              </div>
+            <% end %>
+            <% if @user.pregnant.nil? %>
+            <% else %>
+              <div class="message-profile-item">
+                  <div class="card-icons-pregnancy-months">
+                    <%= image_tag("pregnant-icon.png", size: "25x25") %>
+                    <% date2 = @user.pregnantdue %>
+                    <% date1 = Date.today %>
+                    <% months = (date2.year - date1.year) * 12 + date2.month - date1.month - (date2.day >= date1.day ? 0 : 1) %>
+                    <%=months.to_s+"M"%>
+                  </div>
+              </div>
+            <% end %>
+            <% if @user.work_status.nil? %>
+            <% else %>
+                <div class="message-profile-item">
+                  <% if @user.work_status == true %>
+                    <%= "Working" %>
+                  <% else %>
+                    <%= "Not Working" %>
+                  <% end %>
+                </div>
+            <% end %>
+            <% if (@user.interest_category.nil? or @user.interest_category == "[\"\"]") %>
+            <% else %>
+                <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                  <div class="message-profile-item">
+                      <i class="fas fa-heart"></i>
+                      <div class="message-profile-interest"><%= "#{interest}"%></div>
+                  </div>
+                <% end %>
+            <% end %>
+
+            <div class="message-profile-item">
+              <% if @user.follow_count == 1 %>
+                <%= "Following #{@user.follow_count} mom" %>
+              <% else %>
+                <%= "Following #{@user.follow_count} moms" %>
+              <% end %>
+            </div>
+            <div class="message-profile-item">
+              <% if @user.followers_count == 1 %>
+                <%= "#{@user.followers_count} follower" %>
+              <% else %>
+                <%= "#{@user.followers_count} followers" %>
+              <% end %>
+            </div>
+            <div class="message-profile-item">
+              <% activities_count = Activity.where(user_id: @user.id).count %>
+              <% if activities_count == 1 %>
+                <%= "#{activities_count} activity" %>
+              <% else %>
+                <%= "#{activities_count} activities" %>
+              <% end %>
+            </div>
+            <div class="message-profile-item">
+              <%= "Joined #{(Date.current - @user.created_at.to_date).to_i} days ago"%>
+            </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-        <%= form_for [@conversation, @message] do |f| %>
-        <div class="new-message">
-            <div class="message-field">
-              <%= f.text_area :body, placeholder: "Your message", class:"text-area" %>
-            </div>
-            <%= f.submit "Send", class: "send-button" %>
+</div>
+<div class="message-container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="message-box">
+            <% @messages.each do |message| %>
+                  <% if message.body %>
+                      <% if message.sender == current_user.id.to_s %>
+                          <div class="message-rigth">
+                            <div class="message-body-right">
+                              <%= message.body %>
+                            </div>
+                          </div>
+                          <% else %>
+                          <div class="message-left">
+                            <div class="message-body-left">
+                              <%= message.body %>
+                            </div>
+                          </div>
+                      <% end %>
+                  <% end %>
+            <% end %>
         </div>
-        <% end %>
-  </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+          <%= form_for [@conversation, @message] do |f| %>
+          <div class="new-message">
+              <div class="message-field">
+                <%= f.text_area :body, placeholder: "Your message", class:"text-area" %>
+              </div>
+              <%= f.submit "Send", class: "send-button" %>
+          </div>
+          <% end %>
+    </div>
+    </div>
   </div>
 </div>
-<%# raise %>
