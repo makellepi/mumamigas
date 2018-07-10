@@ -1,5 +1,9 @@
 <div class="main-container container">
-<% @user = User.find(@conversation.receiver_id) %>
+<% if current_user == User.find(@conversation.sender_id) %>
+  <% @user = User.find(@conversation.receiver_id)  %>
+<% else%>
+  <% @user = User.find(@conversation.sender_id) %>
+<% end %>
 
 <div class="container hidden-xs">
   <div class="row">
@@ -112,10 +116,36 @@
                 <% @user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
                   <div class="message-profile-item">
                       <i class="fas fa-heart"></i>
-                      <%= interest%>
+                      <div class="message-profile-interest"><%= "#{interest}"%></div>
                   </div>
                 <% end %>
             <% end %>
+
+            <div class="message-profile-item">
+              <% if @user.follow_count == 1 %>
+                <%= "Following #{@user.follow_count} mom" %>
+              <% else %>
+                <%= "Following #{@user.follow_count} moms" %>
+              <% end %>
+            </div>
+            <div class="message-profile-item">
+              <% if @user.followers_count == 1 %>
+                <%= "#{@user.followers_count} follower" %>
+              <% else %>
+                <%= "#{@user.followers_count} followers" %>
+              <% end %>
+            </div>
+            <div class="message-profile-item">
+              <% activities_count = Activity.where(user_id: @user.id).count %>
+              <% if activities_count == 1 %>
+                <%= "#{activities_count} activity" %>
+              <% else %>
+                <%= "#{activities_count} activities" %>
+              <% end %>
+            </div>
+            <div class="message-profile-item">
+              <%= "Joined #{(Date.current - @user.created_at.to_date).to_i} days ago"%>
+            </div>
         </div>
       </div>
     </div>
