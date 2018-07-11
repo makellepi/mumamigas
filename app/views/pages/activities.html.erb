@@ -26,6 +26,7 @@
             <ul><span class="glyphicon glyphicon-calendar"></span> <%= user_activity.date%></ul>
             <ul><span class="glyphicon glyphicon-time"></span><%= user_activity.time %></ul>
           </div>
+         <%= link_to 'Delete Activity', @activity, method: :delete, data: { confirm: 'Are you sure?' }, class: "valid-option" %>
       </div>
     <% end %>
   <p> Activities posted:</p>

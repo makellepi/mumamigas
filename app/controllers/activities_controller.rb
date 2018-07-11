@@ -15,7 +15,12 @@ class ActivitiesController < ApplicationController
       render :new
     end
     @activity.save
-end
+  end
+
+  def destroy
+    @activity.destroy
+    redirect_to activities_path, notice: "Your activity was deleted"
+  end
 
 private
 

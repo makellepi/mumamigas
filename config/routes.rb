@@ -44,7 +44,7 @@ end
   resources :follows
 
 
-  resources :activities, only: [ :new, :create, :index, :show ]
+  resources :activities, only: [ :new, :create, :index, :show, :destroy]
 
 
   get "/friends", to: 'users#friends'
