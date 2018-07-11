@@ -5,7 +5,8 @@
   <%= link_to 'Add Activity', new_activity_path, class: "valid-option" %>
   <p> My posted activities: </p>
     <% @user_activities.each do |user_activity| %>
-      <ul><%= image_tag user_activity.user.photo.url%></ul>
+      <%= link_to 'Delete Activity', user_activity, method: :delete , class: "valid-option" %>
+      <ul><%= image_tag user_activity.user.photo.url, class: "avatar-large" %></ul>
       <div class="class cascading-activity-card-body">
         <ul>
           <div class="class activity-card-name">
@@ -16,6 +17,7 @@
           <div class="class activity-bio">
           <%= user_activity.description.gsub(/[~;:"'<>?#\s\]\\\[]+/, '') %>
           </div>
+          <%= image_tag user_activity.image.url, class: "activity-image" %>
         </ul>
         <ul>
           <div class="activity-card-city">
@@ -24,14 +26,13 @@
         </ul>
           <div class="class activity-card-icons">
             <ul><span class="glyphicon glyphicon-calendar"></span> <%= user_activity.date%></ul>
-            <ul><span class="glyphicon glyphicon-time"></span><%= user_activity.time %></ul>
+            <ul><span class="glyphicon glyphicon-time"></span><%= user_activity.time.strftime("%H:%M") %></ul>
           </div>
       </div>
-       <%= link_to 'Delete Activity', user_activity, method: :delete , class: "valid-option" %>
     <% end %>
   <p> Activities posted:</p>
     <% @other_activities.each do |activity| %>
-        <ul><%= image_tag activity.user.photo.url%></ul>
+        <ul><%= image_tag activity.user.photo.url, class: "avatar-large" %></ul>
         <div class="class cascading-activity-card-body">
           <ul>
             <div class="class activity-card-name">
