@@ -28,6 +28,7 @@
       </div>
     <% end %>
   <p> Activities posted:</p>
+   <%= link_to 'Add Activity', new_activity_path%>
     <% @other_activities.each do |activity| %>
         <ul><%= image_tag activity.user.photo.url%></ul>
         <div class="class cascading-activity-card-body">

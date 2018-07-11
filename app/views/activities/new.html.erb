@@ -1,7 +1,10 @@
 
-<div class="col-sm-4 col-sm-offset-4">
-    <%= simple_form_for [@location, @activity] do |f| %>
-      <%= f.input :description , label: "Your activity:", placeholder: "Describe your activity"%>
-      <%= f.button :submit, "Send", class: "btn btn-block" %>
-    <% end %>
-</div>
+<%= simple_form_for @activity do |f| %>
+  <%= f.input :description %>
+  <%= f.input :location %>
+  <%= f.input :category %>
+  <%= f.input :time %>
+  <%= f.input :date %>
+  <%= f.input :image %>
+  <%= f.button :submit %>
+<% end %>

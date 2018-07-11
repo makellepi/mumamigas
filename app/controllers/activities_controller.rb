@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   before_action :user
 
 
-def new
+  def new
     @activity = Activity.new
   end
 
@@ -20,7 +20,7 @@ end
 private
 
   def activity_params
-    params.require(:activity).permit(:description, :location)
+    params.require(:activity).permit(:description, :location, :category, :time, :date, :image)
   end
 
   def user
