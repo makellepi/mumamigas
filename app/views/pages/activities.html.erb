@@ -17,7 +17,10 @@
           <div class="class activity-bio">
           <%= user_activity.description.gsub(/[~;:"'<>?#\s\]\\\[]+/, '') %>
           </div>
-          <%= image_tag user_activity.image.url, class: "activity-image" %>
+          <% if user_activity.image.blank? %>
+          <% else %>
+            <%= image_tag user_activity.image.url, class: "activity-image" %>
+          <% end %>
         </ul>
         <ul>
           <div class="activity-card-city">
@@ -31,6 +34,10 @@
                   <%= @user.first_name + " didn't provide info on this just yet" %>
               </div>
            <% else %>
+               <div class="activity-card-city">My interests:
+                <br>
+                <br>
+              </div>
               <% user_activity.user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
                 <div class="interest-tag">
                   <div class="tag-dot"></div>
