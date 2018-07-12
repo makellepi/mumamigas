@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/jonhue/notifications-rails.git
+  revision: 619c72658c261efb260aa282c06b65f27b9dd73f
+  specs:
+    notification-handler (1.2.5)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      railties (>= 5.0)
+
+GIT
   remote: git://github.com/tcocca/acts_as_follower.git
   revision: c5ac7b9601c4af01eb4d9112330b27be4d694ecc
   specs:
@@ -259,6 +268,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   listen (~> 3.0.5)
+  notification-handler!
   pg (~> 0.21)
   pg_search
   pry-byebug
