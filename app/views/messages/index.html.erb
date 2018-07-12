@@ -54,7 +54,7 @@
             <% end %>
             <% if @user.language.nil? || @user.language == "[\"\"]"%>
             <% else %>
-              <div class="language-flags">
+
                   <% if @user.language.include?("English") %>
                     <div class="message-profile-item" style="background-image: url(<%= asset_path 'English.png' %>)">
                     </div>
@@ -87,9 +87,9 @@
                     <div class="message-profile-item" style="background-image: url(<%= asset_path 'Russia.png' %>)">
                     </div>
                   <% end %>
-              </div>
+
             <% end %>
-            <% if @user.pregnant.nil? %>
+            <% if @user.pregnant.nil? or @user.pregnant == false %>
             <% else %>
               <div class="message-profile-item">
                   <div class="card-icons-pregnancy-months">
