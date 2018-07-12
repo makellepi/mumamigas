@@ -25,6 +25,12 @@ class UsersController < ApplicationController
     respond_to do |format|
         format.html { redirect_to user_path(@user) }
         format.js  # <-- will render `app/views/reviews/follow.js.erb`
+    notification = Notification.new
+    notification.target = @user
+    notification.metadata = {
+        title: 'My first notification',
+        content: "It looks great, doesn't it?"
+    }
     end
   end
 
