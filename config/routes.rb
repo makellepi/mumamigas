@@ -51,6 +51,6 @@ end
 
   post '/search/:query' => 'search#index'
 
-
+  get "/notifications", to: 'notifications#index'
 
 end
