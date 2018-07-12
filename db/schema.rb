@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180711102138) do
+ActiveRecord::Schema.define(version: 20180712154642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20180711102138) do
     t.string "location"
     t.string "category"
     t.string "image"
+    t.string "user_interests"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
