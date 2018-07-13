@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180712233128) do
+ActiveRecord::Schema.define(version: 20180713000253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20180712233128) do
     t.text "metadata"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type"
     t.index ["object_type", "object_id"], name: "index_notifications_on_object_type_and_object_id"
     t.index ["read"], name: "index_notifications_on_read"
     t.index ["target_type", "target_id"], name: "index_notifications_on_target_type_and_target_id"

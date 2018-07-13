@@ -6,6 +6,11 @@ GIT
       activerecord (>= 5.0)
       activesupport (>= 5.0)
       railties (>= 5.0)
+    notification-renderer (1.2.5)
+      actionview (>= 5.0)
+      activesupport (>= 5.0)
+      notification-handler (= 1.2.5)
+      railties (>= 5.0)
 
 GIT
   remote: git://github.com/tcocca/acts_as_follower.git
@@ -269,6 +274,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   notification-handler!
+  notification-renderer!
   pg (~> 0.21)
   pg_search
   pry-byebug
