@@ -43,10 +43,8 @@
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu-right">
           <div class="notifications">
               <div class="follow-notifications">
-                  <% notifications = User.first.notifications %>
-                  <% notifications.each do |notification| %>
-                    <%= notification %>
-                  <% end %>
+                  <% notifications = current_user.notifications.where(:read == false).count %>
+                  <%= notifications %>
               </div>
           </div>
           <li><%= link_to "Profile", user_path(current_user)%></li>
