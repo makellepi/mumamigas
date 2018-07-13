@@ -29,6 +29,26 @@
         </ul>
         <ul>
           <div class="profile-user-interests">
+           <% if user_activity.category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+           <% else %>
+               <div class="activity-card-city">Activity category:
+                <br>
+                <br>
+              </div>
+              <% user_activity.category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="interest-tag">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
+        </ul>
+        <ul>
+          <div class="profile-user-interests">
            <% if user_activity.user.interest_category.nil? %>
               <div class="profile-unknown-attribute">
                   <%= @user.first_name + " didn't provide info on this just yet" %>
@@ -72,6 +92,26 @@
             <%= activity.location %>
             </div>
           </ul>
+          <ul>
+          <div class="profile-user-interests">
+           <% if activity.category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+           <% else %>
+               <div class="activity-card-city">Activity category:
+                <br>
+                <br>
+              </div>
+              <% activity.category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="interest-tag">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
+         </ul>
           <ul>
           <div class="profile-user-interests">
            <% if activity.user.interest_category.nil? %>
