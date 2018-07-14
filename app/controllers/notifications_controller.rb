@@ -1,8 +1,7 @@
 class NotificationsController < ApplicationController
 
 def index
-  user = current_user
-  @notifications = user.notifications
+  # Set at the Application controller so it we can use @notifications in the navbar
 end
 
 
