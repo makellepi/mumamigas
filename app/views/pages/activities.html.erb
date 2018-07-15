@@ -46,26 +46,6 @@
               <% end %>
           <% end %>
           </div>
-        </ul>
-        <ul>
-          <div class="profile-user-interests">
-           <% if user_activity.user.interest_category.nil? %>
-              <div class="profile-unknown-attribute">
-                  <%= @user.first_name + " didn't provide info on this just yet" %>
-              </div>
-           <% else %>
-               <div class="activity-card-city">My interests:
-                <br>
-                <br>
-              </div>
-              <% user_activity.user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
-                <div class="interest-tag">
-                  <div class="tag-dot"></div>
-                    <%= interest%>
-                </div>
-              <% end %>
-          <% end %>
-          </div>
           </ul>
           <div class="class activity-card-icons">
             <ul><span class="glyphicon glyphicon-calendar"></span> <%= user_activity.date%></ul>
@@ -104,26 +84,6 @@
                 <br>
               </div>
               <% activity.category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
-                <div class="interest-tag">
-                  <div class="tag-dot"></div>
-                    <%= interest%>
-                </div>
-              <% end %>
-          <% end %>
-          </div>
-         </ul>
-          <ul>
-          <div class="profile-user-interests">
-           <% if activity.user.interest_category.nil? %>
-              <div class="profile-unknown-attribute">
-                  <%= @user.first_name + " didn't provide info on this just yet" %>
-              </div>
-           <% else %>
-              <div class="activity-card-city">User interests:
-                <br>
-                <br>
-              </div>
-              <% activity.user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
                 <div class="interest-tag">
                   <div class="tag-dot"></div>
                     <%= interest%>
