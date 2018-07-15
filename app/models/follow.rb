@@ -1,4 +1,5 @@
 class Follow < ActiveRecord::Base
+  notification_object
 
   extend ActsAsFollower::FollowerLib
   extend ActsAsFollower::FollowScopes

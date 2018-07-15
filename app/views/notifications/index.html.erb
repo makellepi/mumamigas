@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-8 col-md-offset-2">
+      <% @notifications.each do |notification| %>
+        <% notification.read = true %>
+        <% notification.save %>
+        <div class="notification-renderer notifications">
+          <% case notification.type %>
+            <% when 'follow' %>
+              <%= "#{notification.object.first_name} followed you" %>
+            <% when 'unfollow' %>
+              <div class="notification-box">
+                <div class="notification-type unfollow-notification">
+                  <%= "Unfollow" %>
+                </div>
+                <div class="notification-content">
+                    <%= "#{notification.object.first_name} unfollowed you" %>
+                </div>
+                <div class="notification-time">
+                    <% case notification.created_at.strftime("%e") %>
+                    <% when (1 or 21 or 31) %>
+                      <% suffix = "st" %>
+                    <% when (2 or 22) %>
+                      <% suffix = "nd" %>
+                    <% when (3 or 23) %>
+                      <% suffix = "rd" %>
+                    <% else %>
+                      <% suffix = "th" %>
+                    <% end %>
+                    <%= notification.created_at.strftime("%B %e#{suffix} %Y, at %Hh %Mm") %>
+                </div>
+              </div>
+            <% when 'message' %>
+              <div class="notification-box">
+                <div class="notification-type message-notification">
+                  <%= "Message" %>
+                </div>
+                <div class="notification-content">
+                    <%= "#{notification.object.first_name} messaged you" %>
+                </div>
+                <div class="notification-time">
+                    <% case notification.created_at.strftime("%e") %>
+                    <% when (1 or 21 or 31) %>
+                      <% suffix = "st" %>
+                    <% when (2 or 22) %>
+                      <% suffix = "nd" %>
+                    <% when (3 or 23) %>
+                      <% suffix = "rd" %>
+                    <% else %>
+                      <% suffix = "th" %>
+                    <% end %>
+                    <%= notification.created_at.strftime("%B %e#{suffix} %Y, at %Hh %Mm") %>
+                </div>
+              </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
