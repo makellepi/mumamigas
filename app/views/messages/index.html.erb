@@ -54,7 +54,7 @@
             <% end %>
             <% if @user.language.nil? || @user.language == "[\"\"]"%>
             <% else %>
-              <div class="language-flags">
+
                   <% if @user.language.include?("English") %>
                     <div class="message-profile-item" style="background-image: url(<%= asset_path 'English.png' %>)">
                     </div>
@@ -87,9 +87,9 @@
                     <div class="message-profile-item" style="background-image: url(<%= asset_path 'Russia.png' %>)">
                     </div>
                   <% end %>
-              </div>
+
             <% end %>
-            <% if @user.pregnant.nil? %>
+            <% if @user.pregnant.nil? or @user.pregnant == false %>
             <% else %>
               <div class="message-profile-item">
                   <div class="card-icons-pregnancy-months">
@@ -153,17 +153,17 @@
 <div class="message-container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="message-box">
+        <div class="message-box" id="message-box">
             <% @messages.each do |message| %>
                   <% if message.body %>
                       <% if message.sender == current_user.id.to_s %>
-                          <div class="message-rigth">
+                          <div class="message-rigth message">
                             <div class="message-body-right">
                               <%= message.body %>
                             </div>
                           </div>
                           <% else %>
-                          <div class="message-left">
+                          <div class="message-left message">
                             <div class="message-body-left">
                               <%= message.body %>
                             </div>
@@ -188,3 +188,35 @@
     </div>
   </div>
 </div>
+
+<script>
+const messages = document.getElementById('message-box');
+
+function appendMessage() {
+  const message = document.getElementsByClassName('message')[0];
+  const newMessage = message.cloneNode(true);
+  messages.appendChild(newMessage);
+}
+
+function getMessages() {
+  // Prior to getting your messages.
+  shouldScroll = messages.scrollTop + messages.clientHeight === messages.scrollHeight;
+  /*
+   * Get your messages, we'll just simulate it by appending a new one syncronously.
+   */
+
+  // After getting your messages.
+  if (!shouldScroll) {
+    scrollToBottom();
+  }
+}
+
+function scrollToBottom() {
+  messages.scrollTop = messages.scrollHeight;
+}
+
+scrollToBottom();
+
+setInterval(getMessages, 1000000);
+
+</script>
