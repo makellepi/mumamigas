@@ -42,4 +42,8 @@ class PagesController < ApplicationController
    @follow = Follow.find(params[:follow_id])
   end
 
+  def activity_params
+    @activity = Activity.find(params[:activity_id])
+  end
+
 end

@@ -1,10 +1,12 @@
 <div class="class row">
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+<div class="col-xs-12 col-sm-6s">
 <div class="class flex-center-activities">
  <div class="class activity-cascading-card">
+  <%= link_to 'Add Activity', new_activity_path, class: "valid-option" %>
   <p> My posted activities: </p>
     <% @user_activities.each do |user_activity| %>
-      <ul><%= image_tag user_activity.user.photo.url%></ul>
+      <%= link_to 'Delete Activity', user_activity, method: :delete , class: "valid-option" %>
+      <ul><%= image_tag user_activity.user.photo.url, class: "avatar-large" %></ul>
       <div class="class cascading-activity-card-body">
         <ul>
           <div class="class activity-card-name">
@@ -15,21 +17,65 @@
           <div class="class activity-bio">
           <%= user_activity.description.gsub(/[~;:"'<>?#\s\]\\\[]+/, '') %>
           </div>
+          <% if user_activity.image.blank? %>
+          <% else %>
+            <%= image_tag user_activity.image.url, class: "activity-image" %>
+          <% end %>
         </ul>
         <ul>
           <div class="activity-card-city">
           <%= user_activity.location %>
           </div>
         </ul>
+        <ul>
+          <div class="profile-user-interests">
+           <% if user_activity.category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+           <% else %>
+               <div class="activity-card-city">Activity category:
+                <br>
+                <br>
+              </div>
+              <% user_activity.category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="interest-tag">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
+        </ul>
+        <ul>
+          <div class="profile-user-interests">
+           <% if user_activity.user.interest_category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+           <% else %>
+               <div class="activity-card-city">My interests:
+                <br>
+                <br>
+              </div>
+              <% user_activity.user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="interest-tag">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
+          </ul>
           <div class="class activity-card-icons">
             <ul><span class="glyphicon glyphicon-calendar"></span> <%= user_activity.date%></ul>
-            <ul><span class="glyphicon glyphicon-time"></span><%= user_activity.time %></ul>
+            <ul><span class="glyphicon glyphicon-time"></span><%= user_activity.time.strftime("%H:%M") %></ul>
           </div>
       </div>
     <% end %>
   <p> Activities posted:</p>
     <% @other_activities.each do |activity| %>
-        <ul><%= image_tag activity.user.photo.url%></ul>
+        <ul><%= image_tag activity.user.photo.url, class: "avatar-large" %></ul>
         <div class="class cascading-activity-card-body">
           <ul>
             <div class="class activity-card-name">
@@ -45,6 +91,46 @@
             <div class="activity-card-city">
             <%= activity.location %>
             </div>
+          </ul>
+          <ul>
+          <div class="profile-user-interests">
+           <% if activity.category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+           <% else %>
+               <div class="activity-card-city">Activity category:
+                <br>
+                <br>
+              </div>
+              <% activity.category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="interest-tag">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
+         </ul>
+          <ul>
+          <div class="profile-user-interests">
+           <% if activity.user.interest_category.nil? %>
+              <div class="profile-unknown-attribute">
+                  <%= @user.first_name + " didn't provide info on this just yet" %>
+              </div>
+           <% else %>
+              <div class="activity-card-city">User interests:
+                <br>
+                <br>
+              </div>
+              <% activity.user.interest_category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <div class="interest-tag">
+                  <div class="tag-dot"></div>
+                    <%= interest%>
+                </div>
+              <% end %>
+          <% end %>
+          </div>
           </ul>
             <div class="class activity-card-icons">
               <ul><span class="glyphicon glyphicon-calendar"></span> <%= activity.date%></ul>
