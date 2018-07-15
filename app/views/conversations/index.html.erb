@@ -1,15 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-          <% valid_conversations = [] %>
-          <% @conversations.each do |conversation| %>
-              <% unless conversation.message_ids.empty? %>
-                <% valid_conversations << conversation %>
-              <% end %>
-          <% end %>
-          <% valid_conversations.each do |conversation| %>
+    <div class="col-xs-12" id="conversationlist">
+          <% @valid_conversations.each do |conversation| %>
 
-              <div class="conversation">
+
+                <div class="conversation">
                 <%= link_to "", conversation_messages_path(conversation), id:"cascading-card-link" %>
                 <div class="receiver-image">
                   <%= cl_image_tag conversation.recipient(current_user).photo, class:"avatar-small" %>
@@ -26,6 +21,7 @@
                   <% if !conversation.unread_message_count(current_user).zero? %>
                     (<%= conversation.unread_message_count(current_user) %>)
                 <% end %>
+                </div>
                 </div>
               </div>
           <% end %>

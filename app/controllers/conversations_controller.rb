@@ -4,6 +4,12 @@ class ConversationsController < ApplicationController
   def index
     @conversations = Conversation.where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
     @users = User.where.not(id: current_user.id)
+    @valid_conversations = []
+    @conversations.each do |conversation|
+        unless conversation.message_ids.empty?
+          @valid_conversations << conversation
+        end
+    end
   end
 
   def create
@@ -15,6 +21,7 @@ class ConversationsController < ApplicationController
 
     redirect_to conversation_messages_path(@conversation)
   end
+
 
   private
   def conversation_params

@@ -17,4 +17,6 @@ class Conversation < ApplicationRecord
     self.messages.where("user_id != ? AND read = ?", current_user.id, false).count
   end
 
+
+
 end
