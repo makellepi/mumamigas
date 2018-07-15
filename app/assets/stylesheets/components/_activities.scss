@@ -10,18 +10,22 @@
   margin-bottom: 20px;
   background-color: whitesmoke;
   border: none;
-  width: 250px;
+  width: 100%;
 }
 
 .cascading-activity-card-body {
-  width: 91%;
+  width: 100%;
   background-color: white;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
   z-index: 0;
-  height: 240px;
+  height: 400px;
   position: relative;
 }
 
+.activity-image {
+  width: 140px;
+  height: 140px;
+}
 
 .activity-bio {
   padding: 5px;

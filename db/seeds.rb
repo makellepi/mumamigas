@@ -132,10 +132,12 @@ activities = []
 10.times do |i|
   activity_description = ["Lorem impsum Lorem impsumLorem impsumLorem impsumLorem impsumLorem impsumLorem impsum"]
   cities = ["Rome", "Lisbon", "London", "Milan", "Madrid", "Rome", "Lisbon", "London", "Milan", "Madrid"].sample
+  categories = [ "Food", "Mindfullness", "Sports", "Parenting", "Yoga", "Tech", "Reading", "Shopping", "Childcare", "Music", "Design", "Culture", "Current Events", "Languages", "Literature", "Programming", "Writing"].sample(rand(1-9))
   activity = Activity.new(
     user: users.sample,
     description: activity_description,
     location: cities,
+    category: categories,
     date: Faker::Date.forward(23),
     time: Faker::Time.between(3.hours.ago, Time.now, :between),
     )

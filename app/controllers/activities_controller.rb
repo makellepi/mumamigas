@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   before_action :user
 
 
-def new
+  def new
     @activity = Activity.new
   end
 
@@ -15,12 +15,18 @@ def new
       render :new
     end
     @activity.save
-end
+  end
+
+  def destroy
+    @activity = Activity.find(params[:id])
+    @activity.destroy
+    redirect_to activities_path, notice: "Your activity was deleted"
+  end
 
 private
 
   def activity_params
-    params.require(:activity).permit(:description, :location)
+    params.require(:activity).permit(:description, :location, :category, :time, :date, :image, :user_interests)
   end
 
   def user
