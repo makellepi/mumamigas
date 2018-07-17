@@ -137,6 +137,7 @@ activities = []
     user: users.sample,
     description: activity_description,
     location: cities,
+    remote_image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTznQgqO8-qWmKRfrRPoste7D6-DXejU_VEafYTC4uz2LU9dfzd",
     category: categories,
     date: Faker::Date.forward(23),
     time: Faker::Time.between(3.hours.ago, Time.now, :between),

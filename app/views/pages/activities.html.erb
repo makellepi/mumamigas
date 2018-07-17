@@ -73,6 +73,11 @@
             </div>
           </ul>
           <ul>
+            <div class="activity-image">
+            <%= image_tag activity.image.url %>
+            </div>
+          </ul>
+          <ul>
           <div class="profile-user-interests">
            <% if activity.category.nil? %>
               <div class="profile-unknown-attribute">
