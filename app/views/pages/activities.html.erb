@@ -29,12 +29,7 @@
         </ul>
         <ul>
           <div class="profile-user-interests">
-           <% if user_activity.category.nil? %>
-              <div class="profile-unknown-attribute">
-                  <%= @user.first_name + " didn't provide info on this just yet" %>
-              </div>
-           <% else %>
-               <div class="activity-card-city">Activity category:
+               <div class="activity-card-city"> Activity category:
                 <br>
                 <br>
               </div>
@@ -44,7 +39,6 @@
                     <%= interest%>
                 </div>
               <% end %>
-          <% end %>
           </div>
           </ul>
           <div class="class activity-card-icons">
