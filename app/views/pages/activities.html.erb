@@ -32,13 +32,13 @@
                <div class="activity-card-city"> Activity category:
                 <br>
                 <br>
-              </div>
-              <% user_activity.category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
+                <% user_activity.category.gsub(/[~;:"'<>?#\s\]\\\[]+/, '').split(",").each do |interest| %>
                 <div class="interest-tag">
                   <div class="tag-dot"></div>
-                    <%= interest%>
+                    <%= interest %>
                 </div>
               <% end %>
+              </div>
           </div>
           </ul>
           <div class="class activity-card-icons">
