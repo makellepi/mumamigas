@@ -12,6 +12,78 @@ h3 {
   font-size: 16px;
 }
 
+/* Bubble Float Top */
+.hvr-bubble-float-top {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top:before {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  left: calc(50% - 10px);
+  top: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #E9322D transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top:hover, .hvr-bubble-float-top:focus, .hvr-bubble-float-top:active {
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+.hvr-bubble-float-top:hover:before, .hvr-bubble-float-top:focus:before, .hvr-bubble-float-top:active:before {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+/* Bubble Float Top White */
+.hvr-bubble-float-top-white {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top-white:before {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  left: calc(50% - 10px);
+  top: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #FFFFFF transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top-white:hover, .hvr-bubble-float-top-white:focus, .hvr-bubble-float-top-white:active {
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+.hvr-bubble-float-top-white:hover:before, .hvr-bubble-float-top-white:focus:before, .hvr-bubble-float-top-white:active:before {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
 .bottom{
   position: absolute;
   bottom: 20px;
@@ -72,12 +144,6 @@ h3 {
     font-weight: lighter;
     a {
       color: white;
-    }
-  }
-  .banner-button:hover {
-    background-color: white;
-    a {
-      color: #E9322D;
       text-decoration: none;
     }
   }
@@ -90,29 +156,19 @@ h3 {
 .cta-button{
   width: 300px;
   height: fit-content;
-  color: white !important;
+  //color: white !important;
   padding: 10px 15px 10px 15px;
   border-radius: 6px;
   font-size: 20px;
-  margin-top: 40px;
+  margin-top: 10px;
   font-weight: lighter;
 }
 
-.cta-button:hover{
+.white-button {
   background-color: white;
   a {
-    color: #E9322D !important;
+    color: #E9322D;
     text-decoration: none;
-  }
-}
-
-.white-button {
-  background-color: none;
-  border-style: solid;
-  border-color: white;
-  border-width: 1px;
-  a {
-    color: white !important;
   }
 }
 
