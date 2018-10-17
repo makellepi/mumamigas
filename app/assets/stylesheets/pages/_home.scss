@@ -74,6 +74,13 @@ h3 {
       color: white;
     }
   }
+  .banner-button:hover {
+    background-color: white;
+    a {
+      color: #E9322D;
+      text-decoration: none;
+    }
+  }
 }
 
 .red-button {
@@ -81,7 +88,7 @@ h3 {
 }
 
 .cta-button{
-  width: fit-content;
+  width: 300px;
   height: fit-content;
   color: white !important;
   padding: 10px 15px 10px 15px;
@@ -89,6 +96,14 @@ h3 {
   font-size: 20px;
   margin-top: 40px;
   font-weight: lighter;
+}
+
+.cta-button:hover{
+  background-color: white;
+  a {
+    color: #E9322D !important;
+    text-decoration: none;
+  }
 }
 
 .white-button {
@@ -117,12 +132,12 @@ h3 {
   p {
     color: white;
     font-size: 14px;
+    max-width: 80%;
   }
 }
 
 .main-feature-left{
   height: 400px;
-  width: 100%;
   //display: flex;
   //flex-direction: row;
   .left-picture{
@@ -152,7 +167,6 @@ h3 {
 
 .main-feature-right{
   height: 400px;
-  width: 100%;
   //display: flex;
   //flex-direction: row;
   .right-picture{
