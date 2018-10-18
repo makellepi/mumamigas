@@ -1,15 +1,89 @@
 // Specific CSS for your home-page
-.container{
-    position: relative;
-    text-align: center;
-    color: black;
+
+body {
+  font-weight: lighter;
+  font-size: 14px;
+  color: grey;
 }
 
-.centered{
-    position: absolute;
-    top: 32%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+/* Bubble Float Top */
+.hvr-bubble-float-top {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top:before {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  left: calc(50% - 10px);
+  top: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #E9322D transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top:hover, .hvr-bubble-float-top:focus, .hvr-bubble-float-top:active {
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+.hvr-bubble-float-top:hover:before, .hvr-bubble-float-top:focus:before, .hvr-bubble-float-top:active:before {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+}
+
+/* Bubble Float Top White */
+.hvr-bubble-float-top-white {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top-white:before {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  left: calc(50% - 10px);
+  top: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #FFFFFF transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-bubble-float-top-white:hover, .hvr-bubble-float-top-white:focus, .hvr-bubble-float-top-white:active {
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+.hvr-bubble-float-top-white:hover:before, .hvr-bubble-float-top-white:focus:before, .hvr-bubble-float-top-white:active:before {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
 }
 
 .bottom{
@@ -17,3 +91,231 @@
   bottom: 20px;
 }
 
+@mixin dark-overlay{
+  &:after{
+    content: "";
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: -1;  // Take note of this negative z-index and compare to each article's positive z-index. This helps your content to show up over the overlay.
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+.banner-content{
+  display: flex;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  height: 80vh;
+  background-image: url(https://images.pexels.com/photos/235554/pexels-photo-235554.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center top;
+  @include dark-overlay;
+}
+
+
+.banner-content:after{
+  background:rgba(0, 0, 0, 0.6);
+}
+
+.banner-title{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    color: white;
+  }
+  h2 {
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+  }
+  .banner-button {
+    width: fit-content;
+    height: fit-content;
+    color: white !important;
+    padding: 10px 15px 10px 15px;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-top: 40px;
+    font-weight: lighter;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.red-button {
+  background-color: #E9322D;
+}
+
+.cta-button{
+  width: 300px;
+  height: fit-content;
+  //color: white !important;
+  padding: 10px 15px 10px 15px;
+  border-radius: 6px;
+  font-size: 20px;
+  margin-top: 10px;
+  font-weight: lighter;
+}
+
+.white-button {
+  background-color: white;
+  a {
+    color: #E9322D;
+    text-decoration: none;
+  }
+}
+
+.lp-attention{
+  height: 400px;
+  //display: flex;
+  //flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  background-color: #E9322D;
+  h3 {
+    font-size: 24px;
+    color: white;
+  }
+  p {
+    color: white;
+    font-size: 14px;
+    max-width: 80%;
+  }
+}
+
+.main-feature-left{
+  height: 400px;
+  //display: flex;
+  //flex-direction: row;
+  .left-picture{
+    //width: 50%;
+    height: 100%;
+    background-image: url('https://images.pexels.com/photos/755049/pexels-photo-755049.jpeg?cs=srgb&dl=adult-baby-boy-755049.jpg&fm=jpg');
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center top;
+  }
+  .right-description {
+    padding: 20px;
+    //width: 50%;
+    height: 100%;
+    h4 {
+      margin-top: 50px;
+      font-size: 24px;
+      text-align: left;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: left;
+    }
+  }
+}
+
+.main-feature-right{
+  height: 400px;
+  //display: flex;
+  //flex-direction: row;
+  .right-picture{
+    //width: 50%;
+    height: 100%;
+    background-image: url('https://images.pexels.com/photos/698878/pexels-photo-698878.jpeg?cs=srgb&dl=adult-affection-baby-698878.jpg&fm=jpg');
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center top;
+  }
+  .left-description {
+    padding: 20px;
+    //width: 50%;
+    height: 100%;
+    h4 {
+      margin-top: 50px;
+      font-size: 24px;
+      text-align: left;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: left;
+    }
+  }
+}
+
+
+.section-title {
+  height: 150px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  width: 100%;
+  h5 {
+    font-size: 24px;
+  }
+}
+
+.other-features-title{
+  align-items: center;
+  justify-content: center;
+
+}
+
+.other-features{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 50px;
+}
+
+.feature-card {
+  height: 200px;
+  padding: 20px 30px;
+  margin: 10px;
+  background-color: white;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  p {
+    font-size: 14px;
+  }
+}
+
+.feature-card:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.lp-users {
+  background-color: white;
+  padding-bottom: 50px;
+  justify-content: space-around;
+}
+
+.users-grid {
+  align-content: center;
+}
+
+.random-user-avatar {
+  text-align: center;
+  padding: 5px 0px;
+  display: grid;
+  justify-content: center;
+  p {
+    font-size: 14px;
+  }
+}
+
+.style_image {
+  border-radius: 50%;
+  filter: saturate(10%);
+
+}
