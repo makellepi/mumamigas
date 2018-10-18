@@ -2,6 +2,8 @@
 
 body {
   font-weight: lighter;
+  font-size: 14px;
+  color: grey;
 }
 
 h2 {
@@ -102,13 +104,13 @@ h3 {
     bottom: 0;
   }
 }
-
 .banner-content{
   display: flex;
+  width: 100%;
   position: relative;
   z-index: 1;
   height: 80vh;
-  background-image: url(background.jpg);
+  background-image: url(https://images.pexels.com/photos/235554/pexels-photo-235554.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center top;
@@ -139,7 +141,7 @@ h3 {
     color: white !important;
     padding: 10px 15px 10px 15px;
     border-radius: 6px;
-    font-size: 20px;
+    font-size: 16px;
     margin-top: 40px;
     font-weight: lighter;
     a {
@@ -173,7 +175,7 @@ h3 {
 }
 
 .lp-attention{
-  height: 300px;
+  height: 400px;
   //display: flex;
   //flex-direction: column;
   justify-content: center;
@@ -256,8 +258,9 @@ h3 {
   text-align: center;
   align-items: center;
   justify-content: center;
+  padding: 50px;
+  width: 100%;
   h5 {
-    margin-top: 75px;
     font-size: 24px;
   }
 }
@@ -271,6 +274,7 @@ h3 {
 .other-features{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 50px;
 }
 
 .feature-card {
@@ -288,4 +292,30 @@ h3 {
 
 .feature-card:hover {
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.lp-users {
+  background-color: white;
+  padding-bottom: 50px;
+  justify-content: space-around;
+}
+
+.users-grid {
+  align-content: center;
+}
+
+.random-user-avatar {
+  text-align: center;
+  padding: 5px 0px;
+  display: grid;
+  justify-content: center;
+  p {
+    font-size: 14px;
+  }
+}
+
+.style_image {
+  border-radius: 50%;
+  filter: saturate(10%);
+
 }
